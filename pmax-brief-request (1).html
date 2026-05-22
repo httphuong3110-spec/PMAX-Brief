@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PMAX Agency – Brief Request</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pmax-orange: #FF5C00;
+    --pmax-orange-light: #FF7A2B;
+    --pmax-orange-pale: #FFF3ED;
+    --pmax-dark: #0D0D0D;
+    --pmax-gray-900: #1A1A1A;
+    --pmax-gray-700: #3D3D3D;
+    --pmax-gray-500: #7A7A7A;
+    --pmax-gray-200: #E8E8E8;
+    --pmax-gray-100: #F5F5F5;
+    --pmax-white: #FFFFFF;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow-card: 0 2px 20px rgba(0,0,0,0.06);
+    --shadow-hover: 0 8px 40px rgba(255,92,0,0.12);
+    --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--pmax-gray-100);
+    color: var(--pmax-dark);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--pmax-white);
+    border-bottom: 1px solid var(--pmax-gray-200);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--pmax-orange);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+  .logo-text {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--pmax-dark);
+    letter-spacing: -0.3px;
+  }
+  .logo-text span { color: var(--pmax-orange); }
+  .header-tag {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--pmax-gray-500);
+    background: var(--pmax-gray-100);
+    padding: 4px 12px;
+    border-radius: 99px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--pmax-white);
+    border-bottom: 1px solid var(--pmax-gray-200);
+    padding: 48px 24px 40px;
+  }
+  .hero-inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pmax-orange);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 18px; height: 2px;
+    background: var(--pmax-orange);
+    border-radius: 2px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 800;
+    color: var(--pmax-dark);
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    font-size: 15px;
+    color: var(--pmax-gray-500);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 28px 24px 0;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pmax-gray-500);
+    letter-spacing: 0.3px;
+  }
+  .progress-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pmax-orange);
+    font-family: 'DM Mono', monospace;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--pmax-gray-200);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pmax-orange), var(--pmax-orange-light));
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    width: 0%;
+  }
+
+  /* ── STEPPER ── */
+  .stepper {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 24px 0;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .stepper::-webkit-scrollbar { display: none; }
+  .step-btn {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 99px;
+    border: 1.5px solid transparent;
+    background: transparent;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--pmax-gray-500);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  .step-btn .step-num {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--pmax-gray-200);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'DM Mono', monospace;
+    color: var(--pmax-gray-500);
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .step-btn.active {
+    border-color: var(--pmax-orange);
+    background: var(--pmax-orange-pale);
+    color: var(--pmax-orange);
+  }
+  .step-btn.active .step-num {
+    background: var(--pmax-orange);
+    color: white;
+  }
+  .step-btn.done {
+    color: var(--pmax-gray-700);
+    border-color: var(--pmax-gray-200);
+    background: var(--pmax-white);
+  }
+  .step-btn.done .step-num {
+    background: #22C55E;
+    color: white;
+  }
+  .step-btn.done .step-num::after {
+    content: '✓';
+    font-size: 10px;
+  }
+
+  /* ── MAIN FORM AREA ── */
+  .main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  /* ── SECTION CARD ── */
+  .section-card {
+    background: var(--pmax-white);
+    border-radius: var(--radius);
+    border: 1px solid var(--pmax-gray-200);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    margin-bottom: 16px;
+    display: none;
+    animation: fadeUp 0.3s ease;
+  }
+  .section-card.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--pmax-gray-100);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .section-icon {
+    width: 44px; height: 44px;
+    background: var(--pmax-orange-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-title-wrap {}
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pmax-orange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--pmax-dark);
+    letter-spacing: -0.3px;
+  }
+  .section-desc {
+    font-size: 13.5px;
+    color: var(--pmax-gray-500);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .section-body {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ── FIELD ── */
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+
+  label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--pmax-dark);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  label .req {
+    color: var(--pmax-orange);
+    font-size: 14px;
+    line-height: 1;
+  }
+  .hint {
+    font-size: 12px;
+    color: var(--pmax-gray-500);
+    line-height: 1.5;
+    margin-top: -2px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  textarea {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    color: var(--pmax-dark);
+    background: var(--pmax-gray-100);
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 11px 14px;
+    width: 100%;
+    transition: var(--transition);
+    outline: none;
+    -webkit-appearance: none;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    background: var(--pmax-white);
+    border-color: var(--pmax-orange);
+    box-shadow: 0 0 0 3px rgba(255,92,0,0.10);
+  }
+  input::placeholder,
+  textarea::placeholder { color: var(--pmax-gray-500); font-size: 13.5px; }
+  textarea { resize: vertical; min-height: 96px; line-height: 1.6; }
+  select { cursor: pointer; }
+
+  /* ── BUDGET CHOOSER ── */
+  .budget-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  @media (max-width: 480px) { .budget-tiers { grid-template-columns: 1fr; } }
+  .tier-btn {
+    padding: 12px 10px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--pmax-gray-200);
+    background: var(--pmax-gray-100);
+    cursor: pointer;
+    text-align: center;
+    transition: var(--transition);
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  .tier-btn:hover {
+    border-color: var(--pmax-orange-light);
+    background: var(--pmax-orange-pale);
+  }
+  .tier-btn.selected {
+    border-color: var(--pmax-orange);
+    background: var(--pmax-orange-pale);
+  }
+  .tier-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pmax-dark);
+    margin-bottom: 2px;
+  }
+  .tier-label {
+    font-size: 11px;
+    color: var(--pmax-gray-500);
+  }
+  .tier-btn.selected .tier-value { color: var(--pmax-orange); }
+  .tier-btn.selected .tier-label { color: var(--pmax-orange); opacity: 0.8; }
+
+  /* ── CHECKBOX LIST ── */
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 480px) { .checkbox-grid { grid-template-columns: 1fr; } }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--pmax-gray-200);
+    background: var(--pmax-gray-100);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--pmax-gray-700);
+    user-select: none;
+  }
+  .check-item:hover { border-color: var(--pmax-orange-light); background: var(--pmax-orange-pale); }
+  .check-item input[type="checkbox"] { display: none; }
+  .check-box {
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--pmax-gray-200);
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition);
+    font-size: 11px;
+    color: white;
+  }
+  .check-item.checked {
+    border-color: var(--pmax-orange);
+    background: var(--pmax-orange-pale);
+    color: var(--pmax-orange);
+  }
+  .check-item.checked .check-box {
+    background: var(--pmax-orange);
+    border-color: var(--pmax-orange);
+  }
+  .check-item.checked .check-box::after { content: '✓'; }
+
+  /* ── DURATION TOGGLE ── */
+  .duration-opts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dur-btn {
+    padding: 8px 16px;
+    border-radius: 99px;
+    border: 1.5px solid var(--pmax-gray-200);
+    background: var(--pmax-gray-100);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--pmax-gray-700);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .dur-btn:hover { border-color: var(--pmax-orange-light); color: var(--pmax-orange); background: var(--pmax-orange-pale); }
+  .dur-btn.selected { border-color: var(--pmax-orange); background: var(--pmax-orange); color: white; }
+
+  /* ── NAV BUTTONS ── */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 20px;
+    border-top: 1px solid var(--pmax-gray-100);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 24px;
+    border-radius: var(--radius-sm);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    letter-spacing: -0.1px;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--pmax-gray-500);
+    border: 1.5px solid var(--pmax-gray-200);
+  }
+  .btn-ghost:hover { border-color: var(--pmax-gray-500); color: var(--pmax-dark); }
+  .btn-primary {
+    background: var(--pmax-orange);
+    color: white;
+  }
+  .btn-primary:hover { background: #E05200; box-shadow: 0 4px 20px rgba(255,92,0,0.3); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-submit {
+    background: var(--pmax-dark);
+    color: white;
+    padding: 13px 32px;
+    font-size: 15px;
+  }
+  .btn-submit:hover { background: #2A2A2A; }
+
+  /* ── SUCCESS STATE ── */
+  .success-card {
+    display: none;
+    background: var(--pmax-white);
+    border-radius: var(--radius);
+    border: 1px solid var(--pmax-gray-200);
+    padding: 56px 32px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    animation: fadeUp 0.4s ease;
+  }
+  .success-card.show { display: block; }
+  .success-icon {
+    width: 72px; height: 72px;
+    background: #DCFCE7;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 24px;
+  }
+  .success-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--pmax-dark);
+    margin-bottom: 10px;
+  }
+  .success-sub {
+    font-size: 15px;
+    color: var(--pmax-gray-500);
+    line-height: 1.7;
+    max-width: 400px;
+    margin: 0 auto 32px;
+  }
+  .success-detail {
+    background: var(--pmax-gray-100);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    text-align: left;
+    max-width: 480px;
+    margin: 0 auto;
+    font-size: 13.5px;
+    color: var(--pmax-gray-700);
+    line-height: 1.8;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--pmax-gray-500);
+  }
+  .site-footer a { color: var(--pmax-orange); text-decoration: none; }
+
+  /* ── GOAL DETAIL ── */
+  .goal-detail-wrap {
+    margin-top: 6px;
+    animation: fadeUp 0.2s ease;
+  }
+  .goal-detail-wrap textarea {
+    border-left: 3px solid var(--pmax-orange);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--pmax-orange-pale);
+  }
+  .goal-detail-wrap textarea:focus {
+    background: var(--pmax-white);
+  }
+
+  /* ── SOW LIST ── */
+  .sow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .sow-item {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .sow-toggle {
+    width: 100%;
+    border-radius: var(--radius-sm) !important;
+    transition: var(--transition);
+  }
+  .sow-item:has(.sow-toggle.checked) .sow-toggle {
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+  }
+  .sow-detail {
+    animation: fadeUp 0.2s ease;
+  }
+  .sow-detail textarea {
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    border: 1.5px solid var(--pmax-orange);
+    border-top: none;
+    background: var(--pmax-orange-pale);
+    margin-top: 0;
+  }
+  .sow-detail textarea:focus {
+    background: var(--pmax-white);
+    border-color: var(--pmax-orange);
+    box-shadow: 0 4px 12px rgba(255,92,0,0.08);
+  }
+
+  /* ── VALIDATION ──
+  .field.error input,
+  .field.error textarea,
+  .field.error select {
+    border-color: #EF4444;
+    background: #FFF5F5;
+  } */
+  .field.error input,
+  .field.error textarea,
+  .field.error select,
+  .goal-detail-wrap.error textarea,
+  .sow-detail.error textarea {
+    border-color: #EF4444 !important;
+    background: #FFF5F5 !important;
+  }
+  .field-err { font-size: 12px; color: #EF4444; font-weight: 500; display: block; margin-top: 4px; }
+
+  /* ── SUMMARY PAGE ── */
+  .summary-section { margin-bottom: 24px; }
+  .summary-section h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--pmax-orange);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--pmax-gray-200);
+  }
+  .summary-row {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--pmax-gray-100);
+    font-size: 13.5px;
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-key {
+    width: 200px;
+    flex-shrink: 0;
+    color: var(--pmax-gray-500);
+    font-weight: 500;
+  }
+  .summary-val { color: var(--pmax-dark); font-weight: 500; flex: 1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-mark">PM</div>
+      <div class="logo-text">P<span>MAX</span></div>
+    </a>
+    <span class="header-tag">Client Brief Form</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Bắt đầu dự án của bạn</div>
+    <h1>Chia sẻ thông tin<br>về chiến dịch của bạn</h1>
+    <p>Chỉ mất khoảng 5–8 phút. Thông tin này giúp đội ngũ PMAX hiểu rõ mục tiêu và chuẩn bị đề xuất phù hợp nhất cho bạn.</p>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-info">
+    <span class="progress-label">Tiến độ điền form</span>
+    <span class="progress-count" id="progressCount">0 / 5 bước</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<!-- STEPPER -->
+<div class="stepper" id="stepper">
+  <button class="step-btn active" onclick="goStep(0)">
+    <span class="step-num">1</span> Thông tin chung
+  </button>
+  <button class="step-btn" onclick="goStep(1)">
+    <span class="step-num">2</span> Sản phẩm & Mục tiêu
+  </button>
+  <button class="step-btn" onclick="goStep(2)">
+    <span class="step-num">3</span> Khách hàng & KPI
+  </button>
+  <button class="step-btn" onclick="goStep(3)">
+    <span class="step-num">4</span> Ngân sách & Thời gian
+  </button>
+  <button class="step-btn" onclick="goStep(4)">
+    <span class="step-num">5</span> Xem lại & Gửi
+  </button>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ── STEP 1: Thông tin chung ── -->
+  <div class="section-card active" id="step-0">
+    <div class="section-header">
+      <div class="section-icon">🏢</div>
+      <div class="section-title-wrap">
+        <div class="section-label">Bước 1 / 5</div>
+        <div class="section-title">Thông tin công ty & liên hệ</div>
+        <div class="section-desc">Để PMAX có thể follow up với đúng người phụ trách.</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field" id="f-company">
+          <label>Tên công ty <span class="req">*</span></label>
+          <input type="text" id="company" placeholder="VD: Vinamilk, Thaco Auto…">
+        </div>
+        <div class="field" id="f-brand">
+          <label>Thương hiệu / Sản phẩm <span class="req">*</span></label>
+          <input type="text" id="brand" placeholder="VD: Ông Thọ, Trường Hải…">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field" id="f-pic-name">
+          <label>Họ tên người phụ trách <span class="req">*</span></label>
+          <input type="text" id="picName" placeholder="VD: Nguyễn Văn A">
+        </div>
+        <div class="field" id="f-pic-title">
+          <label>Chức vụ</label>
+          <input type="text" id="picTitle" placeholder="VD: Marketing Manager">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Vai trò trong dự án</label>
+          <select id="picRole">
+            <option value="">-- Chọn vai trò --</option>
+            <option>Decision Maker (người ra quyết định)</option>
+            <option>Project Lead (người quản lý dự án)</option>
+            <option>Stakeholder (người liên quan)</option>
+            <option>Khác</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Ngày gửi brief</label>
+          <input type="date" id="briefDate">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field" id="f-pic-email">
+          <label>Email công việc <span class="req">*</span></label>
+          <input type="email" id="picEmail" placeholder="name@company.com">
+        </div>
+        <div class="field">
+          <label>Số điện thoại / Zalo</label>
+          <input type="tel" id="picPhone" placeholder="0901 234 567">
+        </div>
+      </div>
+      <div class="field">
+        <label>Lĩnh vực kinh doanh <span class="req">*</span></label>
+        <select id="industry">
+          <option value="">-- Chọn lĩnh vực --</option>
+          <option>Ô tô / Xe máy</option>
+          <option>Bất động sản</option>
+          <option>Tài chính / Ngân hàng / Bảo hiểm</option>
+          <option>Sức khỏe / Y tế / Dược phẩm</option>
+          <option>Làm đẹp / Chăm sóc cá nhân</option>
+          <option>Thực phẩm & Đồ uống (FMCG)</option>
+          <option>Giáo dục</option>
+          <option>Thương mại điện tử / Retail</option>
+          <option>Công nghệ / SaaS</option>
+          <option>Khác</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Các kênh digital đang có</label>
+        <div class="hint">Paste link vào, cách nhau bằng dấu phẩy hoặc xuống dòng</div>
+        <textarea id="channels" rows="3" placeholder="Website: https://…&#10;Facebook: https://…&#10;TikTok: https://…"></textarea>
+      </div>
+      <div class="nav-row">
+        <span></span>
+        <button class="btn btn-primary" onclick="nextStep(0)">Tiếp theo →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: Sản phẩm & Mục tiêu ── -->
+  <div class="section-card" id="step-1">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div class="section-title-wrap">
+        <div class="section-label">Bước 2 / 5</div>
+        <div class="section-title">Sản phẩm, Thách thức & Mục tiêu</div>
+        <div class="section-desc">Giúp PMAX hiểu bức tranh toàn cảnh của chiến dịch.</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>Mô tả sản phẩm / dịch vụ <span class="req">*</span></label>
+        <textarea id="product" rows="3" placeholder="Sản phẩm/dịch vụ là gì? Chiến lược sản phẩm ngắn hạn và dài hạn?"></textarea>
+      </div>
+      <div class="field">
+        <label>USP – Điểm khác biệt của sản phẩm</label>
+        <div class="hint">Điều gì làm sản phẩm/dịch vụ của bạn nổi bật hơn đối thủ?</div>
+        <textarea id="usp" rows="2" placeholder="VD: Công thức dịu nhẹ cho da em bé, được kiểm chứng bởi bác sĩ da liễu…"></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Giá sản phẩm / dịch vụ</label>
+          <input type="text" id="price" placeholder="VD: 500.000 – 2.000.000 VND">
+        </div>
+        <div class="field">
+          <label>Chính sách bán hàng đặc biệt</label>
+          <input type="text" id="salesPolicy" placeholder="VD: Combo, mua theo nhóm, trả góp…">
+        </div>
+      </div>
+      <div class="field">
+        <label>Chương trình khuyến mãi hiện tại / sắp tới</label>
+        <input type="text" id="promotion" placeholder="VD: Giảm 20%, Mua 1 tặng 1, Flash sale dịp Tết…">
+      </div>
+      <div class="field">
+        <label>Kênh bán hàng đang có</label>
+        <div class="hint">Offline và online, kèm link nếu có</div>
+        <textarea id="salesChannels" rows="2" placeholder="VD: Siêu thị Big C, Shopee: https://…, Website: https://…"></textarea>
+      </div>
+      <div class="field">
+        <label>Bối cảnh & Thách thức hiện tại</label>
+        <textarea id="challenge" rows="3" placeholder="Công ty đang đối mặt với khó khăn gì? Lý do cần chạy chiến dịch lần này?"></textarea>
+      </div>
+      <div class="field">
+        <label>Chiến lược & Tài nguyên marketing hiện có</label>
+        <div class="hint">Đã có định hướng chiến lược chưa? Có tài liệu, KV, creative asset sẵn không?</div>
+        <textarea id="strategy" rows="2" placeholder="VD: Có KV từ thị trường quốc tế, dự kiến kết hợp digital + traditional…"></textarea>
+      </div>
+      <div class="field">
+        <label>Đối thủ cạnh tranh chính</label>
+        <input type="text" id="competitors" placeholder="VD: Pigeon, Johnson's Baby…">
+      </div>
+      <div class="field">
+        <label>Mục tiêu chiến dịch <span class="req">*</span></label>
+        <div class="hint">Chọn một hoặc nhiều mục tiêu, sau đó mô tả cụ thể bên dưới</div>
+        <div class="checkbox-grid" id="goals-grid">
+          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-brand">
+            <input type="checkbox" value="brand-awareness">
+            <span class="check-box"></span>Tăng nhận diện thương hiệu
+          </label>
+          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-lead">
+            <input type="checkbox" value="lead-gen">
+            <span class="check-box"></span>Thu thập Lead / Khách tiềm năng
+          </label>
+          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-ecom">
+            <input type="checkbox" value="ecom-sales">
+            <span class="check-box"></span>Tăng doanh số / ROAS
+          </label>
+          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-app">
+            <input type="checkbox" value="app-install">
+            <span class="check-box"></span>Cài đặt App / Đăng ký
+          </label>
+          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-content">
+            <input type="checkbox" value="content">
+            <span class="check-box"></span>Content / Social media
+          </label>
+          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-other">
+            <input type="checkbox" value="other">
+            <span class="check-box"></span>Mục tiêu khác
+          </label>
+        </div>
+        <!-- Dynamic detail fields per goal -->
+        <div class="goal-detail-wrap" id="goal-detail-brand" style="display:none;">
+          <textarea id="goalNote_brand-awareness" rows="2" placeholder="Mô tả cụ thể: target reach, tần suất, thị trường địa lý, đối tượng cần tiếp cận…"></textarea>
+        </div>
+        <div class="goal-detail-wrap" id="goal-detail-lead" style="display:none;">
+          <textarea id="goalNote_lead-gen" rows="2" placeholder="Mô tả cụ thể: số lead/tháng, CPL mục tiêu, nguồn lead ưu tiên (form, Zalo, call…)"></textarea>
+        </div>
+        <div class="goal-detail-wrap" id="goal-detail-ecom" style="display:none;">
+          <textarea id="goalNote_ecom-sales" rows="2" placeholder="Mô tả cụ thể: doanh số mục tiêu, ROAS kỳ vọng, sản phẩm trọng tâm, platform (Shopee, web…)"></textarea>
+        </div>
+        <div class="goal-detail-wrap" id="goal-detail-app" style="display:none;">
+          <textarea id="goalNote_app-install" rows="2" placeholder="Mô tả cụ thể: số lượt cài đặt/đăng ký mục tiêu, CPI kỳ vọng, nền tảng (iOS/Android)…"></textarea>
+        </div>
+        <div class="goal-detail-wrap" id="goal-detail-content" style="display:none;">
+          <textarea id="goalNote_content" rows="2" placeholder="Mô tả cụ thể: kênh (Facebook, TikTok, Instagram…), tần suất, loại content (video, bài viết, reels…)"></textarea>
+        </div>
+        <div class="goal-detail-wrap" id="goal-detail-other" style="display:none;">
+          <textarea id="goalNote_other" rows="2" placeholder="Mô tả mục tiêu khác của bạn…"></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Dịch vụ & Phạm vi công việc cần PMAX hỗ trợ</label>
+        <div class="hint">Chọn dịch vụ và điền yêu cầu cụ thể cho từng hạng mục</div>
+        <div class="sow-list" id="sow-list">
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-research')">
+              <input type="checkbox" value="research-strategy">
+              <span class="check-box"></span>Research &amp; Strategy
+            </label>
+            <div class="sow-detail" id="sow-research" style="display:none;">
+              <textarea id="sow_research-strategy" rows="2" placeholder="VD: Nghiên cứu thị trường, phân tích đối thủ, xây dựng chiến lược tổng thể…"></textarea>
+            </div>
+          </div>
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-media')">
+              <input type="checkbox" value="media">
+              <span class="check-box"></span>Media – Paid / Owned / Earned
+            </label>
+            <div class="sow-detail" id="sow-media" style="display:none;">
+              <textarea id="sow_media" rows="2" placeholder="VD: Facebook Ads, Google Search/Display, YouTube, TikTok Ads – ngân sách, kênh ưu tiên…"></textarea>
+            </div>
+          </div>
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-creative')">
+              <input type="checkbox" value="creative">
+              <span class="check-box"></span>Creative – Concept / Idea / Production
+            </label>
+            <div class="sow-detail" id="sow-creative" style="display:none;">
+              <textarea id="sow_creative" rows="2" placeholder="VD: Banner tĩnh, video 15s/30s, key visual, content bài đăng mạng xã hội…"></textarea>
+            </div>
+          </div>
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-platform')">
+              <input type="checkbox" value="platform">
+              <span class="check-box"></span>Platform – Website / App / Landing Page
+            </label>
+            <div class="sow-detail" id="sow-platform" style="display:none;">
+              <textarea id="sow_platform" rows="2" placeholder="VD: Thiết kế UX/UI landing page, tối ưu tốc độ website, xây dựng app…"></textarea>
+            </div>
+          </div>
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-technical')">
+              <input type="checkbox" value="technical">
+              <span class="check-box"></span>Technical Setup &amp; Tools
+            </label>
+            <div class="sow-detail" id="sow-technical" style="display:none;">
+              <textarea id="sow_technical" rows="2" placeholder="VD: Setup GA4, Meta Pixel, Google Tag Manager, CRM integration…"></textarea>
+            </div>
+          </div>
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-data')">
+              <input type="checkbox" value="data-reporting">
+              <span class="check-box"></span>Data &amp; Reporting
+            </label>
+            <div class="sow-detail" id="sow-data" style="display:none;">
+              <textarea id="sow_data-reporting" rows="2" placeholder="VD: Dashboard báo cáo hàng tuần/tháng, phân tích hiệu quả theo kênh…"></textarea>
+            </div>
+          </div>
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-commercial')">
+              <input type="checkbox" value="commercial">
+              <span class="check-box"></span>Commercial Management
+            </label>
+            <div class="sow-detail" id="sow-commercial" style="display:none;">
+              <textarea id="sow_commercial" rows="2" placeholder="VD: Quản lý ngân sách, tối ưu chi phí media, đàm phán media placement…"></textarea>
+            </div>
+          </div>
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-merch')">
+              <input type="checkbox" value="merchandising">
+              <span class="check-box"></span>Merchandising Enhancement
+            </label>
+            <div class="sow-detail" id="sow-merch" style="display:none;">
+              <textarea id="sow_merchandising" rows="2" placeholder="VD: Tối ưu trang sản phẩm Shopee/Lazada, A+ content, hình ảnh sản phẩm…"></textarea>
+            </div>
+          </div>
+
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-sales')">
+              <input type="checkbox" value="sales-campaign">
+              <span class="check-box"></span>Sales Campaign Management
+            </label>
+            <div class="sow-detail" id="sow-sales" style="display:none;">
+              <textarea id="sow_sales-campaign" rows="2" placeholder="VD: Quản lý flash sale, chiến dịch 11.11/12.12, campaign theo sự kiện…"></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="prevStep(1)">← Quay lại</button>
+        <button class="btn btn-primary" onclick="nextStep(1)">Tiếp theo →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: Khách hàng & KPI ── -->
+  <div class="section-card" id="step-2">
+    <div class="section-header">
+      <div class="section-icon">👥</div>
+      <div class="section-title-wrap">
+        <div class="section-label">Bước 3 / 5</div>
+        <div class="section-title">Khách hàng mục tiêu & KPI</div>
+        <div class="section-desc">Điền càng chi tiết, đề xuất của PMAX càng chính xác.</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>Chân dung khách hàng mục tiêu <span class="req">*</span></label>
+        <div class="hint">Độ tuổi, giới tính, vị trí địa lý, hành vi, thu nhập…</div>
+        <textarea id="audience" rows="3" placeholder="VD: Phụ nữ 25–35 tuổi, sống ở HCM & Hà Nội, có con nhỏ, thu nhập >15 triệu/tháng…"></textarea>
+      </div>
+      <div class="field">
+        <label>KPI chính muốn đạt được</label>
+        <div class="hint">VD: 1,000 leads/tháng, CPL &lt; 200k, ROAS &gt; 4x, 50,000 đơn hàng…</div>
+        <textarea id="kpi" rows="3" placeholder="Ghi rõ chỉ số & mức mục tiêu. Ưu tiên KPI nào nhất?"></textarea>
+      </div>
+      <div class="field">
+        <label>Định nghĩa / diễn giải chi tiết về KPI</label>
+        <div class="hint">Cách đo lường cụ thể, điều kiện tính là đạt…</div>
+        <textarea id="kpiDef" rows="2" placeholder="VD: Đơn hàng được tính khi: đã thanh toán thành công trên website…"></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Hệ thống tracking đang dùng</label>
+          <input type="text" id="tracking" placeholder="VD: Google Analytics, Pixel, CRM…">
+        </div>
+        <div class="field">
+          <label>Có pitching không?</label>
+          <select id="pitching">
+            <option value="">-- Chọn --</option>
+            <option value="yes">Có – đang pitching nhiều agency</option>
+            <option value="direct">Không – muốn làm việc trực tiếp với PMAX</option>
+            <option value="unsure">Chưa quyết định</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" id="f-pitching-detail" style="display:none;">
+        <label>Chi tiết quy trình pitching</label>
+        <div class="hint">Số agency tham gia, timeline pitching, người ra quyết định cuối cùng là ai?</div>
+        <textarea id="pitchingDetail" rows="3" placeholder="VD: 3-4 agencies. Timeline: brief 1/6 → nộp proposal 15/6 → present 20-22/6 → thông báo 25/6. Decision maker: Giám đốc Marketing"></textarea>
+      </div>
+      <div class="field">
+        <label>Tiêu chí lựa chọn agency</label>
+        <div class="hint">Sắp xếp theo mức độ ưu tiên từ cao xuống thấp</div>
+        <textarea id="criteria" rows="2" placeholder="VD: 1. Chuyên môn & case study  2. Giá dịch vụ  3. Chất lượng đề xuất…"></textarea>
+      </div>
+      <div class="field">
+        <label>Phạm vi công việc chi tiết (Scope of Work)</label>
+        <div class="hint">Ghi rõ yêu cầu cho từng dịch vụ đã chọn ở bước trước</div>
+        <textarea id="scopeDetail" rows="3" placeholder="VD: Media: Facebook + Google, creative test 3-5 ads/tháng. Creative: banner & video 15s. Technical: setup GA4 + Pixel…"></textarea>
+      </div>
+      <div class="field">
+        <label>Số liệu / chiến dịch đã chạy trước đây (nếu có)</label>
+        <textarea id="history" rows="2" placeholder="VD: Facebook CR 2%, CPO 100k. TikTok: 5,000 clicks, 50 leads/tháng…"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="prevStep(2)">← Quay lại</button>
+        <button class="btn btn-primary" onclick="nextStep(2)">Tiếp theo →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: Ngân sách & Thời gian ── -->
+  <div class="section-card" id="step-3">
+    <div class="section-header">
+      <div class="section-icon">💰</div>
+      <div class="section-title-wrap">
+        <div class="section-label">Bước 4 / 5</div>
+        <div class="section-title">Ngân sách & Thời gian triển khai</div>
+        <div class="section-desc">Giúp PMAX đề xuất giải pháp phù hợp với nguồn lực thực tế.</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>Ngân sách hàng tháng (ước tính) <span class="req">*</span></label>
+        <div class="hint">Chọn mức phù hợp, sau đó điền con số cụ thể hơn nếu có</div>
+        <div class="budget-tiers">
+          <div class="tier-btn" onclick="selectTier(this, 'lt100')">
+            <div class="tier-value">Dưới 100 triệu</div>
+            <div class="tier-label">/ tháng</div>
+          </div>
+          <div class="tier-btn" onclick="selectTier(this, 'lt300')">
+            <div class="tier-value">100 – 300 triệu</div>
+            <div class="tier-label">/ tháng</div>
+          </div>
+          <div class="tier-btn" onclick="selectTier(this, 'gt300')">
+            <div class="tier-value">Trên 300 triệu</div>
+            <div class="tier-label">/ tháng</div>
+          </div>
+        </div>
+        <input type="text" id="budgetExact" placeholder="Ngân sách chính xác hơn (không bắt buộc): VD: 150 triệu VND/tháng">
+      </div>
+      <div class="field">
+        <label>Thời gian bắt đầu dự kiến <span class="req">*</span></label>
+        <input type="date" id="startDate">
+      </div>
+      <div class="field">
+        <label>Thời gian triển khai</label>
+        <div class="hint">Chiến dịch dự kiến chạy trong bao lâu?</div>
+        <div class="duration-opts" id="durOpts">
+          <button class="dur-btn" onclick="selectDur(this,'1m')">1 tháng</button>
+          <button class="dur-btn" onclick="selectDur(this,'3m')">3 tháng</button>
+          <button class="dur-btn" onclick="selectDur(this,'6m')">6 tháng</button>
+          <button class="dur-btn" onclick="selectDur(this,'1y')">1 năm</button>
+          <button class="dur-btn" onclick="selectDur(this,'ongoing')">Dài hạn / Ongoing</button>
+          <button class="dur-btn" onclick="selectDur(this,'custom')">Khác</button>
+        </div>
+        <input type="text" id="durationCustom" placeholder="Nhập thời gian cụ thể…" style="margin-top:8px;display:none;">
+      </div>
+      <div class="field">
+        <label>Ghi chú thêm về timeline / giai đoạn cao điểm</label>
+        <textarea id="timelineNote" rows="2" placeholder="VD: Tết Nguyên Đán là peak season. Cần live trước 15/1…"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="prevStep(3)">← Quay lại</button>
+        <button class="btn btn-primary" onclick="nextStep(3)">Xem lại →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 5: Review & Submit ── -->
+  <div class="section-card" id="step-4">
+    <div class="section-header">
+      <div class="section-icon">✅</div>
+      <div class="section-title-wrap">
+        <div class="section-label">Bước 5 / 5</div>
+        <div class="section-title">Xem lại thông tin</div>
+        <div class="section-desc">Kiểm tra lại trước khi gửi. Bạn có thể quay lại để chỉnh sửa bất kỳ mục nào.</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div id="summaryContent"></div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="prevStep(4)">← Chỉnh sửa</button>
+        <button class="btn btn-submit" onclick="submitForm()">🚀 Gửi Brief cho PMAX</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-card" id="successCard">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">Đã nhận được Brief!</div>
+    <div class="success-sub">Cảm ơn bạn đã chia sẻ thông tin. Đội ngũ PMAX sẽ liên hệ với bạn trong vòng <strong>1 ngày làm việc</strong>.</div>
+    <div class="success-detail" id="successDetail"></div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  © 2025 PMAX Agency · <a href="https://pmax.vn" target="_blank">pmax.vn</a> · Thông tin được bảo mật và chỉ dùng nội bộ
+</footer>
+
+<script>
+  // ── STATE ──
+  let currentStep = 0;
+  const totalSteps = 5;
+  let budgetTier = '';
+  let duration = '';
+  const doneSteps = new Set();
+
+  // ── PITCHING TOGGLE ──
+  document.getElementById('pitching').addEventListener('change', function() {
+    const detail = document.getElementById('f-pitching-detail');
+    detail.style.display = this.value === 'yes' ? 'block' : 'none';
+  });
+
+  // ── NAVIGATION ──
+  function goStep(n) {
+    document.querySelectorAll('.section-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('step-' + n).classList.add('active');
+    currentStep = n;
+    updateProgress();
+    updateStepper();
+    if (n === 4) buildSummary();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextStep(from) {
+    if (!validateStep(from)) return;
+    doneSteps.add(from);
+    goStep(from + 1);
+  }
+
+  function prevStep(from) {
+    goStep(from - 1);
+  }
+
+  // ── PROGRESS ──
+  function updateProgress() {
+    const pct = ((doneSteps.size) / (totalSteps - 1)) * 100;
+    document.getElementById('progressFill').style.width = Math.min(pct, 100) + '%';
+    document.getElementById('progressCount').textContent = doneSteps.size + ' / ' + (totalSteps - 1) + ' bước';
+  }
+
+  function updateStepper() {
+    document.querySelectorAll('.step-btn').forEach((btn, i) => {
+      btn.classList.remove('active', 'done');
+      if (i === currentStep) btn.classList.add('active');
+      else if (doneSteps.has(i)) btn.classList.add('done');
+    });
+  }
+
+  // ── VALIDATION ──
+  function clearErrors() {
+    document.querySelectorAll('.field.error, .goal-detail-wrap.error, .sow-detail.error').forEach(f => {
+      f.classList.remove('error');
+      f.querySelectorAll('.field-err').forEach(e => e.remove());
+    });
+  }
+
+  function showErr(wrap, msg) {
+    // remove existing error on same wrap first
+    wrap.querySelectorAll('.field-err').forEach(e => e.remove());
+    const e = document.createElement('span');
+    e.className = 'field-err'; e.textContent = msg;
+    wrap.appendChild(e);
+  }
+
+  function markError(el, msg) {
+    const wrap = el.closest('.field') || el.closest('.goal-detail-wrap') || el.closest('.sow-detail') || el.parentElement;
+    wrap.classList.add('error');
+    showErr(wrap, msg);
+  }
+
+  function validateStep(step) {
+    let ok = true;
+    clearErrors();
+
+    // ── STEP 0 ──
+    if (step === 0) {
+      [
+        ['company',  'f-company',  'Vui lòng nhập tên công ty'],
+        ['brand',    'f-brand',    'Vui lòng nhập tên thương hiệu'],
+        ['picName',  'f-pic-name', 'Vui lòng nhập tên người phụ trách'],
+        ['picEmail', 'f-pic-email','Vui lòng nhập email'],
+      ].forEach(([iid, fid, msg]) => {
+        const el = document.getElementById(iid);
+        const wrap = document.getElementById(fid);
+        if (!el.value.trim()) { wrap.classList.add('error'); showErr(wrap, msg); ok = false; }
+      });
+      const emailEl = document.getElementById('picEmail');
+      if (emailEl.value && !emailEl.value.includes('@')) {
+        const wrap = document.getElementById('f-pic-email');
+        wrap.classList.add('error'); showErr(wrap, 'Email không hợp lệ'); ok = false;
+      }
+    }
+
+    // ── STEP 1 ──
+    if (step === 1) {
+      // product required
+      const productEl = document.getElementById('product');
+      if (!productEl.value.trim()) { markError(productEl, 'Vui lòng mô tả sản phẩm'); ok = false; }
+
+      // each checked goal must have a note
+      document.querySelectorAll('#goals-grid .check-item.checked').forEach(item => {
+        const val = item.querySelector('input').value;
+        const noteEl = document.getElementById('goalNote_' + val);
+        const detailWrap = noteEl ? noteEl.closest('.goal-detail-wrap') : null;
+        if (noteEl && !noteEl.value.trim()) {
+          if (detailWrap) { detailWrap.classList.add('error'); showErr(detailWrap, 'Vui lòng mô tả cụ thể mục tiêu này'); }
+          noteEl.focus();
+          ok = false;
+        }
+      });
+
+      // each checked SOW must have a note
+      document.querySelectorAll('#sow-list .sow-toggle.checked').forEach(item => {
+        const val = item.querySelector('input').value;
+        const noteEl = document.getElementById('sow_' + val);
+        const detailWrap = noteEl ? noteEl.closest('.sow-detail') : null;
+        if (noteEl && !noteEl.value.trim()) {
+          if (detailWrap) { detailWrap.classList.add('error'); showErr(detailWrap, 'Vui lòng mô tả yêu cầu cụ thể'); }
+          if (!ok === false) noteEl.focus(); // focus first error only
+          ok = false;
+        }
+      });
+
+      // scroll to first error
+      if (!ok) {
+        const firstErr = document.querySelector('#step-1 .error');
+        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // ── STEP 2 ──
+    if (step === 2) {
+      const el = document.getElementById('audience');
+      if (!el.value.trim()) { markError(el, 'Vui lòng mô tả khách hàng mục tiêu'); ok = false; }
+    }
+
+    // ── STEP 3 ──
+    if (step === 3) {
+      if (!budgetTier) {
+        const tierWrap = document.querySelector('.budget-tiers').closest('.field');
+        tierWrap.classList.add('error'); showErr(tierWrap, 'Vui lòng chọn mức ngân sách'); ok = false;
+      }
+      const sd = document.getElementById('startDate');
+      if (!sd.value) { markError(sd, 'Vui lòng chọn ngày bắt đầu'); ok = false; }
+    }
+
+    return ok;
+  }
+
+  // ── CHECKBOX TOGGLE (goals) ──
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    const cb = el.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    // show/hide detail textarea for goal items
+    const target = el.getAttribute('data-target');
+    if (target) {
+      const detail = document.getElementById(target);
+      if (detail) detail.style.display = cb.checked ? 'block' : 'none';
+    }
+  }
+
+  // ── SOW TOGGLE (services) ──
+  function toggleSow(el, detailId) {
+    el.classList.toggle('checked');
+    const cb = el.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    const detail = document.getElementById(detailId);
+    if (detail) detail.style.display = cb.checked ? 'block' : 'none';
+  }
+
+  // ── BUDGET TIERS ──
+  function selectTier(el, val) {
+    document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    budgetTier = val;
+  }
+
+  // ── DURATION ──
+  function selectDur(el, val) {
+    document.querySelectorAll('.dur-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    duration = val;
+    const custom = document.getElementById('durationCustom');
+    custom.style.display = val === 'custom' ? 'block' : 'none';
+  }
+
+  // ── SUMMARY ──
+  function buildSummary() {
+    const tierMap = { lt100: 'Dưới 100 triệu/tháng', lt300: '100–300 triệu/tháng', gt300: 'Trên 300 triệu/tháng' };
+    const durMap = { '1m':'1 tháng','3m':'3 tháng','6m':'6 tháng','1y':'1 năm','ongoing':'Dài hạn / Ongoing','custom': document.getElementById('durationCustom').value || 'Khác' };
+
+    const goalsChecked = [...document.querySelectorAll('#goals-grid .check-item.checked')];
+    const goalsText = goalsChecked.map(el => {
+      const val = el.querySelector('input').value;
+      const label = el.textContent.trim();
+      const noteEl = document.getElementById('goalNote_' + val);
+      const note = noteEl && noteEl.value.trim() ? ': ' + noteEl.value.trim() : '';
+      return label + note;
+    }).join('<br>');
+
+    const sowChecked = [...document.querySelectorAll('#sow-list .sow-toggle.checked')];
+    const servicesText = sowChecked.map(el => {
+      const val = el.querySelector('input').value;
+      const label = el.textContent.trim();
+      const noteEl = document.getElementById('sow_' + val);
+      const note = noteEl && noteEl.value.trim() ? ': ' + noteEl.value.trim() : '';
+      return label + note;
+    }).join('<br>');
+
+    const html = `
+      <div class="summary-section">
+        <h3>📋 Thông tin công ty & liên hệ</h3>
+        <div class="summary-row"><span class="summary-key">Công ty</span><span class="summary-val">${v('company')}</span></div>
+        <div class="summary-row"><span class="summary-key">Thương hiệu</span><span class="summary-val">${v('brand')}</span></div>
+        <div class="summary-row"><span class="summary-key">Ngày gửi brief</span><span class="summary-val">${v('briefDate') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Người phụ trách</span><span class="summary-val">${v('picName')} — ${v('picTitle') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Vai trò trong dự án</span><span class="summary-val">${v('picRole') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Liên hệ</span><span class="summary-val">${v('picEmail')} · ${v('picPhone') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Lĩnh vực</span><span class="summary-val">${v('industry') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Kênh digital</span><span class="summary-val">${v('channels') || '—'}</span></div>
+      </div>
+      <div class="summary-section">
+        <h3>🛍️ Sản phẩm & Chiến lược</h3>
+        <div class="summary-row"><span class="summary-key">Sản phẩm / dịch vụ</span><span class="summary-val">${v('product')}</span></div>
+        <div class="summary-row"><span class="summary-key">USP</span><span class="summary-val">${v('usp') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Giá</span><span class="summary-val">${v('price') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Chính sách bán hàng</span><span class="summary-val">${v('salesPolicy') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Khuyến mãi</span><span class="summary-val">${v('promotion') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Kênh bán hàng</span><span class="summary-val">${v('salesChannels') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Bối cảnh & Thách thức</span><span class="summary-val">${v('challenge') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Chiến lược & Asset sẵn có</span><span class="summary-val">${v('strategy') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Đối thủ</span><span class="summary-val">${v('competitors') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Mục tiêu chiến dịch</span><span class="summary-val">${goalsText || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Dịch vụ cần PMAX</span><span class="summary-val">${servicesText || '—'}</span></div>
+      </div>
+      <div class="summary-section">
+        <h3>👥 Khách hàng & KPI</h3>
+        <div class="summary-row"><span class="summary-key">Khách hàng mục tiêu</span><span class="summary-val">${v('audience')}</span></div>
+        <div class="summary-row"><span class="summary-key">KPI</span><span class="summary-val">${v('kpi') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Định nghĩa KPI</span><span class="summary-val">${v('kpiDef') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Tracking system</span><span class="summary-val">${v('tracking') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Pitching</span><span class="summary-val">${v('pitching') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Chi tiết pitching</span><span class="summary-val">${v('pitchingDetail') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Tiêu chí chọn agency</span><span class="summary-val">${v('criteria') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Scope of Work</span><span class="summary-val">${v('scopeDetail') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Lịch sử chiến dịch</span><span class="summary-val">${v('history') || '—'}</span></div>
+      </div>
+      <div class="summary-section">
+        <h3>💰 Ngân sách & Thời gian</h3>
+        <div class="summary-row"><span class="summary-key">Ngân sách</span><span class="summary-val">${tierMap[budgetTier] || '—'}${v('budgetExact') ? ' · ' + v('budgetExact') : ''}</span></div>
+        <div class="summary-row"><span class="summary-key">Bắt đầu</span><span class="summary-val">${v('startDate') || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Thời lượng</span><span class="summary-val">${durMap[duration] || '—'}</span></div>
+        <div class="summary-row"><span class="summary-key">Ghi chú timeline</span><span class="summary-val">${v('timelineNote') || '—'}</span></div>
+      </div>
+    `;
+    document.getElementById('summaryContent').innerHTML = html;
+  }
+
+  function v(id) {
+    const el = document.getElementById(id);
+    return el ? (el.value || '') : '';
+  }
+
+  // ── SUBMIT ──
+  function submitForm() {
+    const tierMap = { lt100: 'Dưới 100 triệu/tháng', lt300: '100–300 triệu/tháng', gt300: 'Trên 300 triệu/tháng' };
+    const goals = [...document.querySelectorAll('#goals-grid .check-item.checked')].map(el => el.textContent.trim()).join(', ');
+
+    // Hide all steps
+    document.querySelectorAll('.section-card').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.section-card').forEach(c => c.classList.remove('active'));
+    document.querySelector('.stepper').style.display = 'none';
+    document.querySelector('.progress-wrap').style.display = 'none';
+
+    document.getElementById('successCard').classList.add('show');
+    document.getElementById('successDetail').innerHTML = `
+      <strong>Công ty:</strong> ${v('company')} (${v('brand')})<br>
+      <strong>Người phụ trách:</strong> ${v('picName')} · ${v('picEmail')}<br>
+      <strong>Ngân sách:</strong> ${tierMap[budgetTier] || '—'}<br>
+      <strong>Mục tiêu:</strong> ${goals || '—'}<br>
+      <strong>Bắt đầu dự kiến:</strong> ${v('startDate') || '—'}
+    `;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Log to console (replace with actual API/email endpoint)
+    const payload = collectPayload();
+    console.log('📋 PMAX Brief Submitted:', payload);
+  }
+
+  function collectPayload() {
+    const tierMap = { lt100: 'Dưới 100 triệu/tháng', lt300: '100–300 triệu/tháng', gt300: 'Trên 300 triệu/tháng' };
+    return {
+      timestamp: new Date().toISOString(),
+      company: v('company'), brand: v('brand'), briefDate: v('briefDate'),
+      pic: { name: v('picName'), title: v('picTitle'), role: v('picRole'), email: v('picEmail'), phone: v('picPhone') },
+      industry: v('industry'), channels: v('channels'),
+      product: v('product'), usp: v('usp'), price: v('price'), salesPolicy: v('salesPolicy'),
+      promotion: v('promotion'), salesChannels: v('salesChannels'),
+      challenge: v('challenge'), strategy: v('strategy'), competitors: v('competitors'),
+      goals: [...document.querySelectorAll('#goals-grid .check-item.checked')].map(el => {
+        const val = el.querySelector('input').value;
+        const noteEl = document.getElementById('goalNote_' + val);
+        return { value: val, note: noteEl ? noteEl.value : '' };
+      }),
+      services: [...document.querySelectorAll('#sow-list .sow-toggle.checked')].map(el => {
+        const val = el.querySelector('input').value;
+        const noteEl = document.getElementById('sow_' + val);
+        return { value: val, note: noteEl ? noteEl.value : '' };
+      }),
+      audience: v('audience'),
+      kpi: v('kpi'), kpiDef: v('kpiDef'), tracking: v('tracking'),
+      pitching: v('pitching'), pitchingDetail: v('pitchingDetail'),
+      criteria: v('criteria'), scopeDetail: v('scopeDetail'), history: v('history'),
+      budget: { tier: tierMap[budgetTier], exact: v('budgetExact') },
+      startDate: v('startDate'), duration: duration, timelineNote: v('timelineNote'),
+    };
+  }
+</script>
+</body>
+</html>
