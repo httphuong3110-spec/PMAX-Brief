@@ -559,6 +559,52 @@
   }
   .site-footer a { color: var(--pmax-orange); text-decoration: none; }
 
+  /* ── RADIO ITEMS ── */
+  .inhouse-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  @media (max-width: 520px) { .inhouse-opts { grid-template-columns: 1fr; } }
+  .radio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--pmax-gray-200);
+    background: var(--pmax-gray-100);
+    cursor: pointer;
+    transition: var(--transition);
+    user-select: none;
+  }
+  .radio-item:hover { border-color: var(--pmax-orange-light); background: var(--pmax-orange-pale); }
+  .radio-item input[type="radio"] { display: none; }
+  .radio-dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--pmax-gray-200);
+    background: white;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: var(--transition);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .radio-item.selected {
+    border-color: var(--pmax-orange);
+    background: var(--pmax-orange-pale);
+  }
+  .radio-item.selected .radio-dot {
+    border-color: var(--pmax-orange);
+    background: var(--pmax-orange);
+    box-shadow: inset 0 0 0 3px white;
+  }
+  .radio-content { display: flex; flex-direction: column; gap: 2px; }
+  .radio-label { font-size: 13.5px; font-weight: 600; color: var(--pmax-dark); }
+  .radio-sub { font-size: 12px; color: var(--pmax-gray-500); line-height: 1.4; }
+  .radio-item.selected .radio-label { color: var(--pmax-orange); }
+
   /* ── GOAL DETAIL ── */
   .goal-detail-wrap {
     margin-top: 6px;
@@ -607,6 +653,39 @@
     border-color: var(--pmax-orange);
     box-shadow: 0 4px 12px rgba(255,92,0,0.08);
   }
+
+  /* ── PASTE SOW ── */
+  .paste-sow-wrap {
+    margin-top: 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px dashed var(--pmax-gray-200);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .paste-sow-wrap:hover { border-color: var(--pmax-orange-light); }
+  .paste-sow-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--pmax-gray-700);
+    background: var(--pmax-gray-100);
+    user-select: none;
+  }
+  .paste-sow-header:hover { background: var(--pmax-orange-pale); color: var(--pmax-orange); }
+  .paste-arrow { font-size: 16px; transition: transform 0.2s; }
+  .paste-arrow.open { transform: rotate(180deg); }
+  #pasteSowBody textarea {
+    border-radius: 0;
+    border: none;
+    border-top: 1.5px dashed var(--pmax-gray-200);
+    background: var(--pmax-white);
+    font-size: 13px;
+  }
+  #pasteSowBody textarea:focus { box-shadow: none; border-color: var(--pmax-orange); }
 
   /* ── VALIDATION ──
   .field.error input,
@@ -734,13 +813,13 @@
           <input type="text" id="picName" placeholder="VD: Nguyễn Văn A">
         </div>
         <div class="field" id="f-pic-title">
-          <label>Chức vụ</label>
+          <label>Chức vụ <span class="req">*</span></label>
           <input type="text" id="picTitle" placeholder="VD: Marketing Manager">
         </div>
       </div>
       <div class="field-row">
         <div class="field">
-          <label>Vai trò trong dự án</label>
+          <label>Vai trò trong dự án <span class="req">*</span></label>
           <select id="picRole">
             <option value="">-- Chọn vai trò --</option>
             <option>Decision Maker (người ra quyết định)</option>
@@ -759,8 +838,8 @@
           <label>Email công việc <span class="req">*</span></label>
           <input type="email" id="picEmail" placeholder="name@company.com">
         </div>
-        <div class="field">
-          <label>Số điện thoại / Zalo</label>
+        <div class="field" id="f-pic-phone">
+          <label>Số điện thoại / Zalo <span class="req">*</span></label>
           <input type="tel" id="picPhone" placeholder="0901 234 567">
         </div>
       </div>
@@ -784,6 +863,46 @@
         <label>Các kênh digital đang có</label>
         <div class="hint">Paste link vào, cách nhau bằng dấu phẩy hoặc xuống dòng</div>
         <textarea id="channels" rows="3" placeholder="Website: https://…&#10;Facebook: https://…&#10;TikTok: https://…"></textarea>
+      </div>
+      <div class="field">
+        <label>Trước đây làm inhouse hay có agency hỗ trợ? <span class="req">*</span></label>
+        <div class="inhouse-opts">
+          <label class="radio-item" onclick="selectRadio(this,'agencyType','inhouse')">
+            <input type="radio" name="agencyType" value="inhouse">
+            <span class="radio-dot"></span>
+            <span class="radio-content">
+              <span class="radio-label">Inhouse hoàn toàn</span>
+              <span class="radio-sub">Đội ngũ nội bộ tự thực hiện tất cả</span>
+            </span>
+          </label>
+          <label class="radio-item" onclick="selectRadio(this,'agencyType','agency')">
+            <input type="radio" name="agencyType" value="agency">
+            <span class="radio-dot"></span>
+            <span class="radio-content">
+              <span class="radio-label">Có agency hỗ trợ</span>
+              <span class="radio-sub">Đang hoặc từng làm việc với agency bên ngoài</span>
+            </span>
+          </label>
+          <label class="radio-item" onclick="selectRadio(this,'agencyType','hybrid')">
+            <input type="radio" name="agencyType" value="hybrid">
+            <span class="radio-dot"></span>
+            <span class="radio-content">
+              <span class="radio-label">Kết hợp cả hai</span>
+              <span class="radio-sub">Inhouse một phần, agency một phần</span>
+            </span>
+          </label>
+          <label class="radio-item" onclick="selectRadio(this,'agencyType','new')">
+            <input type="radio" name="agencyType" value="new">
+            <span class="radio-dot"></span>
+            <span class="radio-content">
+              <span class="radio-label">Chưa từng chạy marketing</span>
+              <span class="radio-sub">Đây là chiến dịch đầu tiên</span>
+            </span>
+          </label>
+        </div>
+        <div id="agency-detail-wrap" style="display:none; margin-top:8px;">
+          <input type="text" id="agencyDetail" placeholder="Tên agency đang / đã làm việc cùng (nếu có)">
+        </div>
       </div>
       <div class="nav-row">
         <span></span>
@@ -832,7 +951,7 @@
         <textarea id="salesChannels" rows="2" placeholder="VD: Siêu thị Big C, Shopee: https://…, Website: https://…"></textarea>
       </div>
       <div class="field">
-        <label>Bối cảnh & Thách thức hiện tại</label>
+        <label>Bối cảnh & Thách thức hiện tại <span class="req">*</span></label>
         <textarea id="challenge" rows="3" placeholder="Công ty đang đối mặt với khó khăn gì? Lý do cần chạy chiến dịch lần này?"></textarea>
       </div>
       <div class="field">
@@ -846,57 +965,13 @@
       </div>
       <div class="field">
         <label>Mục tiêu chiến dịch <span class="req">*</span></label>
-        <div class="hint">Chọn một hoặc nhiều mục tiêu, sau đó mô tả cụ thể bên dưới</div>
-        <div class="checkbox-grid" id="goals-grid">
-          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-brand">
-            <input type="checkbox" value="brand-awareness">
-            <span class="check-box"></span>Tăng nhận diện thương hiệu
-          </label>
-          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-lead">
-            <input type="checkbox" value="lead-gen">
-            <span class="check-box"></span>Thu thập Lead / Khách tiềm năng
-          </label>
-          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-ecom">
-            <input type="checkbox" value="ecom-sales">
-            <span class="check-box"></span>Tăng doanh số / ROAS
-          </label>
-          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-app">
-            <input type="checkbox" value="app-install">
-            <span class="check-box"></span>Cài đặt App / Đăng ký
-          </label>
-          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-content">
-            <input type="checkbox" value="content">
-            <span class="check-box"></span>Content / Social media
-          </label>
-          <label class="check-item" onclick="toggleCheck(this)" data-target="goal-detail-other">
-            <input type="checkbox" value="other">
-            <span class="check-box"></span>Mục tiêu khác
-          </label>
-        </div>
-        <!-- Dynamic detail fields per goal -->
-        <div class="goal-detail-wrap" id="goal-detail-brand" style="display:none;">
-          <textarea id="goalNote_brand-awareness" rows="2" placeholder="Mô tả cụ thể: target reach, tần suất, thị trường địa lý, đối tượng cần tiếp cận…"></textarea>
-        </div>
-        <div class="goal-detail-wrap" id="goal-detail-lead" style="display:none;">
-          <textarea id="goalNote_lead-gen" rows="2" placeholder="Mô tả cụ thể: số lead/tháng, CPL mục tiêu, nguồn lead ưu tiên (form, Zalo, call…)"></textarea>
-        </div>
-        <div class="goal-detail-wrap" id="goal-detail-ecom" style="display:none;">
-          <textarea id="goalNote_ecom-sales" rows="2" placeholder="Mô tả cụ thể: doanh số mục tiêu, ROAS kỳ vọng, sản phẩm trọng tâm, platform (Shopee, web…)"></textarea>
-        </div>
-        <div class="goal-detail-wrap" id="goal-detail-app" style="display:none;">
-          <textarea id="goalNote_app-install" rows="2" placeholder="Mô tả cụ thể: số lượt cài đặt/đăng ký mục tiêu, CPI kỳ vọng, nền tảng (iOS/Android)…"></textarea>
-        </div>
-        <div class="goal-detail-wrap" id="goal-detail-content" style="display:none;">
-          <textarea id="goalNote_content" rows="2" placeholder="Mô tả cụ thể: kênh (Facebook, TikTok, Instagram…), tần suất, loại content (video, bài viết, reels…)"></textarea>
-        </div>
-        <div class="goal-detail-wrap" id="goal-detail-other" style="display:none;">
-          <textarea id="goalNote_other" rows="2" placeholder="Mô tả mục tiêu khác của bạn…"></textarea>
-        </div>
+        <div class="hint">Mô tả mục tiêu cụ thể: bạn muốn đạt được gì, con số kỳ vọng là bao nhiêu?</div>
+        <textarea id="goals" rows="4" placeholder="VD: Tăng nhận diện thương hiệu tại HCM, đạt 5 triệu reach/tháng&#10;Thu thập 500 leads/tháng với CPL dưới 300k&#10;Tăng doanh số Shopee lên 2x so với cùng kỳ…"></textarea>
       </div>
 
       <div class="field">
-        <label>Dịch vụ & Phạm vi công việc cần PMAX hỗ trợ</label>
-        <div class="hint">Chọn dịch vụ và điền yêu cầu cụ thể cho từng hạng mục</div>
+        <label>Dịch vụ & Phạm vi công việc cần PMAX hỗ trợ <span class="req">*</span></label>
+        <div class="hint">Tick dịch vụ cần thiết → <strong>bắt buộc mô tả yêu cầu cụ thể</strong> cho từng dịch vụ đã chọn</div>
         <div class="sow-list" id="sow-list">
 
           <div class="sow-item">
@@ -989,6 +1064,27 @@
             </div>
           </div>
 
+          <div class="sow-item">
+            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-other')">
+              <input type="checkbox" value="other-service">
+              <span class="check-box"></span>Khác
+            </label>
+            <div class="sow-detail" id="sow-other" style="display:none;">
+              <textarea id="sow_other-service" rows="2" placeholder="Mô tả nhu cầu khác của bạn…"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Paste SOW file -->
+        <div class="paste-sow-wrap">
+          <div class="paste-sow-header" onclick="togglePasteSow()">
+            <span>📎 Đã có file Brief / SOW sẵn? Paste vào đây</span>
+            <span class="paste-arrow" id="pasteArrow">▾</span>
+          </div>
+          <div id="pasteSowBody" style="display:none;">
+            <textarea id="pasteSow" rows="6" placeholder="Copy & paste nội dung Brief hoặc SOW của bạn vào đây. Đội ngũ PMAX sẽ đọc và tổng hợp thêm vào hồ sơ."></textarea>
+          </div>
         </div>
       </div>
       <div class="nav-row">
@@ -1015,7 +1111,7 @@
         <textarea id="audience" rows="3" placeholder="VD: Phụ nữ 25–35 tuổi, sống ở HCM & Hà Nội, có con nhỏ, thu nhập >15 triệu/tháng…"></textarea>
       </div>
       <div class="field">
-        <label>KPI chính muốn đạt được</label>
+        <label>KPI chính muốn đạt được <span class="req">*</span></label>
         <div class="hint">VD: 1,000 leads/tháng, CPL &lt; 200k, ROAS &gt; 4x, 50,000 đơn hàng…</div>
         <textarea id="kpi" rows="3" placeholder="Ghi rõ chỉ số & mức mục tiêu. Ưu tiên KPI nào nhất?"></textarea>
       </div>
@@ -1029,8 +1125,8 @@
           <label>Hệ thống tracking đang dùng</label>
           <input type="text" id="tracking" placeholder="VD: Google Analytics, Pixel, CRM…">
         </div>
-        <div class="field">
-          <label>Có pitching không?</label>
+        <div class="field" id="f-pitching">
+          <label>Có pitching không? <span class="req">*</span></label>
           <select id="pitching">
             <option value="">-- Chọn --</option>
             <option value="yes">Có – đang pitching nhiều agency</option>
@@ -1045,14 +1141,9 @@
         <textarea id="pitchingDetail" rows="3" placeholder="VD: 3-4 agencies. Timeline: brief 1/6 → nộp proposal 15/6 → present 20-22/6 → thông báo 25/6. Decision maker: Giám đốc Marketing"></textarea>
       </div>
       <div class="field">
-        <label>Tiêu chí lựa chọn agency</label>
+        <label>Tiêu chí lựa chọn agency <span class="req">*</span></label>
         <div class="hint">Sắp xếp theo mức độ ưu tiên từ cao xuống thấp</div>
         <textarea id="criteria" rows="2" placeholder="VD: 1. Chuyên môn & case study  2. Giá dịch vụ  3. Chất lượng đề xuất…"></textarea>
-      </div>
-      <div class="field">
-        <label>Phạm vi công việc chi tiết (Scope of Work)</label>
-        <div class="hint">Ghi rõ yêu cầu cho từng dịch vụ đã chọn ở bước trước</div>
-        <textarea id="scopeDetail" rows="3" placeholder="VD: Media: Facebook + Google, creative test 3-5 ads/tháng. Creative: banner & video 15s. Technical: setup GA4 + Pixel…"></textarea>
       </div>
       <div class="field">
         <label>Số liệu / chiến dịch đã chạy trước đây (nếu có)</label>
@@ -1093,14 +1184,15 @@
             <div class="tier-label">/ tháng</div>
           </div>
         </div>
-        <input type="text" id="budgetExact" placeholder="Ngân sách chính xác hơn (không bắt buộc): VD: 150 triệu VND/tháng">
+        <input type="text" id="budgetExact" placeholder="Ngân sách chính xác: VD: 150 triệu VND/tháng">
+        <span class="hint" style="color:var(--pmax-orange);font-weight:600;">* Bắt buộc điền ngân sách cụ thể</span>
       </div>
       <div class="field">
         <label>Thời gian bắt đầu dự kiến <span class="req">*</span></label>
         <input type="date" id="startDate">
       </div>
-      <div class="field">
-        <label>Thời gian triển khai</label>
+      <div class="field" id="f-duration">
+        <label>Thời gian triển khai <span class="req">*</span></label>
         <div class="hint">Chiến dịch dự kiến chạy trong bao lâu?</div>
         <div class="duration-opts" id="durOpts">
           <button class="dur-btn" onclick="selectDur(this,'1m')">1 tháng</button>
@@ -1235,10 +1327,11 @@
     // ── STEP 0 ──
     if (step === 0) {
       [
-        ['company',  'f-company',  'Vui lòng nhập tên công ty'],
-        ['brand',    'f-brand',    'Vui lòng nhập tên thương hiệu'],
-        ['picName',  'f-pic-name', 'Vui lòng nhập tên người phụ trách'],
-        ['picEmail', 'f-pic-email','Vui lòng nhập email'],
+        ['company',  'f-company',   'Vui lòng nhập tên công ty'],
+        ['brand',    'f-brand',     'Vui lòng nhập tên thương hiệu'],
+        ['picName',  'f-pic-name',  'Vui lòng nhập tên người phụ trách'],
+        ['picEmail', 'f-pic-email', 'Vui lòng nhập email'],
+        ['picPhone', 'f-pic-phone', 'Vui lòng nhập số điện thoại / Zalo'],
       ].forEach(([iid, fid, msg]) => {
         const el = document.getElementById(iid);
         const wrap = document.getElementById(fid);
@@ -1249,39 +1342,46 @@
         const wrap = document.getElementById('f-pic-email');
         wrap.classList.add('error'); showErr(wrap, 'Email không hợp lệ'); ok = false;
       }
+      // picTitle required
+      const titleEl = document.getElementById('picTitle');
+      if (!titleEl.value.trim()) { markError(titleEl, 'Vui lòng nhập chức vụ'); ok = false; }
+      // picRole required
+      const roleEl = document.getElementById('picRole');
+      if (!roleEl.value) { markError(roleEl, 'Vui lòng chọn vai trò trong dự án'); ok = false; }
+      // agencyType required
+      const agencyChecked = document.querySelector('input[name="agencyType"]:checked');
+      if (!agencyChecked) {
+        const wrap = document.querySelector('.inhouse-opts').closest('.field');
+        wrap.classList.add('error'); showErr(wrap, 'Vui lòng chọn hình thức vận hành trước đây'); ok = false;
+      }
     }
 
     // ── STEP 1 ──
     if (step === 1) {
-      // product required
       const productEl = document.getElementById('product');
       if (!productEl.value.trim()) { markError(productEl, 'Vui lòng mô tả sản phẩm'); ok = false; }
 
-      // each checked goal must have a note
-      document.querySelectorAll('#goals-grid .check-item.checked').forEach(item => {
-        const val = item.querySelector('input').value;
-        const noteEl = document.getElementById('goalNote_' + val);
-        const detailWrap = noteEl ? noteEl.closest('.goal-detail-wrap') : null;
-        if (noteEl && !noteEl.value.trim()) {
-          if (detailWrap) { detailWrap.classList.add('error'); showErr(detailWrap, 'Vui lòng mô tả cụ thể mục tiêu này'); }
-          noteEl.focus();
-          ok = false;
-        }
-      });
+      const challengeEl = document.getElementById('challenge');
+      if (!challengeEl.value.trim()) { markError(challengeEl, 'Vui lòng mô tả bối cảnh & thách thức'); ok = false; }
 
-      // each checked SOW must have a note
+      const goalsEl = document.getElementById('goals');
+      if (!goalsEl.value.trim()) { markError(goalsEl, 'Vui lòng mô tả mục tiêu chiến dịch'); ok = false; }
+
+      const checkedSow = document.querySelectorAll('#sow-list .sow-toggle.checked');
+      if (checkedSow.length === 0) {
+        const sowField = document.getElementById('sow-list').closest('.field');
+        sowField.classList.add('error'); showErr(sowField, 'Vui lòng chọn ít nhất một dịch vụ cần hỗ trợ'); ok = false;
+      }
       document.querySelectorAll('#sow-list .sow-toggle.checked').forEach(item => {
         const val = item.querySelector('input').value;
         const noteEl = document.getElementById('sow_' + val);
         const detailWrap = noteEl ? noteEl.closest('.sow-detail') : null;
         if (noteEl && !noteEl.value.trim()) {
           if (detailWrap) { detailWrap.classList.add('error'); showErr(detailWrap, 'Vui lòng mô tả yêu cầu cụ thể'); }
-          if (!ok === false) noteEl.focus(); // focus first error only
           ok = false;
         }
       });
 
-      // scroll to first error
       if (!ok) {
         const firstErr = document.querySelector('#step-1 .error');
         if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1290,8 +1390,17 @@
 
     // ── STEP 2 ──
     if (step === 2) {
-      const el = document.getElementById('audience');
-      if (!el.value.trim()) { markError(el, 'Vui lòng mô tả khách hàng mục tiêu'); ok = false; }
+      const audienceEl = document.getElementById('audience');
+      if (!audienceEl.value.trim()) { markError(audienceEl, 'Vui lòng mô tả khách hàng mục tiêu'); ok = false; }
+
+      const kpiEl = document.getElementById('kpi');
+      if (!kpiEl.value.trim()) { markError(kpiEl, 'Vui lòng điền KPI chính'); ok = false; }
+
+      const pitchingEl = document.getElementById('pitching');
+      if (!pitchingEl.value) { markError(pitchingEl, 'Vui lòng chọn có pitching hay không'); ok = false; }
+
+      const criteriaEl = document.getElementById('criteria');
+      if (!criteriaEl.value.trim()) { markError(criteriaEl, 'Vui lòng điền tiêu chí lựa chọn agency'); ok = false; }
     }
 
     // ── STEP 3 ──
@@ -1300,19 +1409,41 @@
         const tierWrap = document.querySelector('.budget-tiers').closest('.field');
         tierWrap.classList.add('error'); showErr(tierWrap, 'Vui lòng chọn mức ngân sách'); ok = false;
       }
+      const budgetExactEl = document.getElementById('budgetExact');
+      if (!budgetExactEl.value.trim()) { markError(budgetExactEl, 'Vui lòng điền ngân sách cụ thể'); ok = false; }
+
       const sd = document.getElementById('startDate');
       if (!sd.value) { markError(sd, 'Vui lòng chọn ngày bắt đầu'); ok = false; }
+
+      if (!duration) {
+        const durWrap = document.getElementById('f-duration');
+        durWrap.classList.add('error'); showErr(durWrap, 'Vui lòng chọn thời gian triển khai'); ok = false;
+      }
     }
 
     return ok;
   }
 
-  // ── CHECKBOX TOGGLE (goals) ──
+  // ── RADIO SELECT ──
+  function selectRadio(el, name, val) {
+    document.querySelectorAll(`.radio-item input[name="${name}"]`).forEach(r => {
+      r.closest('.radio-item').classList.remove('selected');
+      r.checked = false;
+    });
+    el.classList.add('selected');
+    el.querySelector('input[type="radio"]').checked = true;
+    // show agency name field if relevant
+    if (name === 'agencyType') {
+      const detail = document.getElementById('agency-detail-wrap');
+      detail.style.display = (val === 'agency' || val === 'hybrid') ? 'block' : 'none';
+    }
+  }
+
+  // ── CHECKBOX TOGGLE (legacy, unused but kept safe) ──
   function toggleCheck(el) {
     el.classList.toggle('checked');
     const cb = el.querySelector('input[type="checkbox"]');
     cb.checked = !cb.checked;
-    // show/hide detail textarea for goal items
     const target = el.getAttribute('data-target');
     if (target) {
       const detail = document.getElementById(target);
@@ -1327,6 +1458,15 @@
     cb.checked = !cb.checked;
     const detail = document.getElementById(detailId);
     if (detail) detail.style.display = cb.checked ? 'block' : 'none';
+  }
+
+  // ── PASTE SOW TOGGLE ──
+  function togglePasteSow() {
+    const body = document.getElementById('pasteSowBody');
+    const arrow = document.getElementById('pasteArrow');
+    const isOpen = body.style.display !== 'none';
+    body.style.display = isOpen ? 'none' : 'block';
+    arrow.classList.toggle('open', !isOpen);
   }
 
   // ── BUDGET TIERS ──
@@ -1350,14 +1490,7 @@
     const tierMap = { lt100: 'Dưới 100 triệu/tháng', lt300: '100–300 triệu/tháng', gt300: 'Trên 300 triệu/tháng' };
     const durMap = { '1m':'1 tháng','3m':'3 tháng','6m':'6 tháng','1y':'1 năm','ongoing':'Dài hạn / Ongoing','custom': document.getElementById('durationCustom').value || 'Khác' };
 
-    const goalsChecked = [...document.querySelectorAll('#goals-grid .check-item.checked')];
-    const goalsText = goalsChecked.map(el => {
-      const val = el.querySelector('input').value;
-      const label = el.textContent.trim();
-      const noteEl = document.getElementById('goalNote_' + val);
-      const note = noteEl && noteEl.value.trim() ? ': ' + noteEl.value.trim() : '';
-      return label + note;
-    }).join('<br>');
+    const goalsText = v('goals') || '—';
 
     const sowChecked = [...document.querySelectorAll('#sow-list .sow-toggle.checked')];
     const servicesText = sowChecked.map(el => {
@@ -1367,6 +1500,10 @@
       const note = noteEl && noteEl.value.trim() ? ': ' + noteEl.value.trim() : '';
       return label + note;
     }).join('<br>');
+
+    const agencyTypeMap = { inhouse: 'Inhouse hoàn toàn', agency: 'Có agency hỗ trợ', hybrid: 'Kết hợp cả hai', new: 'Chưa từng chạy marketing' };
+    const agencyTypeVal = document.querySelector('input[name="agencyType"]:checked');
+    const agencyTypeText = agencyTypeVal ? (agencyTypeMap[agencyTypeVal.value] + (v('agencyDetail') ? ' – ' + v('agencyDetail') : '')) : '—';
 
     const html = `
       <div class="summary-section">
@@ -1423,57 +1560,105 @@
   }
 
   // ── SUBMIT ──
-  function submitForm() {
-    const tierMap = { lt100: 'Dưới 100 triệu/tháng', lt300: '100–300 triệu/tháng', gt300: 'Trên 300 triệu/tháng' };
-    const goals = [...document.querySelectorAll('#goals-grid .check-item.checked')].map(el => el.textContent.trim()).join(', ');
+  async function submitForm() {
+    const btn = document.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.textContent = '⏳ Đang gửi...';
 
-    // Hide all steps
-    document.querySelectorAll('.section-card').forEach(c => c.style.display = 'none');
-    document.querySelectorAll('.section-card').forEach(c => c.classList.remove('active'));
+    const payload = collectPayload();
+
+    // ── Dán URL Apps Script vào đây sau khi deploy ──
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQPDdDe3gLpJ99ufJ1768_MeNcrS1tKtlhflZ-dNuzt7ozX79wztVQ0GxVuuHU1nfzjQ/exec';
+
+    try {
+      if (SCRIPT_URL !== 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      }
+    } catch (err) {
+      console.error('Submit error:', err);
+    }
+
+    showSuccess(payload);
+  }
+
+  function showSuccess(payload) {
+    document.querySelectorAll('.section-card').forEach(c => { c.style.display = 'none'; c.classList.remove('active'); });
     document.querySelector('.stepper').style.display = 'none';
     document.querySelector('.progress-wrap').style.display = 'none';
-
     document.getElementById('successCard').classList.add('show');
     document.getElementById('successDetail').innerHTML = `
-      <strong>Công ty:</strong> ${v('company')} (${v('brand')})<br>
-      <strong>Người phụ trách:</strong> ${v('picName')} · ${v('picEmail')}<br>
-      <strong>Ngân sách:</strong> ${tierMap[budgetTier] || '—'}<br>
-      <strong>Mục tiêu:</strong> ${goals || '—'}<br>
-      <strong>Bắt đầu dự kiến:</strong> ${v('startDate') || '—'}
+      <strong>Công ty:</strong> ${payload.company} (${payload.brand})<br>
+      <strong>Người phụ trách:</strong> ${payload.pic.name} · ${payload.pic.email}<br>
+      <strong>Ngân sách:</strong> ${payload.budget.tier || '—'} · ${payload.budget.exact}<br>
+      <strong>Mục tiêu:</strong> ${(payload.goals || '').substring(0, 80)}${payload.goals && payload.goals.length > 80 ? '…' : ''}<br>
+      <strong>Bắt đầu dự kiến:</strong> ${payload.startDate || '—'}
     `;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Log to console (replace with actual API/email endpoint)
-    const payload = collectPayload();
-    console.log('📋 PMAX Brief Submitted:', payload);
+    console.log('📋 PMAX Brief payload:', payload);
   }
 
   function collectPayload() {
-    const tierMap = { lt100: 'Dưới 100 triệu/tháng', lt300: '100–300 triệu/tháng', gt300: 'Trên 300 triệu/tháng' };
+    const tierMap     = { lt100: 'Dưới 100 triệu/tháng', lt300: '100–300 triệu/tháng', gt300: 'Trên 300 triệu/tháng' };
+    const durLabelMap = { '1m':'1 tháng','3m':'3 tháng','6m':'6 tháng','1y':'1 năm','ongoing':'Dài hạn / Ongoing','custom': v('durationCustom') || 'Khác' };
+    const agencyMap   = { inhouse:'Inhouse hoàn toàn', agency:'Có agency hỗ trợ', hybrid:'Kết hợp cả hai', new:'Chưa từng chạy marketing' };
+    const pitchingMap = { yes:'Có – đang pitching nhiều agency', direct:'Không – làm việc trực tiếp PMAX', unsure:'Chưa quyết định' };
+    const agencyEl    = document.querySelector('input[name="agencyType"]:checked');
+
     return {
-      timestamp: new Date().toISOString(),
-      company: v('company'), brand: v('brand'), briefDate: v('briefDate'),
-      pic: { name: v('picName'), title: v('picTitle'), role: v('picRole'), email: v('picEmail'), phone: v('picPhone') },
-      industry: v('industry'), channels: v('channels'),
-      product: v('product'), usp: v('usp'), price: v('price'), salesPolicy: v('salesPolicy'),
-      promotion: v('promotion'), salesChannels: v('salesChannels'),
-      challenge: v('challenge'), strategy: v('strategy'), competitors: v('competitors'),
-      goals: [...document.querySelectorAll('#goals-grid .check-item.checked')].map(el => {
-        const val = el.querySelector('input').value;
-        const noteEl = document.getElementById('goalNote_' + val);
-        return { value: val, note: noteEl ? noteEl.value : '' };
-      }),
+      timestamp:       new Date().toISOString(),
+      company:         v('company'),
+      brand:           v('brand'),
+      briefDate:       v('briefDate'),
+      pic: {
+        name:  v('picName'),
+        title: v('picTitle'),
+        role:  v('picRole'),
+        email: v('picEmail'),
+        phone: v('picPhone'),
+      },
+      industry:        v('industry'),
+      channels:        v('channels'),
+      agencyType:      agencyEl ? agencyEl.value : '',
+      agencyTypeLabel: agencyEl ? (agencyMap[agencyEl.value] || '') : '',
+      agencyDetail:    v('agencyDetail'),
+      product:         v('product'),
+      usp:             v('usp'),
+      price:           v('price'),
+      salesPolicy:     v('salesPolicy'),
+      promotion:       v('promotion'),
+      salesChannels:   v('salesChannels'),
+      challenge:       v('challenge'),
+      strategy:        v('strategy'),
+      competitors:     v('competitors'),
+      goals:           v('goals'),
       services: [...document.querySelectorAll('#sow-list .sow-toggle.checked')].map(el => {
-        const val = el.querySelector('input').value;
+        const val    = el.querySelector('input').value;
+        const label  = el.textContent.trim();
         const noteEl = document.getElementById('sow_' + val);
-        return { value: val, note: noteEl ? noteEl.value : '' };
+        return { value: val, label, note: noteEl ? noteEl.value.trim() : '' };
       }),
-      audience: v('audience'),
-      kpi: v('kpi'), kpiDef: v('kpiDef'), tracking: v('tracking'),
-      pitching: v('pitching'), pitchingDetail: v('pitchingDetail'),
-      criteria: v('criteria'), scopeDetail: v('scopeDetail'), history: v('history'),
-      budget: { tier: tierMap[budgetTier], exact: v('budgetExact') },
-      startDate: v('startDate'), duration: duration, timelineNote: v('timelineNote'),
+      pasteSow:        v('pasteSow'),
+      audience:        v('audience'),
+      kpi:             v('kpi'),
+      kpiDef:          v('kpiDef'),
+      tracking:        v('tracking'),
+      history:         v('history'),
+      pitching:        pitchingMap[v('pitching')] || v('pitching'),
+      pitchingDetail:  v('pitchingDetail'),
+      criteria:        v('criteria'),
+      budget: {
+        tier:  tierMap[budgetTier] || '',
+        exact: v('budgetExact'),
+      },
+      startDate:       v('startDate'),
+      duration:        duration,
+      durationLabel:   durLabelMap[duration] || duration,
+      timelineNote:    v('timelineNote'),
     };
   }
 </script>
