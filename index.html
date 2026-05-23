@@ -654,6 +654,55 @@
     box-shadow: 0 4px 12px rgba(255,92,0,0.08);
   }
 
+  /* ── SERVICE REF LIST ── */
+  .service-ref-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin: 8px 0 12px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1.5px solid var(--pmax-gray-200);
+  }
+  .service-ref-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--pmax-white);
+    border-bottom: 1px solid var(--pmax-gray-100);
+    transition: background 0.15s;
+  }
+  .service-ref-item:last-child { border-bottom: none; }
+  .service-ref-item:hover { background: var(--pmax-orange-pale); }
+  .service-tag {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    background: var(--pmax-orange);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'DM Mono', monospace;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .service-ref-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .service-ref-content strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pmax-dark);
+  }
+  .service-ref-content span {
+    font-size: 12px;
+    color: var(--pmax-gray-500);
+    line-height: 1.4;
+  }
+
   /* ── PASTE SOW ── */
   .paste-sow-wrap {
     margin-top: 12px;
@@ -971,112 +1020,79 @@
 
       <div class="field">
         <label>Dịch vụ & Phạm vi công việc cần PMAX hỗ trợ <span class="req">*</span></label>
-        <div class="hint">Tick dịch vụ cần thiết → <strong>bắt buộc mô tả yêu cầu cụ thể</strong> cho từng dịch vụ đã chọn</div>
-        <div class="sow-list" id="sow-list">
+        <div class="hint">Tham khảo danh sách dịch vụ bên dưới, sau đó mô tả yêu cầu cụ thể của bạn</div>
 
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-research')">
-              <input type="checkbox" value="research-strategy">
-              <span class="check-box"></span>Research &amp; Strategy
-            </label>
-            <div class="sow-detail" id="sow-research" style="display:none;">
-              <textarea id="sow_research-strategy" rows="2" placeholder="VD: Nghiên cứu thị trường, phân tích đối thủ, xây dựng chiến lược tổng thể…"></textarea>
+        <!-- Danh sách dịch vụ tham khảo -->
+        <div class="service-ref-list">
+          <div class="service-ref-item">
+            <span class="service-tag">01</span>
+            <div class="service-ref-content">
+              <strong>Research & Strategy</strong>
+              <span>Nghiên cứu thị trường, insight khách hàng, xây dựng chiến lược tổng thể</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-media')">
-              <input type="checkbox" value="media">
-              <span class="check-box"></span>Media – Paid / Owned / Earned
-            </label>
-            <div class="sow-detail" id="sow-media" style="display:none;">
-              <textarea id="sow_media" rows="2" placeholder="VD: Facebook Ads, Google Search/Display, YouTube, TikTok Ads – ngân sách, kênh ưu tiên…"></textarea>
+          <div class="service-ref-item">
+            <span class="service-tag">02</span>
+            <div class="service-ref-content">
+              <strong>Media – Paid / Owned / Earned</strong>
+              <span>Facebook Ads, Google Ads, YouTube, TikTok Ads, Display, Programmatic</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-creative')">
-              <input type="checkbox" value="creative">
-              <span class="check-box"></span>Creative – Concept / Idea / Production
-            </label>
-            <div class="sow-detail" id="sow-creative" style="display:none;">
-              <textarea id="sow_creative" rows="2" placeholder="VD: Banner tĩnh, video 15s/30s, key visual, content bài đăng mạng xã hội…"></textarea>
+          <div class="service-ref-item">
+            <span class="service-tag">03</span>
+            <div class="service-ref-content">
+              <strong>Creative – Concept / Idea / Production</strong>
+              <span>Key visual, banner, video 15s/30s, content mạng xã hội, TVC</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-platform')">
-              <input type="checkbox" value="platform">
-              <span class="check-box"></span>Platform – Website / App / Landing Page
-            </label>
-            <div class="sow-detail" id="sow-platform" style="display:none;">
-              <textarea id="sow_platform" rows="2" placeholder="VD: Thiết kế UX/UI landing page, tối ưu tốc độ website, xây dựng app…"></textarea>
+          <div class="service-ref-item">
+            <span class="service-tag">04</span>
+            <div class="service-ref-content">
+              <strong>Platform – Website / App / Landing Page</strong>
+              <span>Thiết kế UX/UI, landing page, tối ưu tốc độ, xây dựng app</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-technical')">
-              <input type="checkbox" value="technical">
-              <span class="check-box"></span>Technical Setup &amp; Tools
-            </label>
-            <div class="sow-detail" id="sow-technical" style="display:none;">
-              <textarea id="sow_technical" rows="2" placeholder="VD: Setup GA4, Meta Pixel, Google Tag Manager, CRM integration…"></textarea>
+          <div class="service-ref-item">
+            <span class="service-tag">05</span>
+            <div class="service-ref-content">
+              <strong>Technical Setup & Tools</strong>
+              <span>GA4, Meta Pixel, Google Tag Manager, CRM integration, tracking setup</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-data')">
-              <input type="checkbox" value="data-reporting">
-              <span class="check-box"></span>Data &amp; Reporting
-            </label>
-            <div class="sow-detail" id="sow-data" style="display:none;">
-              <textarea id="sow_data-reporting" rows="2" placeholder="VD: Dashboard báo cáo hàng tuần/tháng, phân tích hiệu quả theo kênh…"></textarea>
+          <div class="service-ref-item">
+            <span class="service-tag">06</span>
+            <div class="service-ref-content">
+              <strong>Data & Reporting</strong>
+              <span>Dashboard báo cáo, phân tích hiệu quả theo kênh, Marketing Mix Modeling</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-commercial')">
-              <input type="checkbox" value="commercial">
-              <span class="check-box"></span>Commercial Management
-            </label>
-            <div class="sow-detail" id="sow-commercial" style="display:none;">
-              <textarea id="sow_commercial" rows="2" placeholder="VD: Quản lý ngân sách, tối ưu chi phí media, đàm phán media placement…"></textarea>
+          <div class="service-ref-item">
+            <span class="service-tag">07</span>
+            <div class="service-ref-content">
+              <strong>Commercial Management</strong>
+              <span>Quản lý ngân sách, tối ưu chi phí media, đàm phán media placement</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-merch')">
-              <input type="checkbox" value="merchandising">
-              <span class="check-box"></span>Merchandising Enhancement
-            </label>
-            <div class="sow-detail" id="sow-merch" style="display:none;">
-              <textarea id="sow_merchandising" rows="2" placeholder="VD: Tối ưu trang sản phẩm Shopee/Lazada, A+ content, hình ảnh sản phẩm…"></textarea>
+          <div class="service-ref-item">
+            <span class="service-tag">08</span>
+            <div class="service-ref-content">
+              <strong>Merchandising Enhancement</strong>
+              <span>Tối ưu trang sản phẩm Shopee/Lazada/TikTok Shop, A+ content, hình ảnh</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-sales')">
-              <input type="checkbox" value="sales-campaign">
-              <span class="check-box"></span>Sales Campaign Management
-            </label>
-            <div class="sow-detail" id="sow-sales" style="display:none;">
-              <textarea id="sow_sales-campaign" rows="2" placeholder="VD: Quản lý flash sale, chiến dịch 11.11/12.12, campaign theo sự kiện…"></textarea>
+          <div class="service-ref-item">
+            <span class="service-tag">09</span>
+            <div class="service-ref-content">
+              <strong>Sales Campaign Management</strong>
+              <span>Quản lý flash sale, chiến dịch 11.11/12.12, campaign theo sự kiện</span>
             </div>
           </div>
-
-          <div class="sow-item">
-            <label class="check-item sow-toggle" onclick="toggleSow(this, 'sow-other')">
-              <input type="checkbox" value="other-service">
-              <span class="check-box"></span>Khác
-            </label>
-            <div class="sow-detail" id="sow-other" style="display:none;">
-              <textarea id="sow_other-service" rows="2" placeholder="Mô tả nhu cầu khác của bạn…"></textarea>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Paste SOW file -->
+        <!-- Ô điền yêu cầu -->
+        <textarea id="services" rows="5" placeholder="Mô tả dịch vụ và yêu cầu cụ thể bạn cần:&#10;VD: Media (02): Facebook + Google, ưu tiên lead gen, ngân sách ~100tr/tháng&#10;Creative (03): Cần video 15s cho TikTok, 3–5 banner/tháng&#10;Technical (05): Setup GA4 và Pixel từ đầu…"></textarea>
+
+        <!-- Paste SOW -->
         <div class="paste-sow-wrap">
           <div class="paste-sow-header" onclick="togglePasteSow()">
             <span>📎 Đã có file Brief / SOW sẵn? Paste vào đây</span>
@@ -1367,20 +1383,8 @@
       const goalsEl = document.getElementById('goals');
       if (!goalsEl.value.trim()) { markError(goalsEl, 'Vui lòng mô tả mục tiêu chiến dịch'); ok = false; }
 
-      const checkedSow = document.querySelectorAll('#sow-list .sow-toggle.checked');
-      if (checkedSow.length === 0) {
-        const sowField = document.getElementById('sow-list').closest('.field');
-        sowField.classList.add('error'); showErr(sowField, 'Vui lòng chọn ít nhất một dịch vụ cần hỗ trợ'); ok = false;
-      }
-      document.querySelectorAll('#sow-list .sow-toggle.checked').forEach(item => {
-        const val = item.querySelector('input').value;
-        const noteEl = document.getElementById('sow_' + val);
-        const detailWrap = noteEl ? noteEl.closest('.sow-detail') : null;
-        if (noteEl && !noteEl.value.trim()) {
-          if (detailWrap) { detailWrap.classList.add('error'); showErr(detailWrap, 'Vui lòng mô tả yêu cầu cụ thể'); }
-          ok = false;
-        }
-      });
+      const servicesEl = document.getElementById('services');
+      if (!servicesEl || !servicesEl.value.trim()) { if(servicesEl) markError(servicesEl, 'Vui lòng mô tả dịch vụ và yêu cầu cụ thể'); ok = false; }
 
       if (!ok) {
         const firstErr = document.querySelector('#step-1 .error');
@@ -1492,14 +1496,7 @@
 
     const goalsText = v('goals') || '—';
 
-    const sowChecked = [...document.querySelectorAll('#sow-list .sow-toggle.checked')];
-    const servicesText = sowChecked.map(el => {
-      const val = el.querySelector('input').value;
-      const label = el.textContent.trim();
-      const noteEl = document.getElementById('sow_' + val);
-      const note = noteEl && noteEl.value.trim() ? ': ' + noteEl.value.trim() : '';
-      return label + note;
-    }).join('<br>');
+    const servicesText = v('services') || '—';
 
     const agencyTypeMap = { inhouse: 'Inhouse hoàn toàn', agency: 'Có agency hỗ trợ', hybrid: 'Kết hợp cả hai', new: 'Chưa từng chạy marketing' };
     const agencyTypeVal = document.querySelector('input[name="agencyType"]:checked');
@@ -1636,12 +1633,7 @@
       strategy:        v('strategy'),
       competitors:     v('competitors'),
       goals:           v('goals'),
-      services: [...document.querySelectorAll('#sow-list .sow-toggle.checked')].map(el => {
-        const val    = el.querySelector('input').value;
-        const label  = el.textContent.trim();
-        const noteEl = document.getElementById('sow_' + val);
-        return { value: val, label, note: noteEl ? noteEl.value.trim() : '' };
-      }),
+      services:        v('services'),
       pasteSow:        v('pasteSow'),
       audience:        v('audience'),
       kpi:             v('kpi'),
