@@ -7,20 +7,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --pmax-orange: #FF5C00;
-    --pmax-orange-light: #FF7A2B;
-    --pmax-orange-pale: #FFF3ED;
-    --pmax-dark: #0D0D0D;
-    --pmax-gray-900: #1A1A1A;
-    --pmax-gray-700: #3D3D3D;
-    --pmax-gray-500: #7A7A7A;
-    --pmax-gray-200: #E8E8E8;
-    --pmax-gray-100: #F5F5F5;
-    --pmax-white: #FFFFFF;
+    /* ── PMAX Brand Colors (từ logo chính thức) ── */
+    --pmax-blue:        #0033A0;   /* Xanh dương chính – chữ PMAX */
+    --pmax-blue-light:  #1A4FBF;   /* Hover state */
+    --pmax-blue-pale:   #EBF0FA;   /* Background nhạt */
+    --pmax-red:         #E8001C;   /* Mũi tên đỏ */
+    --pmax-orange:      #FF6B00;   /* Mũi tên cam – accent */
+    --pmax-orange-light:#FF8A2B;
+    --pmax-orange-pale: #FFF3E8;
+    --pmax-yellow:      #FFC600;   /* Mũi tên vàng */
+    --pmax-green:       #00A651;   /* Mũi tên xanh lá */
+    /* ── Neutrals ── */
+    --pmax-dark:        #0A1628;
+    --pmax-gray-900:    #1A2340;
+    --pmax-gray-700:    #3D4E6B;
+    --pmax-gray-500:    #7A8BAA;
+    --pmax-gray-200:    #E0E6F0;
+    --pmax-gray-100:    #F4F6FB;
+    --pmax-white:       #FFFFFF;
     --radius: 12px;
     --radius-sm: 8px;
-    --shadow-card: 0 2px 20px rgba(0,0,0,0.06);
-    --shadow-hover: 0 8px 40px rgba(255,92,0,0.12);
+    --shadow-card: 0 2px 20px rgba(0,51,160,0.07);
+    --shadow-hover: 0 8px 40px rgba(0,51,160,0.14);
     --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -34,10 +42,9 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── HEADER ── */
   .site-header {
     background: var(--pmax-white);
-    border-bottom: 1px solid var(--pmax-gray-200);
+    border-bottom: 3px solid var(--pmax-blue);
     padding: 0 24px;
     position: sticky;
     top: 0;
@@ -57,51 +64,31 @@
     gap: 10px;
     text-decoration: none;
   }
-  .logo-mark {
-    width: 36px; height: 36px;
-    background: var(--pmax-orange);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 15px;
-    color: white;
-    letter-spacing: -0.5px;
-  }
-  .logo-text {
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--pmax-dark);
-    letter-spacing: -0.3px;
-  }
-  .logo-text span { color: var(--pmax-orange); }
+  .logo svg { height: 36px; width: auto; }
   .header-tag {
     font-size: 12px;
     font-weight: 500;
-    color: var(--pmax-gray-500);
-    background: var(--pmax-gray-100);
+    color: var(--pmax-blue);
+    background: var(--pmax-blue-pale);
     padding: 4px 12px;
     border-radius: 99px;
+    border: 1px solid rgba(0,51,160,0.15);
   }
 
   /* ── HERO ── */
   .hero {
-    background: var(--pmax-white);
-    border-bottom: 1px solid var(--pmax-gray-200);
+    background: linear-gradient(135deg, #0033A0 0%, #0047CC 65%, #1A6FD4 100%);
+    border-bottom: 4px solid var(--pmax-orange);
     padding: 48px 24px 40px;
   }
-  .hero-inner {
-    max-width: 780px;
-    margin: 0 auto;
-  }
+  .hero-inner { max-width: 780px; margin: 0 auto; }
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 12px;
     font-weight: 600;
-    color: var(--pmax-orange);
+    color: rgba(255,255,255,0.85);
     text-transform: uppercase;
     letter-spacing: 1.2px;
     margin-bottom: 16px;
@@ -115,14 +102,14 @@
   .hero h1 {
     font-size: clamp(26px, 4vw, 36px);
     font-weight: 800;
-    color: var(--pmax-dark);
+    color: #FFFFFF;
     line-height: 1.2;
     letter-spacing: -0.8px;
     margin-bottom: 12px;
   }
   .hero p {
     font-size: 15px;
-    color: var(--pmax-gray-500);
+    color: rgba(255,255,255,0.78);
     line-height: 1.7;
     max-width: 520px;
   }
@@ -148,18 +135,18 @@
   .progress-count {
     font-size: 12px;
     font-weight: 600;
-    color: var(--pmax-orange);
+    color: var(--pmax-blue);
     font-family: 'DM Mono', monospace;
   }
   .progress-bar {
-    height: 4px;
+    height: 5px;
     background: var(--pmax-gray-200);
     border-radius: 99px;
     overflow: hidden;
   }
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--pmax-orange), var(--pmax-orange-light));
+    background: linear-gradient(90deg, var(--pmax-blue), var(--pmax-orange));
     border-radius: 99px;
     transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
     width: 0%;
@@ -207,12 +194,12 @@
     flex-shrink: 0;
   }
   .step-btn.active {
-    border-color: var(--pmax-orange);
-    background: var(--pmax-orange-pale);
-    color: var(--pmax-orange);
+    border-color: var(--pmax-blue);
+    background: var(--pmax-blue-pale);
+    color: var(--pmax-blue);
   }
   .step-btn.active .step-num {
-    background: var(--pmax-orange);
+    background: var(--pmax-blue);
     color: white;
   }
   .step-btn.done {
@@ -262,7 +249,7 @@
   }
   .section-icon {
     width: 44px; height: 44px;
-    background: var(--pmax-orange-pale);
+    background: var(--pmax-blue-pale);
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     font-size: 20px;
@@ -272,7 +259,7 @@
   .section-label {
     font-size: 11px;
     font-weight: 700;
-    color: var(--pmax-orange);
+    color: var(--pmax-blue);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 3px;
@@ -346,8 +333,8 @@
   select:focus,
   textarea:focus {
     background: var(--pmax-white);
-    border-color: var(--pmax-orange);
-    box-shadow: 0 0 0 3px rgba(255,92,0,0.10);
+    border-color: var(--pmax-blue);
+    box-shadow: 0 0 0 3px rgba(0,51,160,0.10);
   }
   input::placeholder,
   textarea::placeholder { color: var(--pmax-gray-500); font-size: 13.5px; }
@@ -373,12 +360,12 @@
     font-family: 'Be Vietnam Pro', sans-serif;
   }
   .tier-btn:hover {
-    border-color: var(--pmax-orange-light);
-    background: var(--pmax-orange-pale);
+    border-color: var(--pmax-blue-light);
+    background: var(--pmax-blue-pale);
   }
   .tier-btn.selected {
-    border-color: var(--pmax-orange);
-    background: var(--pmax-orange-pale);
+    border-color: var(--pmax-blue);
+    background: var(--pmax-blue-pale);
   }
   .tier-value {
     font-size: 13px;
@@ -390,8 +377,8 @@
     font-size: 11px;
     color: var(--pmax-gray-500);
   }
-  .tier-btn.selected .tier-value { color: var(--pmax-orange); }
-  .tier-btn.selected .tier-label { color: var(--pmax-orange); opacity: 0.8; }
+  .tier-btn.selected .tier-value { color: var(--pmax-blue); }
+  .tier-btn.selected .tier-label { color: var(--pmax-blue); opacity: 0.8; }
 
   /* ── CHECKBOX LIST ── */
   .checkbox-grid {
@@ -415,7 +402,7 @@
     color: var(--pmax-gray-700);
     user-select: none;
   }
-  .check-item:hover { border-color: var(--pmax-orange-light); background: var(--pmax-orange-pale); }
+  .check-item:hover { border-color: var(--pmax-blue-light); background: var(--pmax-blue-pale); }
   .check-item input[type="checkbox"] { display: none; }
   .check-box {
     width: 18px; height: 18px;
@@ -429,13 +416,13 @@
     color: white;
   }
   .check-item.checked {
-    border-color: var(--pmax-orange);
-    background: var(--pmax-orange-pale);
-    color: var(--pmax-orange);
+    border-color: var(--pmax-blue);
+    background: var(--pmax-blue-pale);
+    color: var(--pmax-blue);
   }
   .check-item.checked .check-box {
-    background: var(--pmax-orange);
-    border-color: var(--pmax-orange);
+    background: var(--pmax-blue);
+    border-color: var(--pmax-blue);
   }
   .check-item.checked .check-box::after { content: '✓'; }
 
@@ -457,8 +444,8 @@
     cursor: pointer;
     transition: var(--transition);
   }
-  .dur-btn:hover { border-color: var(--pmax-orange-light); color: var(--pmax-orange); background: var(--pmax-orange-pale); }
-  .dur-btn.selected { border-color: var(--pmax-orange); background: var(--pmax-orange); color: white; }
+  .dur-btn:hover { border-color: var(--pmax-blue-light); color: var(--pmax-blue); background: var(--pmax-blue-pale); }
+  .dur-btn.selected { border-color: var(--pmax-blue); background: var(--pmax-blue); color: white; }
 
   /* ── NAV BUTTONS ── */
   .nav-row {
@@ -490,18 +477,19 @@
   }
   .btn-ghost:hover { border-color: var(--pmax-gray-500); color: var(--pmax-dark); }
   .btn-primary {
-    background: var(--pmax-orange);
+    background: var(--pmax-blue);
     color: white;
   }
-  .btn-primary:hover { background: #E05200; box-shadow: 0 4px 20px rgba(255,92,0,0.3); }
+  .btn-primary:hover { background: var(--pmax-blue-light); box-shadow: 0 4px 20px rgba(0,51,160,0.28); }
   .btn-primary:active { transform: scale(0.98); }
   .btn-submit {
-    background: var(--pmax-dark);
+    background: var(--pmax-blue);
     color: white;
     padding: 13px 32px;
     font-size: 15px;
+    border-left: 4px solid var(--pmax-orange);
   }
-  .btn-submit:hover { background: #2A2A2A; }
+  .btn-submit:hover { background: var(--pmax-blue-light); box-shadow: 0 4px 24px rgba(0,51,160,0.3); }
 
   /* ── SUCCESS STATE ── */
   .success-card {
@@ -557,7 +545,7 @@
     font-size: 12px;
     color: var(--pmax-gray-500);
   }
-  .site-footer a { color: var(--pmax-orange); text-decoration: none; }
+  .site-footer a { color: var(--pmax-blue); text-decoration: none; }
 
   /* ── RADIO ITEMS ── */
   .inhouse-opts {
@@ -579,7 +567,7 @@
     transition: var(--transition);
     user-select: none;
   }
-  .radio-item:hover { border-color: var(--pmax-orange-light); background: var(--pmax-orange-pale); }
+  .radio-item:hover { border-color: var(--pmax-blue-light); background: var(--pmax-blue-pale); }
   .radio-item input[type="radio"] { display: none; }
   .radio-dot {
     width: 18px; height: 18px;
@@ -591,68 +579,36 @@
     transition: var(--transition);
     display: flex; align-items: center; justify-content: center;
   }
-  .radio-item.selected {
-    border-color: var(--pmax-orange);
-    background: var(--pmax-orange-pale);
-  }
-  .radio-item.selected .radio-dot {
-    border-color: var(--pmax-orange);
-    background: var(--pmax-orange);
-    box-shadow: inset 0 0 0 3px white;
-  }
+  .radio-item.selected { border-color: var(--pmax-blue); background: var(--pmax-blue-pale); }
+  .radio-item.selected .radio-dot { border-color: var(--pmax-blue); background: var(--pmax-blue); box-shadow: inset 0 0 0 3px white; }
   .radio-content { display: flex; flex-direction: column; gap: 2px; }
   .radio-label { font-size: 13.5px; font-weight: 600; color: var(--pmax-dark); }
   .radio-sub { font-size: 12px; color: var(--pmax-gray-500); line-height: 1.4; }
-  .radio-item.selected .radio-label { color: var(--pmax-orange); }
+  .radio-item.selected .radio-label { color: var(--pmax-blue); }
 
   /* ── GOAL DETAIL ── */
-  .goal-detail-wrap {
-    margin-top: 6px;
-    animation: fadeUp 0.2s ease;
-  }
+  .goal-detail-wrap { margin-top: 6px; animation: fadeUp 0.2s ease; }
   .goal-detail-wrap textarea {
-    border-left: 3px solid var(--pmax-orange);
+    border-left: 3px solid var(--pmax-blue);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    background: var(--pmax-orange-pale);
+    background: var(--pmax-blue-pale);
   }
-  .goal-detail-wrap textarea:focus {
-    background: var(--pmax-white);
-  }
+  .goal-detail-wrap textarea:focus { background: var(--pmax-white); }
 
   /* ── SOW LIST ── */
-  .sow-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 4px;
-  }
-  .sow-item {
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-  .sow-toggle {
-    width: 100%;
-    border-radius: var(--radius-sm) !important;
-    transition: var(--transition);
-  }
-  .sow-item:has(.sow-toggle.checked) .sow-toggle {
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
-  }
-  .sow-detail {
-    animation: fadeUp 0.2s ease;
-  }
+  .sow-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .sow-item { border-radius: var(--radius-sm); overflow: hidden; }
+  .sow-toggle { width: 100%; border-radius: var(--radius-sm) !important; transition: var(--transition); }
+  .sow-item:has(.sow-toggle.checked) .sow-toggle { border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important; }
+  .sow-detail { animation: fadeUp 0.2s ease; }
   .sow-detail textarea {
     border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-    border: 1.5px solid var(--pmax-orange);
+    border: 1.5px solid var(--pmax-blue);
     border-top: none;
-    background: var(--pmax-orange-pale);
+    background: var(--pmax-blue-pale);
     margin-top: 0;
   }
-  .sow-detail textarea:focus {
-    background: var(--pmax-white);
-    border-color: var(--pmax-orange);
-    box-shadow: 0 4px 12px rgba(255,92,0,0.08);
-  }
+  .sow-detail textarea:focus { background: var(--pmax-white); border-color: var(--pmax-blue); box-shadow: 0 4px 12px rgba(0,51,160,0.08); }
 
   /* ── SERVICE REF LIST ── */
   .service-ref-list {
@@ -674,11 +630,11 @@
     transition: background 0.15s;
   }
   .service-ref-item:last-child { border-bottom: none; }
-  .service-ref-item:hover { background: var(--pmax-orange-pale); }
+  .service-ref-item:hover { background: var(--pmax-blue-pale); }
   .service-tag {
     flex-shrink: 0;
     width: 26px; height: 26px;
-    background: var(--pmax-orange);
+    background: var(--pmax-blue);
     color: white;
     font-size: 10px;
     font-weight: 700;
@@ -687,21 +643,9 @@
     display: flex; align-items: center; justify-content: center;
     margin-top: 1px;
   }
-  .service-ref-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .service-ref-content strong {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--pmax-dark);
-  }
-  .service-ref-content span {
-    font-size: 12px;
-    color: var(--pmax-gray-500);
-    line-height: 1.4;
-  }
+  .service-ref-content { display: flex; flex-direction: column; gap: 2px; }
+  .service-ref-content strong { font-size: 13px; font-weight: 700; color: var(--pmax-dark); }
+  .service-ref-content span { font-size: 12px; color: var(--pmax-gray-500); line-height: 1.4; }
 
   /* ── PASTE SOW ── */
   .paste-sow-wrap {
@@ -711,7 +655,7 @@
     overflow: hidden;
     transition: var(--transition);
   }
-  .paste-sow-wrap:hover { border-color: var(--pmax-orange-light); }
+  .paste-sow-wrap:hover { border-color: var(--pmax-blue-light); }
   .paste-sow-header {
     display: flex;
     justify-content: space-between;
@@ -760,7 +704,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    color: var(--pmax-orange);
+    color: var(--pmax-blue);
     margin-bottom: 12px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--pmax-gray-200);
@@ -788,8 +732,22 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="#">
-      <div class="logo-mark">PM</div>
-      <div class="logo-text">P<span>MAX</span></div>
+      <!-- PMAX Logo SVG – màu chính xác từ logo thật -->
+      <svg viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 4 mũi tên kim cương xếp chồng đúng logo PMAX -->
+        <!-- Đỏ – trên cùng -->
+        <polygon points="17,0 25,10 17,20 9,10" fill="#E8001C"/>
+        <!-- Cam -->
+        <polygon points="24,5 32,15 24,25 16,15" fill="#FF6B00"/>
+        <!-- Vàng -->
+        <polygon points="31,10 39,20 31,30 23,20" fill="#FFC600"/>
+        <!-- Xanh lá – dưới cùng -->
+        <polygon points="24,15 32,25 24,35 16,25" fill="#00A651"/>
+        <!-- Chữ PMAX -->
+        <text x="46" y="26" font-family="Arial Black, Arial" font-weight="900" font-size="24" fill="#0033A0" letter-spacing="-0.5">PMAX</text>
+        <!-- Tagline -->
+        <text x="46" y="38" font-family="Arial, sans-serif" font-weight="700" font-size="8" fill="#0033A0" letter-spacing="1.8">TOTAL MARKETING PARTNER</text>
+      </svg>
     </a>
     <span class="header-tag">Client Brief Form</span>
   </div>
