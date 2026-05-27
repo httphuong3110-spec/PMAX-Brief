@@ -58,13 +58,8 @@
     align-items: center;
     justify-content: space-between;
   }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-  .logo svg { height: 36px; width: auto; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-img { height: 40px; width: auto; display: block; }
   .header-tag {
     font-size: 12px;
     font-weight: 500;
@@ -647,46 +642,9 @@
   .service-ref-content strong { font-size: 13px; font-weight: 700; color: var(--pmax-dark); }
   .service-ref-content span { font-size: 12px; color: var(--pmax-gray-500); line-height: 1.4; }
 
-  /* ── PASTE SOW ── */
-  .paste-sow-wrap {
-    margin-top: 12px;
-    border-radius: var(--radius-sm);
-    border: 1.5px dashed var(--pmax-gray-200);
-    overflow: hidden;
-    transition: var(--transition);
-  }
-  .paste-sow-wrap:hover { border-color: var(--pmax-blue-light); }
-  .paste-sow-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    cursor: pointer;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--pmax-gray-700);
-    background: var(--pmax-gray-100);
-    user-select: none;
-  }
-  .paste-sow-header:hover { background: var(--pmax-orange-pale); color: var(--pmax-orange); }
-  .paste-arrow { font-size: 16px; transition: transform 0.2s; }
-  .paste-arrow.open { transform: rotate(180deg); }
-  #pasteSowBody textarea {
-    border-radius: 0;
-    border: none;
-    border-top: 1.5px dashed var(--pmax-gray-200);
-    background: var(--pmax-white);
-    font-size: 13px;
-  }
-  #pasteSowBody textarea:focus { box-shadow: none; border-color: var(--pmax-orange); }
 
-  /* ── VALIDATION ──
-  .field.error input,
-  .field.error textarea,
-  .field.error select {
-    border-color: #EF4444;
-    background: #FFF5F5;
-  } */
+
+  /* ── VALIDATION ── */
   .field.error input,
   .field.error textarea,
   .field.error select,
@@ -694,6 +652,14 @@
   .sow-detail.error textarea {
     border-color: #EF4444 !important;
     background: #FFF5F5 !important;
+  }
+  /* radio / tier / dur error highlight */
+  .field.error .inhouse-opts,
+  .field.error .budget-tiers,
+  .field.error .duration-opts {
+    outline: 2px solid #EF4444;
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
   }
   .field-err { font-size: 12px; color: #EF4444; font-weight: 500; display: block; margin-top: 4px; }
 
@@ -708,7 +674,26 @@
     margin-bottom: 12px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--pmax-gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+  .btn-edit-section {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--pmax-blue);
+    background: var(--pmax-blue-pale);
+    border: 1px solid rgba(0,51,160,0.18);
+    border-radius: 99px;
+    padding: 3px 12px;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  .btn-edit-section:hover { background: var(--pmax-blue); color: white; }
   .summary-row {
     display: flex;
     gap: 12px;
@@ -724,6 +709,7 @@
     font-weight: 500;
   }
   .summary-val { color: var(--pmax-dark); font-weight: 500; flex: 1; }
+  .summary-empty { color: var(--pmax-gray-400, #b0bad0); font-style: italic; font-weight: 400; }
 </style>
 </head>
 <body>
@@ -731,9 +717,9 @@
 <!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
-<a class="logo" href="#" style="font-size:32px;font-weight:900;color:#0033A0;text-decoration:none;">
-  PMAX
-</a>
+    <a class="logo" href="#">
+      <img src="data:image/png;base64,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" alt="PMAX – Total Marketing Partner" class="logo-img">
+    </a>
     <span class="header-tag">Client Brief Form</span>
   </div>
 </header>
@@ -1035,16 +1021,7 @@
         <!-- Ô điền yêu cầu -->
         <textarea id="services" rows="5" placeholder="Mô tả dịch vụ và yêu cầu cụ thể bạn cần:&#10;VD: Media (02): Facebook + Google, ưu tiên lead gen, ngân sách ~100tr/tháng&#10;Creative (03): Cần video 15s cho TikTok, 3–5 banner/tháng&#10;Technical (05): Setup GA4 và Pixel từ đầu…"></textarea>
 
-        <!-- Paste SOW -->
-        <div class="paste-sow-wrap">
-          <div class="paste-sow-header" onclick="togglePasteSow()">
-            <span>📎 Đã có file Brief / SOW sẵn? Paste vào đây</span>
-            <span class="paste-arrow" id="pasteArrow">▾</span>
-          </div>
-          <div id="pasteSowBody" style="display:none;">
-            <textarea id="pasteSow" rows="6" placeholder="Copy & paste nội dung Brief hoặc SOW của bạn vào đây. Đội ngũ PMAX sẽ đọc và tổng hợp thêm vào hồ sơ."></textarea>
-          </div>
-        </div>
+
       </div>
       <div class="nav-row">
         <button class="btn btn-ghost" onclick="prevStep(1)">← Quay lại</button>
@@ -1283,71 +1260,71 @@
     let ok = true;
     clearErrors();
 
+    // helper: mark error on a field wrapper by element ID
+    function errById(inputId, wrapId, msg) {
+      const el  = document.getElementById(inputId);
+      const wrap = wrapId ? document.getElementById(wrapId) : el?.closest('.field');
+      if (!el || !el.value.trim()) {
+        if (wrap) { wrap.classList.add('error'); showErr(wrap, msg); }
+        ok = false;
+      }
+    }
+
     // ── STEP 0 ──
     if (step === 0) {
-      [
-        ['company',  'f-company',   'Vui lòng nhập tên công ty'],
-        ['brand',    'f-brand',     'Vui lòng nhập tên thương hiệu'],
-        ['picName',  'f-pic-name',  'Vui lòng nhập tên người phụ trách'],
-        ['picEmail', 'f-pic-email', 'Vui lòng nhập email'],
-        ['picPhone', 'f-pic-phone', 'Vui lòng nhập số điện thoại / Zalo'],
-      ].forEach(([iid, fid, msg]) => {
-        const el = document.getElementById(iid);
-        const wrap = document.getElementById(fid);
-        if (!el.value.trim()) { wrap.classList.add('error'); showErr(wrap, msg); ok = false; }
-      });
+      errById('company',  'f-company',   'Vui lòng nhập tên công ty');
+      errById('brand',    'f-brand',     'Vui lòng nhập tên thương hiệu');
+      errById('picName',  'f-pic-name',  'Vui lòng nhập tên người phụ trách');
+      errById('picTitle', 'f-pic-title', 'Vui lòng nhập chức vụ');
+      errById('picEmail', 'f-pic-email', 'Vui lòng nhập email');
+      errById('picPhone', 'f-pic-phone', 'Vui lòng nhập số điện thoại / Zalo');
+
       const emailEl = document.getElementById('picEmail');
       if (emailEl.value && !emailEl.value.includes('@')) {
         const wrap = document.getElementById('f-pic-email');
-        wrap.classList.add('error'); showErr(wrap, 'Email không hợp lệ'); ok = false;
+        if (!wrap.classList.contains('error')) {
+          wrap.classList.add('error'); showErr(wrap, 'Email không hợp lệ'); ok = false;
+        }
       }
-      // picTitle required
-      const titleEl = document.getElementById('picTitle');
-      if (!titleEl.value.trim()) { markError(titleEl, 'Vui lòng nhập chức vụ'); ok = false; }
-      // picRole required
+
       const roleEl = document.getElementById('picRole');
       if (!roleEl.value) { markError(roleEl, 'Vui lòng chọn vai trò trong dự án'); ok = false; }
-      // agencyType required
+
       const agencyChecked = document.querySelector('input[name="agencyType"]:checked');
       if (!agencyChecked) {
         const wrap = document.querySelector('.inhouse-opts').closest('.field');
         wrap.classList.add('error'); showErr(wrap, 'Vui lòng chọn hình thức vận hành trước đây'); ok = false;
       }
+
+      const industryEl = document.getElementById('industry');
+      if (!industryEl.value) { markError(industryEl, 'Vui lòng chọn lĩnh vực kinh doanh'); ok = false; }
     }
 
     // ── STEP 1 ──
     if (step === 1) {
-      const productEl = document.getElementById('product');
-      if (!productEl.value.trim()) { markError(productEl, 'Vui lòng mô tả sản phẩm'); ok = false; }
-
-      const challengeEl = document.getElementById('challenge');
-      if (!challengeEl.value.trim()) { markError(challengeEl, 'Vui lòng mô tả bối cảnh & thách thức'); ok = false; }
-
-      const goalsEl = document.getElementById('goals');
-      if (!goalsEl.value.trim()) { markError(goalsEl, 'Vui lòng mô tả mục tiêu chiến dịch'); ok = false; }
-
-      const servicesEl = document.getElementById('services');
-      if (!servicesEl || !servicesEl.value.trim()) { if(servicesEl) markError(servicesEl, 'Vui lòng mô tả dịch vụ và yêu cầu cụ thể'); ok = false; }
-
-      if (!ok) {
-        const firstErr = document.querySelector('#step-1 .error');
-        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      [
+        ['product',   'Vui lòng mô tả sản phẩm / dịch vụ'],
+        ['challenge', 'Vui lòng mô tả bối cảnh & thách thức'],
+        ['goals',     'Vui lòng mô tả mục tiêu chiến dịch'],
+        ['services',  'Vui lòng mô tả dịch vụ và yêu cầu cụ thể'],
+      ].forEach(([id, msg]) => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) { markError(el, msg); ok = false; }
+      });
     }
 
     // ── STEP 2 ──
     if (step === 2) {
-      const audienceEl = document.getElementById('audience');
-      if (!audienceEl.value.trim()) { markError(audienceEl, 'Vui lòng mô tả khách hàng mục tiêu'); ok = false; }
-
-      const kpiEl = document.getElementById('kpi');
-      if (!kpiEl.value.trim()) { markError(kpiEl, 'Vui lòng điền KPI chính'); ok = false; }
-
+      [
+        ['audience', 'Vui lòng mô tả khách hàng mục tiêu'],
+        ['kpi',      'Vui lòng điền KPI chính'],
+        ['criteria', 'Vui lòng điền tiêu chí lựa chọn agency'],
+      ].forEach(([id, msg]) => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) { markError(el, msg); ok = false; }
+      });
       const pitchingEl = document.getElementById('pitching');
       if (!pitchingEl.value) { markError(pitchingEl, 'Vui lòng chọn có pitching hay không'); ok = false; }
-
-      const criteriaEl = document.getElementById('criteria');
-      if (!criteriaEl.value.trim()) { markError(criteriaEl, 'Vui lòng điền tiêu chí lựa chọn agency'); ok = false; }
     }
 
     // ── STEP 3 ──
@@ -1366,6 +1343,12 @@
         const durWrap = document.getElementById('f-duration');
         durWrap.classList.add('error'); showErr(durWrap, 'Vui lòng chọn thời gian triển khai'); ok = false;
       }
+    }
+
+    // scroll to first error
+    if (!ok) {
+      const firstErr = document.querySelector('#step-' + step + ' .error');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     return ok;
@@ -1407,15 +1390,6 @@
     if (detail) detail.style.display = cb.checked ? 'block' : 'none';
   }
 
-  // ── PASTE SOW TOGGLE ──
-  function togglePasteSow() {
-    const body = document.getElementById('pasteSowBody');
-    const arrow = document.getElementById('pasteArrow');
-    const isOpen = body.style.display !== 'none';
-    body.style.display = isOpen ? 'none' : 'block';
-    arrow.classList.toggle('open', !isOpen);
-  }
-
   // ── BUDGET TIERS ──
   function selectTier(el, val) {
     document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('selected'));
@@ -1435,62 +1409,71 @@
   // ── SUMMARY ──
   function buildSummary() {
     const tierMap = { lt100: 'Dưới 100 triệu/tháng', lt300: '100–300 triệu/tháng', gt300: 'Trên 300 triệu/tháng' };
-    const durMap = { '1m':'1 tháng','3m':'3 tháng','6m':'6 tháng','1y':'1 năm','ongoing':'Dài hạn / Ongoing','custom': document.getElementById('durationCustom').value || 'Khác' };
-
-    const goalsText = v('goals') || '—';
-
-    const servicesText = v('services') || '—';
-
+    const durMap  = { '1m':'1 tháng','3m':'3 tháng','6m':'6 tháng','1y':'1 năm','ongoing':'Dài hạn / Ongoing','custom': document.getElementById('durationCustom').value || 'Khác' };
     const agencyTypeMap = { inhouse: 'Inhouse hoàn toàn', agency: 'Có agency hỗ trợ', hybrid: 'Kết hợp cả hai', new: 'Chưa từng chạy marketing' };
+    const pitchingMap   = { yes: 'Có – đang pitching nhiều agency', direct: 'Không – làm việc trực tiếp với PMAX', unsure: 'Chưa quyết định' };
     const agencyTypeVal = document.querySelector('input[name="agencyType"]:checked');
-    const agencyTypeText = agencyTypeVal ? (agencyTypeMap[agencyTypeVal.value] + (v('agencyDetail') ? ' – ' + v('agencyDetail') : '')) : '—';
+    const agencyTypeText = agencyTypeVal ? (agencyTypeMap[agencyTypeVal.value] + (v('agencyDetail') ? ' – ' + v('agencyDetail') : '')) : '';
 
-    const html = `
+    // Helper: render one row, show dash if empty
+    const row = (label, val) => {
+      const display = val ? val : '<span class="summary-empty">–</span>';
+      return `<div class="summary-row"><span class="summary-key">${label}</span><span class="summary-val">${display}</span></div>`;
+    };
+
+    // Helper: render a section with edit button
+    const section = (title, stepIdx, rows) => `
       <div class="summary-section">
-        <h3>📋 Thông tin công ty & liên hệ</h3>
-        <div class="summary-row"><span class="summary-key">Công ty</span><span class="summary-val">${v('company')}</span></div>
-        <div class="summary-row"><span class="summary-key">Thương hiệu</span><span class="summary-val">${v('brand')}</span></div>
-        <div class="summary-row"><span class="summary-key">Ngày gửi brief</span><span class="summary-val">${v('briefDate') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Người phụ trách</span><span class="summary-val">${v('picName')} — ${v('picTitle') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Vai trò trong dự án</span><span class="summary-val">${v('picRole') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Liên hệ</span><span class="summary-val">${v('picEmail')} · ${v('picPhone') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Lĩnh vực</span><span class="summary-val">${v('industry') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Kênh digital</span><span class="summary-val">${v('channels') || '—'}</span></div>
-      </div>
-      <div class="summary-section">
-        <h3>🛍️ Sản phẩm & Chiến lược</h3>
-        <div class="summary-row"><span class="summary-key">Sản phẩm / dịch vụ</span><span class="summary-val">${v('product')}</span></div>
-        <div class="summary-row"><span class="summary-key">USP</span><span class="summary-val">${v('usp') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Giá</span><span class="summary-val">${v('price') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Chính sách bán hàng</span><span class="summary-val">${v('salesPolicy') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Khuyến mãi</span><span class="summary-val">${v('promotion') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Kênh bán hàng</span><span class="summary-val">${v('salesChannels') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Bối cảnh & Thách thức</span><span class="summary-val">${v('challenge') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Chiến lược & Asset sẵn có</span><span class="summary-val">${v('strategy') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Đối thủ</span><span class="summary-val">${v('competitors') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Mục tiêu chiến dịch</span><span class="summary-val">${goalsText || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Dịch vụ cần PMAX</span><span class="summary-val">${servicesText || '—'}</span></div>
-      </div>
-      <div class="summary-section">
-        <h3>👥 Khách hàng & KPI</h3>
-        <div class="summary-row"><span class="summary-key">Khách hàng mục tiêu</span><span class="summary-val">${v('audience')}</span></div>
-        <div class="summary-row"><span class="summary-key">KPI</span><span class="summary-val">${v('kpi') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Định nghĩa KPI</span><span class="summary-val">${v('kpiDef') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Tracking system</span><span class="summary-val">${v('tracking') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Pitching</span><span class="summary-val">${v('pitching') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Chi tiết pitching</span><span class="summary-val">${v('pitchingDetail') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Tiêu chí chọn agency</span><span class="summary-val">${v('criteria') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Scope of Work</span><span class="summary-val">${v('scopeDetail') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Lịch sử chiến dịch</span><span class="summary-val">${v('history') || '—'}</span></div>
-      </div>
-      <div class="summary-section">
-        <h3>💰 Ngân sách & Thời gian</h3>
-        <div class="summary-row"><span class="summary-key">Ngân sách</span><span class="summary-val">${tierMap[budgetTier] || '—'}${v('budgetExact') ? ' · ' + v('budgetExact') : ''}</span></div>
-        <div class="summary-row"><span class="summary-key">Bắt đầu</span><span class="summary-val">${v('startDate') || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Thời lượng</span><span class="summary-val">${durMap[duration] || '—'}</span></div>
-        <div class="summary-row"><span class="summary-key">Ghi chú timeline</span><span class="summary-val">${v('timelineNote') || '—'}</span></div>
-      </div>
-    `;
+        <h3>
+          ${title}
+          <button class="btn-edit-section" onclick="goStep(${stepIdx})">✏️ Chỉnh sửa</button>
+        </h3>
+        ${rows}
+      </div>`;
+
+    const html =
+      section('📋 Thông tin công ty & liên hệ', 0,
+        row('Công ty',          v('company'))  +
+        row('Thương hiệu',      v('brand'))    +
+        row('Ngày gửi brief',   v('briefDate')) +
+        row('Người phụ trách',  [v('picName'), v('picTitle')].filter(Boolean).join(' – ')) +
+        row('Vai trò',          v('picRole'))  +
+        row('Email',            v('picEmail')) +
+        row('Điện thoại / Zalo',v('picPhone')) +
+        row('Lĩnh vực',         v('industry')) +
+        row('Kênh digital',     v('channels')) +
+        row('Hình thức vận hành', agencyTypeText)
+      ) +
+      section('🛍️ Sản phẩm & Chiến lược', 1,
+        row('Sản phẩm / dịch vụ',     v('product'))      +
+        row('USP',                     v('usp'))          +
+        row('Giá',                     v('price'))        +
+        row('Chính sách bán hàng',     v('salesPolicy'))  +
+        row('Khuyến mãi',              v('promotion'))    +
+        row('Kênh bán hàng',           v('salesChannels'))+
+        row('Bối cảnh & Thách thức',   v('challenge'))    +
+        row('Chiến lược & Asset sẵn có',v('strategy'))    +
+        row('Đối thủ cạnh tranh',      v('competitors'))  +
+        row('Mục tiêu chiến dịch',     v('goals'))        +
+        row('Dịch vụ cần PMAX',        v('services'))
+      ) +
+      section('👥 Khách hàng & KPI', 2,
+        row('Khách hàng mục tiêu', v('audience'))     +
+        row('KPI chính',           v('kpi'))          +
+        row('Định nghĩa KPI',      v('kpiDef'))       +
+        row('Tracking system',     v('tracking'))     +
+        row('Có pitching?',        pitchingMap[v('pitching')] || v('pitching')) +
+        row('Chi tiết pitching',   v('pitchingDetail'))+
+        row('Tiêu chí chọn agency',v('criteria'))     +
+        row('Lịch sử chiến dịch',  v('history'))
+      ) +
+      section('💰 Ngân sách & Thời gian', 3,
+        row('Ngân sách',      (tierMap[budgetTier] || '') + (v('budgetExact') ? ' · ' + v('budgetExact') : '')) +
+        row('Bắt đầu',        v('startDate'))    +
+        row('Thời lượng',     durMap[duration] || '') +
+        row('Ghi chú timeline', v('timelineNote'))
+      );
+
     document.getElementById('summaryContent').innerHTML = html;
   }
 
@@ -1577,7 +1560,6 @@
       competitors:     v('competitors'),
       goals:           v('goals'),
       services:        v('services'),
-      pasteSow:        v('pasteSow'),
       audience:        v('audience'),
       kpi:             v('kpi'),
       kpiDef:          v('kpiDef'),
