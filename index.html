@@ -163,6 +163,12 @@
   .site-footer{max-width:780px;margin:0 auto;padding:24px;text-align:center;font-size:12px;color:var(--pmax-gray-500)}
   .site-footer a{color:var(--pmax-blue);text-decoration:none;font-weight:600}
   .site-footer a:hover{text-decoration:underline}
+
+  /* ── LANGUAGE SWITCH ─────────────────────────────────── */
+  .lang-switch{display:flex;gap:4px;background:rgba(255,255,255,0.15);border-radius:99px;padding:4px;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.25);flex-shrink:0;margin-top:4px}
+  .lang-btn{padding:6px 14px;border-radius:99px;border:none;background:transparent;font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:700;color:rgba(255,255,255,0.7);cursor:pointer;transition:var(--transition);white-space:nowrap}
+  .lang-btn.active{background:rgba(255,255,255,0.95);color:var(--pmax-blue);box-shadow:0 1px 6px rgba(0,0,0,0.15)}
+  .lang-btn:hover:not(.active){color:#fff;background:rgba(255,255,255,0.2)}
 </style>
 </head>
 <body>
@@ -178,15 +184,23 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Bắt đầu dự án của bạn</div>
-    <h1>Chia sẻ thông tin<br>về chiến dịch của bạn</h1>
-    <p>Chỉ mất khoảng 5–8 phút. Thông tin này giúp đội ngũ PMAX hiểu rõ mục tiêu và chuẩn bị đề xuất phù hợp nhất.</p>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <div>
+        <div class="hero-eyebrow" data-vi="Bắt đầu dự án của bạn" data-en="Let's get started">Bắt đầu dự án của bạn</div>
+        <h1 data-vi="Chia sẻ thông tin<br>về chiến dịch của bạn" data-en="Tell us about<br>your campaign">Chia sẻ thông tin<br>về chiến dịch của bạn</h1>
+        <p data-vi="Chỉ mất khoảng 5–8 phút. Thông tin này giúp đội ngũ PMAX hiểu rõ mục tiêu và chuẩn bị đề xuất phù hợp nhất." data-en="Takes just 5–8 minutes. Your answers help our team understand your goals and put together the best proposal for you.">Chỉ mất khoảng 5–8 phút. Thông tin này giúp đội ngũ PMAX hiểu rõ mục tiêu và chuẩn bị đề xuất phù hợp nhất.</p>
+      </div>
+      <div class="lang-switch" id="langSwitch">
+        <button class="lang-btn active" onclick="setLang('vi')" id="btn-vi">🇻🇳 VI</button>
+        <button class="lang-btn" onclick="setLang('en')" id="btn-en">🇬🇧 EN</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <div id="restore-banner" style="display:none;background:#EBF0FA;border-bottom:2px solid #0033A0;padding:10px 24px;">
   <div style="max-width:780px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-    <span style="font-size:13px;font-weight:600;color:#0033A0;">💾 Thông tin bạn đã điền trước đó vẫn còn - tiếp tục từ chỗ đã dừng nhé!</span>
+    <span style="font-size:13px;font-weight:600;color:#0033A0;" data-vi="💾 Thông tin bạn đã điền trước đó vẫn còn - tiếp tục từ chỗ đã dừng nhé!" data-en="💾 Your previous information is still saved – pick up where you left off!">💾 Thông tin bạn đã điền trước đó vẫn còn - tiếp tục từ chỗ đã dừng nhé!</span>
   </div>
 </div>
 <div class="progress-wrap">
@@ -194,12 +208,12 @@
 </div>
 
 <div class="stepper" id="stepper">
-  <button class="step-btn active" onclick="stepClick(0)"><span class="step-num">1</span> Người gửi brief</button>
-  <button class="step-btn" onclick="stepClick(1)"><span class="step-num">2</span> Công ty & Thị trường</button>
-  <button class="step-btn" onclick="stepClick(2)"><span class="step-num">3</span> Sản phẩm & Khách hàng</button>
-  <button class="step-btn" onclick="stepClick(3)"><span class="step-num">4</span> KPI & Yêu cầu</button>
-  <button class="step-btn" onclick="stepClick(4)"><span class="step-num">5</span> Ngân sách & Timeline</button>
-  <button class="step-btn" onclick="stepClick(5)"><span class="step-num">6</span> Xem lại & Gửi</button>
+  <button class="step-btn active" onclick="stepClick(0)"><span class="step-num">1</span> <span data-vi="Người gửi brief" data-en="Brief Submitter">Người gửi brief</span></button>
+  <button class="step-btn" onclick="stepClick(1)"><span class="step-num">2</span> <span data-vi="Công ty & Thị trường" data-en="Company & Market">Công ty & Thị trường</span></button>
+  <button class="step-btn" onclick="stepClick(2)"><span class="step-num">3</span> <span data-vi="Sản phẩm & Khách hàng" data-en="Product & Audience">Sản phẩm & Khách hàng</span></button>
+  <button class="step-btn" onclick="stepClick(3)"><span class="step-num">4</span> <span data-vi="KPI & Yêu cầu" data-en="KPI & Requirements">KPI & Yêu cầu</span></button>
+  <button class="step-btn" onclick="stepClick(4)"><span class="step-num">5</span> <span data-vi="Ngân sách & Timeline" data-en="Budget & Timeline">Ngân sách & Timeline</span></button>
+  <button class="step-btn" onclick="stepClick(5)"><span class="step-num">6</span> <span data-vi="Xem lại & Gửi" data-en="Review & Submit">Xem lại & Gửi</span></button>
 </div>
 
 <main class="main">
@@ -209,70 +223,70 @@
     <div class="section-header">
       <div class="section-icon">👤</div>
       <div>
-        <div class="section-label">Bước 1 / 6</div>
-        <div class="section-title">Người gửi brief</div>
-        <div class="section-desc">Thông tin để PMAX liên hệ lại với bạn.</div>
+        <div class="section-label" data-vi="Bước 1 / 6" data-en="Step 1 / 6">Bước 1 / 6</div>
+        <div class="section-title" data-vi="Người gửi brief" data-en="Brief Submitter">Người gửi brief</div>
+        <div class="section-desc" data-vi="Thông tin để PMAX liên hệ lại với bạn." data-en="Let us know who we're talking to.">Thông tin để PMAX liên hệ lại với bạn.</div>
       </div>
     </div>
     <div class="section-body">
       <div class="field-row">
         <div class="field" id="f-company">
-          <label>Tên công ty <span class="req">*</span></label>
-          <input type="text" id="company" placeholder="VD: Unilever Việt Nam, Masan Consumer">
+          <label><span data-vi="Tên công ty" data-en="Company Name">Tên công ty</span> <span class="req">*</span></label>
+          <input type="text" id="company" data-ph-vi="VD: Unilever Việt Nam, Masan Consumer" data-ph-en="E.g. Unilever Vietnam, P&G" placeholder="VD: Unilever Việt Nam, Masan Consumer">
         </div>
         <div class="field" id="f-brand">
-          <label>Thương hiệu / Sản phẩm <span class="req">*</span></label>
-          <input type="text" id="brand" placeholder="VD: OMO, Chin-su, Kokomi">
+          <label><span data-vi="Thương hiệu / Sản phẩm" data-en="Brand / Product">Thương hiệu / Sản phẩm</span> <span class="req">*</span></label>
+          <input type="text" id="brand" data-ph-vi="VD: OMO, Chin-su, Kokomi" data-ph-en="E.g. Dove, Gillette, Olay" placeholder="VD: OMO, Chin-su, Kokomi">
         </div>
       </div>
       <div class="field-row">
         <div class="field" id="f-pic-name">
-          <label>Họ tên người gửi brief <span class="req">*</span></label>
-          <input type="text" id="picName" placeholder="VD: Nguyễn Thị Mai">
+          <label><span data-vi="Họ tên người gửi brief" data-en="Full Name">Họ tên người gửi brief</span> <span class="req">*</span></label>
+          <input type="text" id="picName" data-ph-vi="VD: Nguyễn Thị Mai" data-ph-en="E.g. Jane Smith" placeholder="VD: Nguyễn Thị Mai">
         </div>
         <div class="field" id="f-pic-title">
-          <label>Chức vụ <span class="req">*</span></label>
-          <input type="text" id="picTitle" placeholder="VD: Brand Manager">
+          <label><span data-vi="Chức vụ" data-en="Job Title">Chức vụ</span> <span class="req">*</span></label>
+          <input type="text" id="picTitle" placeholder="E.g. Brand Manager">
         </div>
       </div>
       <div class="field">
-        <label>Vai trò trong dự án <span class="req">*</span></label>
+        <label><span data-vi="Vai trò trong dự án" data-en="Role in this project">Vai trò trong dự án</span> <span class="req">*</span></label>
         <div class="radio-opts">
           <div class="radio-item" onclick="selectRadio(this,'picRole','dm')">
             <input type="radio" name="picRole" value="Decision Maker (người ra quyết định)">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Decision Maker</span><span class="radio-sub">Người ra quyết định cuối cùng</span></span>
+            <span class="radio-content"><span class="radio-label">Decision Maker</span><span class="radio-sub" data-vi="Người ra quyết định cuối cùng" data-en="Final decision-maker">Người ra quyết định cuối cùng</span></span>
           </div>
           <div class="radio-item" onclick="selectRadio(this,'picRole','lead')">
             <input type="radio" name="picRole" value="Project Lead (người quản lý dự án)">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Project Lead</span><span class="radio-sub">Người quản lý & điều phối dự án</span></span>
+            <span class="radio-content"><span class="radio-label">Project Lead</span><span class="radio-sub" data-vi="Người quản lý & điều phối dự án" data-en="Manages & coordinates the project">Người quản lý & điều phối dự án</span></span>
           </div>
           <div class="radio-item" onclick="selectRadio(this,'picRole','connector')">
             <input type="radio" name="picRole" value="Connector (người kết nối)">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Connector</span><span class="radio-sub">Người kết nối giữa các bên</span></span>
+            <span class="radio-content"><span class="radio-label">Connector</span><span class="radio-sub" data-vi="Người kết nối giữa các bên" data-en="Liaison between parties">Người kết nối giữa các bên</span></span>
           </div>
           <div class="radio-item" onclick="selectRadio(this,'picRole','other')">
             <input type="radio" name="picRole" value="Khác">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Khác</span><span class="radio-sub">Vai trò khác trong tổ chức</span></span>
+            <span class="radio-content"><span class="radio-label" data-vi="Khác" data-en="Other">Khác</span><span class="radio-sub" data-vi="Vai trò khác trong tổ chức" data-en="Other">Vai trò khác trong tổ chức</span></span>
           </div>
         </div>
       </div>
       <div class="field-row">
         <div class="field" id="f-pic-email">
-          <label>Email công việc <span class="req">*</span></label>
-          <input type="email" id="picEmail" placeholder="ten@congty.com">
+          <label><span data-vi="Email công việc" data-en="Work Email">Email công việc</span> <span class="req">*</span></label>
+          <input type="email" id="picEmail" placeholder="name@company.com">
         </div>
         <div class="field" id="f-pic-phone">
-          <label>Số điện thoại <span class="req">*</span></label>
-          <input type="tel" id="picPhone" placeholder="0901 234 567">
+          <label><span data-vi="Số điện thoại" data-en="Phone Number">Số điện thoại</span> <span class="req">*</span></label>
+          <input type="tel" id="picPhone" placeholder="+84 901 234 567" inputmode="numeric" pattern="[0-9+\s\-()]+" oninput="this.value=this.value.replace(/[^0-9+\s\-()]/g,'')">
         </div>
       </div>
       <div class="nav-row">
         <span></span>
-        <button class="btn btn-primary" onclick="nextStep(0)">Tiếp theo →</button>
+        <button class="btn btn-primary" onclick="nextStep(0)" data-vi="Tiếp theo →" data-en="Next →">Tiếp theo →</button>
       </div>
     </div>
   </div>
@@ -282,88 +296,88 @@
     <div class="section-header">
       <div class="section-icon">🏢</div>
       <div>
-        <div class="section-label">Bước 2 / 6</div>
-        <div class="section-title">Công ty & Thị trường</div>
-        <div class="section-desc">Bức tranh tổng quan về công ty và bối cảnh chiến dịch.</div>
+        <div class="section-label" data-vi="Bước 2 / 6" data-en="Step 2 / 6">Bước 2 / 6</div>
+        <div class="section-title" data-vi="Công ty & Thị trường" data-en="Company & Market">Công ty & Thị trường</div>
+        <div class="section-desc" data-vi="Bức tranh tổng quan về công ty và bối cảnh chiến dịch." data-en="Help us understand your business and where you're coming from.">Bức tranh tổng quan về công ty và bối cảnh chiến dịch.</div>
       </div>
     </div>
     <div class="section-body">
       <div class="field" id="f-industry">
-        <label>Lĩnh vực kinh doanh <span class="req">*</span></label>
+        <label><span data-vi="Lĩnh vực kinh doanh" data-en="Industry">Lĩnh vực kinh doanh</span> <span class="req">*</span></label>
         <select id="industry">
-          <option value="">-- Chọn lĩnh vực --</option>
-          <option>Ô tô / Xe máy</option>
-          <option>Bất động sản</option>
-          <option>Tài chính / Ngân hàng / Bảo hiểm</option>
-          <option>Sức khỏe / Y tế / Dược phẩm</option>
-          <option>Làm đẹp / Chăm sóc cá nhân</option>
-          <option>Thực phẩm & Đồ uống (FMCG)</option>
-          <option>Giáo dục</option>
-          <option>Thương mại điện tử / Retail</option>
-          <option>Công nghệ / SaaS</option>
-          <option>Khác</option>
+          <option value="" data-vi="-- Chọn lĩnh vực --" data-en="-- Select industry --">-- Chọn lĩnh vực --</option>
+          <option data-vi="Ô tô / Xe máy" data-en="Automotive / Motorcycle">Ô tô / Xe máy</option>
+          <option data-vi="Bất động sản" data-en="Real Estate">Bất động sản</option>
+          <option data-vi="Tài chính / Ngân hàng / Bảo hiểm" data-en="Finance / Banking / Insurance">Tài chính / Ngân hàng / Bảo hiểm</option>
+          <option data-vi="Sức khỏe / Y tế / Dược phẩm" data-en="Healthcare / Pharmaceutical">Sức khỏe / Y tế / Dược phẩm</option>
+          <option data-vi="Làm đẹp / Chăm sóc cá nhân" data-en="Beauty / Personal Care">Làm đẹp / Chăm sóc cá nhân</option>
+          <option data-vi="Thực phẩm & Đồ uống (FMCG)" data-en="Food & Beverage (FMCG)">Thực phẩm & Đồ uống (FMCG)</option>
+          <option data-vi="Giáo dục" data-en="Education">Giáo dục</option>
+          <option data-vi="Thương mại điện tử / Retail" data-en="E-commerce / Retail">Thương mại điện tử / Retail</option>
+          <option data-vi="Công nghệ / SaaS" data-en="Technology / SaaS">Công nghệ / SaaS</option>
+          <option data-vi="Khác" data-en="Other">Khác</option>
         </select>
       </div>
       <div class="field">
-        <label>Kênh kỹ thuật số & kênh bán hàng đang có</label>
-        <div class="hint">Paste link vào, ví dụ: Website, Facebook, TikTok, Shopee, Lazada…</div>
+        <label data-vi="Kênh kỹ thuật số & kênh bán hàng đang có" data-en="Current digital & sales channels">Kênh kỹ thuật số & kênh bán hàng đang có</label>
+        <div class="hint" data-vi="Paste link vào, ví dụ: Website, Facebook, TikTok, Shopee, Lazada…" data-en="Paste links, e.g. Website, Facebook, TikTok, Shopee, Lazada…">Paste link vào, ví dụ: Website, Facebook, TikTok, Shopee, Lazada…</div>
         <textarea id="channels" rows="3" placeholder="Website: https://&#10;Facebook: https://&#10;Shopee: https://&#10;Lazada: https://"></textarea>
       </div>
       <div class="field">
-        <label>Bối cảnh & Thách thức hiện tại <span class="req">*</span></label>
-        <div class="hint">Bối cảnh công ty hiện tại? Khó khăn, thách thức đang gặp phải là gì?</div>
-        <textarea id="challenge" rows="3" placeholder="Mô tả tình hình hiện tại và lý do triển khai chiến dịch lần này…"></textarea>
+        <label><span data-vi="Bối cảnh & Thách thức hiện tại" data-en="Background & Challenges">Bối cảnh & Thách thức hiện tại</span> <span class="req">*</span></label>
+        <div class="hint" data-vi="Bối cảnh công ty hiện tại? Khó khăn, thách thức đang gặp phải là gì?" data-en="What's your current situation? What challenges are you trying to solve?">Bối cảnh công ty hiện tại? Khó khăn, thách thức đang gặp phải là gì?</div>
+        <textarea id="challenge" rows="3" data-ph-vi="Mô tả tình hình hiện tại và lý do triển khai chiến dịch lần này…" data-ph-en="Describe your current situation and reasons for running this campaign…" placeholder="Mô tả tình hình hiện tại và lý do triển khai chiến dịch lần này…"></textarea>
       </div>
       <div class="field">
-        <label>Đối thủ cạnh tranh chính</label>
+        <label data-vi="Đối thủ cạnh tranh chính" data-en="Main Competitors">Đối thủ cạnh tranh chính</label>
         <input type="text" id="competitors" placeholder="VD: Brand A, Brand B…">
       </div>
       <div class="field">
-        <label>Mục tiêu chiến dịch <span class="req">*</span></label>
-        <div class="hint">Mục tiêu kinh doanh, mục tiêu truyền thông, và mục tiêu của chiến dịch này là gì?</div>
-        <textarea id="goals" rows="3" placeholder="Mô tả mục tiêu cụ thể, kèm con số kỳ vọng nếu có…"></textarea>
+        <label><span data-vi="Mục tiêu chiến dịch" data-en="Campaign Objectives">Mục tiêu chiến dịch</span> <span class="req">*</span></label>
+        <div class="hint" data-vi="Mục tiêu kinh doanh, mục tiêu truyền thông, và mục tiêu của chiến dịch này là gì?" data-en="What do you want this campaign to achieve? Include business goals, comms objectives, and any specific targets.">Mục tiêu kinh doanh, mục tiêu truyền thông, và mục tiêu của chiến dịch này là gì?</div>
+        <textarea id="goals" rows="3" data-ph-vi="Mô tả mục tiêu cụ thể, kèm con số kỳ vọng nếu có…" data-ph-en="Describe specific goals, include expected numbers if available…" placeholder="Mô tả mục tiêu cụ thể, kèm con số kỳ vọng nếu có…"></textarea>
       </div>
       <div class="field">
-        <label>Chiến lược & tài nguyên marketing hiện có</label>
-        <div class="hint">Đã có định hướng chiến lược chưa? Có KV, creative asset, tài liệu tham khảo sẵn không?</div>
-        <textarea id="strategy" rows="2" placeholder="Mô tả chiến lược và tài nguyên hiện có…"></textarea>
+        <label data-vi="Chiến lược & tài nguyên marketing hiện có" data-en="Current Strategy & Existing Assets">Chiến lược & tài nguyên marketing hiện có</label>
+        <div class="hint" data-vi="Đã có định hướng chiến lược chưa? Có KV, creative asset, tài liệu tham khảo sẵn không?" data-en="Do you have a strategy in place? Any key visuals, creative assets, or reference materials we should know about?">Đã có định hướng chiến lược chưa? Có KV, creative asset, tài liệu tham khảo sẵn không?</div>
+        <textarea id="strategy" rows="2" data-ph-vi="Mô tả chiến lược và tài nguyên hiện có…" data-ph-en="Describe your current strategy and available assets…" placeholder="Mô tả chiến lược và tài nguyên hiện có…"></textarea>
       </div>
       <div class="field">
-        <label>Công ty hiện đang tự vận hành marketing hay có đối tác hỗ trợ?</label>
+        <label data-vi="Công ty hiện đang tự vận hành marketing hay có đối tác hỗ trợ?" data-en="How is your marketing currently run?">Công ty hiện đang tự vận hành marketing hay có đối tác hỗ trợ?</label>
         <div class="radio-opts">
           <div class="radio-item" onclick="selectRadio(this,'agencyType','inhouse')">
             <input type="radio" name="agencyType" value="inhouse">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Inhouse hoàn toàn</span><span class="radio-sub">Đội ngũ nội bộ tự thực hiện</span></span>
+            <span class="radio-content"><span class="radio-label" data-vi="Inhouse hoàn toàn" data-en="Fully In-house">Inhouse hoàn toàn</span><span class="radio-sub" data-vi="Đội ngũ nội bộ tự thực hiện" data-en="Your team manages everything internally">Đội ngũ nội bộ tự thực hiện</span></span>
           </div>
           <div class="radio-item" onclick="selectRadio(this,'agencyType','agency')">
             <input type="radio" name="agencyType" value="agency">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Có agency hỗ trợ</span><span class="radio-sub">Đang hoặc từng làm với agency</span></span>
+            <span class="radio-content"><span class="radio-label" data-vi="Có agency hỗ trợ" data-en="Working with an Agency">Có agency hỗ trợ</span><span class="radio-sub" data-vi="Đang hoặc từng làm với agency" data-en="You work (or have worked) with an external agency">Đang hoặc từng làm với agency</span></span>
           </div>
           <div class="radio-item" onclick="selectRadio(this,'agencyType','hybrid')">
             <input type="radio" name="agencyType" value="hybrid">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Kết hợp cả hai</span><span class="radio-sub">Inhouse một phần, agency một phần</span></span>
+            <span class="radio-content"><span class="radio-label" data-vi="Kết hợp cả hai" data-en="Hybrid">Kết hợp cả hai</span><span class="radio-sub" data-vi="Inhouse một phần, agency một phần" data-en="Partly in-house, partly agency">Inhouse một phần, agency một phần</span></span>
           </div>
           <div class="radio-item" onclick="selectRadio(this,'agencyType','new')">
             <input type="radio" name="agencyType" value="new">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Chưa từng chạy marketing</span><span class="radio-sub">Đây là chiến dịch đầu tiên</span></span>
+            <span class="radio-content"><span class="radio-label" data-vi="Chưa từng chạy marketing" data-en="No marketing activity yet">Chưa từng chạy marketing</span><span class="radio-sub" data-vi="Đây là chiến dịch đầu tiên" data-en="This is our first campaign">Đây là chiến dịch đầu tiên</span></span>
           </div>
         </div>
         <div id="agency-detail-wrap" style="display:none;margin-top:8px;flex-direction:column;gap:10px;">
-          <input type="text" id="agencyDetail" placeholder="Tên agency đang / đã làm việc cùng">
+          <input type="text" id="agencyDetail" data-ph-vi="Tên agency đang / đã làm việc cùng" data-ph-en="Name of current / previous agency" placeholder="Tên agency đang / đã làm việc cùng">
           <div class="field" style="margin:0;">
-            <label style="font-size:13px;">Lý do tìm kiếm thêm agency mới?</label>
-            <div class="hint">Giúp PMAX hiểu rõ hơn kỳ vọng và điểm chưa hài lòng với agency hiện tại</div>
-            <textarea id="agencyReason" rows="2" placeholder="VD: Muốn tìm agency chuyên sâu hơn về performance, agency hiện tại không đáp ứng được KPI…"></textarea>
+            <label style="font-size:13px;" data-vi="Lý do tìm kiếm thêm agency mới?" data-en="What's prompting you to look for a new agency?">Lý do tìm kiếm thêm agency mới? <span class="req">*</span></label>
+            <div class="hint" data-vi="Giúp PMAX hiểu rõ hơn kỳ vọng và điểm chưa hài lòng với agency hiện tại" data-en="This helps us understand what you're looking for and what hasn't been working.">Giúp PMAX hiểu rõ hơn kỳ vọng và điểm chưa hài lòng với agency hiện tại</div>
+            <textarea id="agencyReason" rows="2" data-ph-vi="VD: Muốn tìm agency chuyên sâu hơn về performance, agency hiện tại không đáp ứng được KPI…" data-ph-en="E.g. Looking for a more performance-focused agency, current agency not meeting KPIs…" placeholder="VD: Muốn tìm agency chuyên sâu hơn về performance, agency hiện tại không đáp ứng được KPI…"></textarea>
           </div>
         </div>
       </div>
       <div class="nav-row">
-        <button class="btn btn-ghost" onclick="prevStep(1)">← Quay lại</button>
-        <button class="btn btn-primary" onclick="nextStep(1)">Tiếp theo →</button>
+        <button class="btn btn-ghost" onclick="prevStep(1)" data-vi="← Quay lại" data-en="← Back">← Quay lại</button>
+        <button class="btn btn-primary" onclick="nextStep(1)" data-vi="Tiếp theo →" data-en="Next →">Tiếp theo →</button>
       </div>
     </div>
   </div>
@@ -373,34 +387,34 @@
     <div class="section-header">
       <div class="section-icon">🛍️</div>
       <div>
-        <div class="section-label">Bước 3 / 6</div>
-        <div class="section-title">Sản phẩm & Khách hàng</div>
-        <div class="section-desc">Thông tin về sản phẩm và đối tượng mục tiêu của chiến dịch.</div>
+        <div class="section-label" data-vi="Bước 3 / 6" data-en="Step 3 / 6">Bước 3 / 6</div>
+        <div class="section-title" data-vi="Sản phẩm & Khách hàng" data-en="Product & Audience">Sản phẩm & Khách hàng</div>
+        <div class="section-desc" data-vi="Thông tin về sản phẩm và đối tượng mục tiêu của chiến dịch." data-en="Information about your product and target audience for this campaign.">Thông tin về sản phẩm và đối tượng mục tiêu của chiến dịch.</div>
       </div>
     </div>
     <div class="section-body">
       <div class="field">
-        <label>Thông tin sản phẩm / dịch vụ <span class="req">*</span></label>
-        <div class="hint">Công ty đang cung cấp gì? Chiến lược sản phẩm ngắn hạn và dài hạn?</div>
-        <textarea id="product" rows="3" placeholder="Mô tả sản phẩm/dịch vụ và định hướng phát triển…"></textarea>
+        <label><span data-vi="Thông tin sản phẩm / dịch vụ" data-en="Product / Service Information">Thông tin sản phẩm / dịch vụ</span> <span class="req">*</span></label>
+        <div class="hint" data-vi="Công ty đang cung cấp gì? Chiến lược sản phẩm ngắn hạn và dài hạn?" data-en="What does your company offer? Short and long-term product strategy?">Công ty đang cung cấp gì? Chiến lược sản phẩm ngắn hạn và dài hạn?</div>
+        <textarea id="product" rows="3" data-ph-vi="Mô tả sản phẩm/dịch vụ và định hướng phát triển…" data-ph-en="Describe your product/service and development roadmap…" placeholder="Mô tả sản phẩm/dịch vụ và định hướng phát triển…"></textarea>
       </div>
       <div class="field">
-        <label>USP – Điểm khác biệt của sản phẩm</label>
-        <div class="hint">Điều gì làm sản phẩm/dịch vụ của bạn nổi bật hơn đối thủ?</div>
-        <textarea id="usp" rows="2" placeholder="Mô tả điểm khác biệt và lợi thế cạnh tranh…"></textarea>
+        <label data-vi="USP – Điểm khác biệt của sản phẩm" data-en="USP – Product Differentiation">USP – Điểm khác biệt của sản phẩm</label>
+        <div class="hint" data-vi="Điều gì làm sản phẩm/dịch vụ của bạn nổi bật hơn đối thủ?" data-en="What makes your product/service stand out from competitors?">Điều gì làm sản phẩm/dịch vụ của bạn nổi bật hơn đối thủ?</div>
+        <textarea id="usp" rows="2" data-ph-vi="Mô tả điểm khác biệt và lợi thế cạnh tranh…" data-ph-en="Describe your key differentiators and competitive advantages…" placeholder="Mô tả điểm khác biệt và lợi thế cạnh tranh…"></textarea>
       </div>
       <div class="field">
-        <label>Giá sản phẩm / dịch vụ</label>
-        <input type="text" id="price" placeholder="VD: 500.000 – 2.000.000 VND">
+        <label data-vi="Giá sản phẩm / dịch vụ" data-en="Product / Service Price">Giá sản phẩm / dịch vụ</label>
+        <input type="text" id="price" data-ph-vi="VD: 500.000 – 2.000.000 VND" data-ph-en="E.g. 500,000 – 2,000,000 VND or USD equivalent" placeholder="VD: 500.000 – 2.000.000 VND">
       </div>
       <div class="field">
-        <label>Chân dung khách hàng mục tiêu <span class="req">*</span></label>
-        <div class="hint">Độ tuổi, giới tính, địa lý, hành vi tiêu dùng, thu nhập…</div>
-        <textarea id="audience" rows="3" placeholder="Mô tả chi tiết chân dung khách hàng mục tiêu…"></textarea>
+        <label><span data-vi="Chân dung khách hàng mục tiêu" data-en="Target Audience Profile">Chân dung khách hàng mục tiêu</span> <span class="req">*</span></label>
+        <div class="hint" data-vi="Độ tuổi, giới tính, địa lý, hành vi tiêu dùng, thu nhập…" data-en="Age, gender, location, consumer behavior, income…">Độ tuổi, giới tính, địa lý, hành vi tiêu dùng, thu nhập…</div>
+        <textarea id="audience" rows="3" data-ph-vi="Mô tả chi tiết chân dung khách hàng mục tiêu…" data-ph-en="Describe your target audience in detail…" placeholder="Mô tả chi tiết chân dung khách hàng mục tiêu…"></textarea>
       </div>
       <div class="nav-row">
-        <button class="btn btn-ghost" onclick="prevStep(2)">← Quay lại</button>
-        <button class="btn btn-primary" onclick="nextStep(2)">Tiếp theo →</button>
+        <button class="btn btn-ghost" onclick="prevStep(2)" data-vi="← Quay lại" data-en="← Back">← Quay lại</button>
+        <button class="btn btn-primary" onclick="nextStep(2)" data-vi="Tiếp theo →" data-en="Next →">Tiếp theo →</button>
       </div>
     </div>
   </div>
@@ -410,39 +424,39 @@
     <div class="section-header">
       <div class="section-icon">🎯</div>
       <div>
-        <div class="section-label">Bước 4 / 6</div>
-        <div class="section-title">KPI & Yêu cầu dự án</div>
-        <div class="section-desc">Các chỉ số mục tiêu và dịch vụ cần PMAX hỗ trợ.</div>
+        <div class="section-label" data-vi="Bước 4 / 6" data-en="Step 4 / 6">Bước 4 / 6</div>
+        <div class="section-title" data-vi="KPI & Yêu cầu dự án" data-en="KPI & Project Requirements">KPI & Yêu cầu dự án</div>
+        <div class="section-desc" data-vi="Các chỉ số mục tiêu và dịch vụ cần PMAX hỗ trợ." data-en="Target metrics and services you need PMAX to support.">Các chỉ số mục tiêu và dịch vụ cần PMAX hỗ trợ.</div>
       </div>
     </div>
     <div class="section-body">
       <div class="field">
-        <label>KPI muốn đạt được <span class="req">*</span></label>
-        <div class="hint">Vui lòng nêu mức độ ưu tiên nếu có nhiều KPI</div>
-        <textarea id="kpi" rows="3" placeholder="Nêu rõ chỉ số & mức mục tiêu cho từng KPI…"></textarea>
+        <label><span data-vi="KPI muốn đạt được" data-en="Target KPIs">KPI muốn đạt được</span> <span class="req">*</span></label>
+        <div class="hint" data-vi="Vui lòng nêu mức độ ưu tiên nếu có nhiều KPI" data-en="Please prioritize if you have multiple KPIs">Vui lòng nêu mức độ ưu tiên nếu có nhiều KPI</div>
+        <textarea id="kpi" rows="3" data-ph-vi="VD:&#10;- Branding: 5 triệu impression/tháng, CPM ≤ 45.000đ, Reach 2 triệu người/tháng, View-through rate ≥ 30%, tăng brand search 20% sau 3 tháng&#10;- Performance: 500 leads/tháng, CPL ≤ 300.000đ, ROAS ≥ 3.5x, CVR ≥ 2%, CPC ≤ 5.000đ, tỷ lệ chốt đơn ≥ 15%" data-ph-en="E.g.:&#10;- Branding: 5M impressions/month, CPM ≤ VND 45K, Reach 2M users/month, View-through rate ≥ 30%, +20% brand search volume within 3 months&#10;- Performance: 500 leads/month, CPL ≤ VND 300K, ROAS ≥ 3.5x, CVR ≥ 2%, CPC ≤ VND 5K, order conversion rate ≥ 15%" placeholder="VD:&#10;- Branding: 5 triệu impression/tháng, CPM ≤ 45.000đ, Reach 2 triệu người/tháng, View-through rate ≥ 30%, tăng brand search 20% sau 3 tháng&#10;- Performance: 500 leads/tháng, CPL ≤ 300.000đ, ROAS ≥ 3.5x, CVR ≥ 2%, CPC ≤ 5.000đ, tỷ lệ chốt đơn ≥ 15%"></textarea>
       </div>
       <div class="field">
-        <label>Diễn giải chi tiết về KPI</label>
-        <div class="hint">Cách đo lường, điều kiện tính là đạt, những điểm cần lưu ý</div>
-        <textarea id="kpiDef" rows="2" placeholder="Định nghĩa cụ thể cho từng KPI…"></textarea>
+        <label data-vi="Diễn giải chi tiết về KPI" data-en="KPI Definitions">Diễn giải chi tiết về KPI</label>
+        <div class="hint" data-vi="Cách đo lường, điều kiện tính là đạt, những điểm cần lưu ý" data-en="How to measure, conditions for success, any notes">Cách đo lường, điều kiện tính là đạt, những điểm cần lưu ý</div>
+        <textarea id="kpiDef" rows="2" data-ph-vi="VD: Lead = form điền đủ SĐT + họ tên và được telesale xác nhận; CPL tính trên tổng chi phí media" data-ph-en="E.g.: Lead = form submission with valid phone + name, confirmed by telesales; CPL based on total media spend" placeholder="VD: Lead = form điền đủ SĐT + họ tên và được telesale xác nhận; CPL tính trên tổng chi phí media"></textarea>
       </div>
       <div class="field">
-        <label>Hệ thống tracking đang dùng</label>
+        <label data-vi="Hệ thống tracking đang dùng" data-en="Tracking System in Use">Hệ thống tracking đang dùng</label>
         <input type="text" id="tracking" placeholder="VD: Google Analytics, Meta Pixel, CRM…">
       </div>
       <div class="field">
-        <label>Historical data – Dữ liệu chiến dịch đã triển khai</label>
-        <div class="nda-badge">PMAX cam kết ký NDA bảo mật thông tin trước khi nhận data từ phía khách hàng &nbsp;·&nbsp; <a href="https://docs.google.com/document/d/1CJCNknEwbKK15S7fonSVbQE7Ah3yLnETqNBfjoqhOuU/edit?tab=t.0" target="_blank" style="color:#B84D00;font-weight:700;text-decoration:underline;">Xem bản NDA →</a></div>
-        <div class="hint" style="margin-top:6px;">Kết quả các chiến dịch đã chạy, benchmark, chỉ số tham khảo…</div>
+        <label data-vi="Historical data – Dữ liệu chiến dịch đã triển khai" data-en="Historical Data – Past Campaign Results">Historical data – Dữ liệu chiến dịch đã triển khai</label>
+        <div class="nda-badge"><span data-vi="PMAX cam kết ký NDA bảo mật thông tin trước khi nhận data từ phía khách hàng" data-en="PMAX commits to signing an NDA before receiving any data from clients">PMAX cam kết ký NDA bảo mật thông tin trước khi nhận data từ phía khách hàng</span> &nbsp;·&nbsp; <a href="https://docs.google.com/document/d/1CJCNknEwbKK15S7fonSVbQE7Ah3yLnETqNBfjoqhOuU/edit?tab=t.0" target="_blank" style="color:#B84D00;font-weight:700;text-decoration:underline;" data-vi="Xem bản NDA →" data-en="View NDA →">Xem bản NDA →</a></div>
+        <div class="hint" style="margin-top:6px;" data-vi="Kết quả các chiến dịch đã chạy, benchmark, chỉ số tham khảo…" data-en="Results from past campaigns, benchmarks, reference metrics…">Kết quả các chiến dịch đã chạy, benchmark, chỉ số tham khảo…</div>
         <textarea id="history" rows="3" placeholder="VD: Facebook Ads Q1/2025 - CPM 45k, CTR 1.2%, ROAS 3.5x&#10;Google Ads - CPC 8k, CVR 2.1%…"></textarea>
       </div>
       <div class="field">
-        <label>Dịch vụ & Phạm vi công việc cần PMAX hỗ trợ <span class="req">*</span></label>
-        <textarea id="services" rows="4" placeholder="Mô tả dịch vụ và yêu cầu cụ thể bạn cần. Ví dụ: Paid Social (Facebook, TikTok), Google Ads, Creative production, Landing page…"></textarea>
+        <label><span data-vi="Dịch vụ & Phạm vi công việc cần PMAX hỗ trợ" data-en="Services & Scope of Work Required">Dịch vụ & Phạm vi công việc cần PMAX hỗ trợ</span> <span class="req">*</span></label>
+        <textarea id="services" rows="4" data-ph-vi="Mô tả dịch vụ và yêu cầu cụ thể bạn cần. Ví dụ: Paid Social (Facebook, TikTok), Google Ads, Creative production, Landing page…" data-ph-en="Describe the services and specific requirements you need. E.g. Paid Social (Facebook, TikTok), Google Ads, Creative Production, Landing Page…" placeholder="Mô tả dịch vụ và yêu cầu cụ thể bạn cần. Ví dụ: Paid Social (Facebook, TikTok), Google Ads, Creative production, Landing page…"></textarea>
       </div>
       <div class="nav-row">
-        <button class="btn btn-ghost" onclick="prevStep(3)">← Quay lại</button>
-        <button class="btn btn-primary" onclick="nextStep(3)">Tiếp theo →</button>
+        <button class="btn btn-ghost" onclick="prevStep(3)" data-vi="← Quay lại" data-en="← Back">← Quay lại</button>
+        <button class="btn btn-primary" onclick="nextStep(3)" data-vi="Tiếp theo →" data-en="Next →">Tiếp theo →</button>
       </div>
     </div>
   </div>
@@ -452,92 +466,92 @@
     <div class="section-header">
       <div class="section-icon">💰</div>
       <div>
-        <div class="section-label">Bước 5 / 6</div>
-        <div class="section-title">Ngân sách & Timeline</div>
-        <div class="section-desc">Ngân sách, thời gian triển khai và thông tin pitching.</div>
+        <div class="section-label" data-vi="Bước 5 / 6" data-en="Step 5 / 6">Bước 5 / 6</div>
+        <div class="section-title" data-vi="Ngân sách & Timeline" data-en="Budget & Timeline">Ngân sách & Timeline</div>
+        <div class="section-desc" data-vi="Ngân sách, thời gian triển khai và thông tin pitching." data-en="Budget, project timeline, and pitching information.">Ngân sách, thời gian triển khai và thông tin pitching.</div>
       </div>
     </div>
     <div class="section-body">
       <div class="field" id="f-budget">
-        <label>Ngân sách chiến dịch <span class="req">*</span></label>
-        <div class="hint">Chọn mức phù hợp, sau đó điền ngân sách cụ thể của dự án lần này hoặc theo tháng</div>
+        <label><span data-vi="Ngân sách chiến dịch" data-en="Campaign Budget">Ngân sách chiến dịch</span> <span class="req">*</span></label>
+        <div class="hint" data-vi="Chọn mức phù hợp, sau đó điền ngân sách cụ thể của dự án lần này hoặc theo tháng" data-en="Select a range, then fill in the specific budget for this project or per month">Chọn mức phù hợp, sau đó điền ngân sách cụ thể của dự án lần này hoặc theo tháng</div>
         <div class="budget-tiers">
-          <div class="tier-btn" onclick="selectTier(this,'lt100')"><div class="tier-value">&lt; 100 triệu</div><div class="tier-label">/ tháng</div></div>
-          <div class="tier-btn" onclick="selectTier(this,'lt300')"><div class="tier-value">100 – &lt;300 triệu</div><div class="tier-label">/ tháng</div></div>
-          <div class="tier-btn" onclick="selectTier(this,'gt300')"><div class="tier-value">&gt; 300 triệu</div><div class="tier-label">/ tháng</div></div>
+          <div class="tier-btn" onclick="selectTier(this,'lt100')"><div class="tier-value">&lt; 100 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
+          <div class="tier-btn" onclick="selectTier(this,'lt300')"><div class="tier-value">100 – &lt;300 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
+          <div class="tier-btn" onclick="selectTier(this,'gt300')"><div class="tier-value">&gt; 300 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
         </div>
         <div id="budgetExactWrap" style="display:none;margin-top:2px;">
-          <input type="text" id="budgetExact" placeholder="VD: 150 triệu VND/tháng hoặc 450 triệu VND cho cả dự án">
+          <input type="text" id="budgetExact" data-ph-vi="VD: 150 triệu VND/tháng hoặc 450 triệu VND cho cả dự án" data-ph-en="E.g. 150 million VND/month or 450 million VND total" placeholder="VD: 150 triệu VND/tháng hoặc 450 triệu VND cho cả dự án">
         </div>
       </div>
       <div class="field" id="f-vat">
-        <label>Ngân sách trên đã bao gồm VAT & AF chưa? <span class="req">*</span></label>
+        <label><span data-vi="Ngân sách trên đã bao gồm VAT & AF chưa?" data-en="Does the above budget include VAT & Agency Fee?">Ngân sách trên đã bao gồm VAT & AF chưa?</span> <span class="req">*</span></label>
         <div class="vat-opts">
-          <button class="vat-btn" onclick="selectVat(this,'included')">Đã bao gồm VAT & AF</button>
-          <button class="vat-btn" onclick="selectVat(this,'excluded')">Chưa bao gồm VAT & AF</button>
-          <button class="vat-btn" onclick="selectVat(this,'unsure')">Chưa xác định</button>
+          <button class="vat-btn" onclick="selectVat(this,'included')" data-vi="Đã bao gồm VAT & AF" data-en="Inclusive of VAT & AF">Đã bao gồm VAT & AF</button>
+          <button class="vat-btn" onclick="selectVat(this,'excluded')" data-vi="Chưa bao gồm VAT & AF" data-en="Exclusive of VAT & AF">Chưa bao gồm VAT & AF</button>
+          <button class="vat-btn" onclick="selectVat(this,'unsure')" data-vi="Chưa xác định" data-en="Not yet determined">Chưa xác định</button>
         </div>
       </div>
       <div class="field" id="f-deadline">
-        <label>Deadline kỳ vọng nộp báo giá <span class="req">*</span></label>
+        <label><span data-vi="Deadline kỳ vọng nộp báo giá" data-en="Expected Proposal Deadline">Deadline kỳ vọng nộp báo giá</span> <span class="req">*</span></label>
         <input type="date" id="deadline">
       </div>
       <div class="field-row">
         <div class="field">
-          <label>Ngày bắt đầu dự kiến <span class="req">*</span></label>
-          <div class="hint">Ngày dự kiến khởi động triển khai dự án</div>
+          <label><span data-vi="Ngày bắt đầu dự kiến" data-en="Estimated Start Date">Ngày bắt đầu dự kiến</span> <span class="req">*</span></label>
+          <div class="hint" data-vi="Ngày dự kiến khởi động triển khai dự án" data-en="Expected date to kick off the project">Ngày dự kiến khởi động triển khai dự án</div>
           <input type="date" id="startDate">
         </div>
         <div class="field" id="f-duration">
-          <label>Thời gian triển khai dự án <span class="req">*</span></label>
-          <div class="hint">Tổng thời lượng từ khi bắt đầu đến khi kết thúc dự án</div>
+          <label><span data-vi="Thời gian triển khai dự án" data-en="Project Duration">Thời gian triển khai dự án</span> <span class="req">*</span></label>
+          <div class="hint" data-vi="Tổng thời lượng từ khi bắt đầu đến khi kết thúc dự án" data-en="Total duration from project start to completion">Tổng thời lượng từ khi bắt đầu đến khi kết thúc dự án</div>
           <div class="duration-opts" style="margin-top:4px;">
-            <button class="dur-btn" onclick="selectDur(this,'1m')">1 tháng</button>
-            <button class="dur-btn" onclick="selectDur(this,'3m')">3 tháng</button>
-            <button class="dur-btn" onclick="selectDur(this,'6m')">6 tháng</button>
-            <button class="dur-btn" onclick="selectDur(this,'1y')">1 năm</button>
-            <button class="dur-btn" onclick="selectDur(this,'custom')">Khác</button>
+            <button class="dur-btn" onclick="selectDur(this,'1m')" data-vi="1 tháng" data-en="1 month">1 tháng</button>
+            <button class="dur-btn" onclick="selectDur(this,'3m')" data-vi="3 tháng" data-en="3 months">3 tháng</button>
+            <button class="dur-btn" onclick="selectDur(this,'6m')" data-vi="6 tháng" data-en="6 months">6 tháng</button>
+            <button class="dur-btn" onclick="selectDur(this,'1y')" data-vi="1 năm" data-en="1 year">1 năm</button>
+            <button class="dur-btn" onclick="selectDur(this,'custom')" data-vi="Khác" data-en="Other">Khác</button>
           </div>
-          <input type="text" id="durationCustom" placeholder="VD: 2 tháng, 45 ngày…" style="margin-top:8px;display:none;">
+          <input type="text" id="durationCustom" data-ph-vi="VD: 2 tháng, 45 ngày…" data-ph-en="E.g. 2 months, 45 days…" placeholder="VD: 2 tháng, 45 ngày…" style="margin-top:8px;display:none;">
         </div>
       </div>
       <div class="field">
-        <label>Giai đoạn cao điểm / ghi chú timeline</label>
-        <textarea id="timelineNote" rows="2" placeholder="Có giai đoạn tập trung cao điểm nào không? Tỉ trọng ngân sách từng giai đoạn nếu có…"></textarea>
+        <label data-vi="Giai đoạn cao điểm / ghi chú timeline" data-en="Peak Periods / Timeline Notes">Giai đoạn cao điểm / ghi chú timeline</label>
+        <textarea id="timelineNote" rows="2" data-ph-vi="Có giai đoạn tập trung cao điểm nào không? Tỉ trọng ngân sách từng giai đoạn nếu có…" data-ph-en="Any peak focus periods? Budget allocation per phase if applicable…" placeholder="Có giai đoạn tập trung cao điểm nào không? Tỉ trọng ngân sách từng giai đoạn nếu có…"></textarea>
       </div>
       <div class="field" id="f-pitching">
-        <label>Dự án này có pitching không? <span class="req">*</span></label>
+        <label><span data-vi="Dự án này có pitching không?" data-en="Is this project a competitive pitch?">Dự án này có pitching không?</span> <span class="req">*</span></label>
         <div class="radio-opts">
           <div class="radio-item" onclick="selectRadio(this,'pitchingYN','yes');togglePitching('yes')">
             <input type="radio" name="pitchingYN" value="yes">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Có pitching</span><span class="radio-sub">Nhiều agency tham gia đấu thầu</span></span>
+            <span class="radio-content"><span class="radio-label" data-vi="Có pitching" data-en="Competitive Pitch">Có pitching</span><span class="radio-sub" data-vi="Nhiều agency tham gia đấu thầu" data-en="Multiple agencies are competing">Nhiều agency tham gia đấu thầu</span></span>
           </div>
           <div class="radio-item" onclick="selectRadio(this,'pitchingYN','no');togglePitching('no')">
             <input type="radio" name="pitchingYN" value="no">
             <span class="radio-dot"></span>
-            <span class="radio-content"><span class="radio-label">Không pitching</span><span class="radio-sub">Làm việc trực tiếp với PMAX</span></span>
+            <span class="radio-content"><span class="radio-label" data-vi="Không pitching" data-en="Direct Engagement">Không pitching</span><span class="radio-sub" data-vi="Làm việc trực tiếp với PMAX" data-en="Working directly with PMAX">Làm việc trực tiếp với PMAX</span></span>
           </div>
         </div>
       </div>
       <div id="pitching-detail-wrap" style="display:none;flex-direction:column;gap:14px;">
         <div class="field" id="f-pitchingAgencyCount">
-          <label>Số lượng agency tham gia <span class="req">*</span></label>
+          <label><span data-vi="Số lượng agency tham gia" data-en="Number of Agencies Involved">Số lượng agency tham gia</span> <span class="req">*</span></label>
           <input type="text" id="pitchingAgencyCount" placeholder="VD: 3 agencies">
         </div>
         <div class="field" id="f-pitchingTimeline">
-          <label>Số vòng & timeline cột mốc từng vòng <span class="req">*</span></label>
-          <div class="hint">Nêu rõ số vòng, deadline nộp và lịch thuyết trình từng vòng</div>
-          <textarea id="pitchingTimeline" rows="4" placeholder="VD:&#10;2 vòng&#10;Vòng 1: Nộp proposal – 15/06&#10;Vòng 2: Thuyết trình – 22/06&#10;Thông báo kết quả – 25/06"></textarea>
+          <label><span data-vi="Số vòng & timeline cột mốc từng vòng" data-en="Rounds & Milestone Timeline">Số vòng & timeline cột mốc từng vòng</span> <span class="req">*</span></label>
+          <div class="hint" data-vi="Nêu rõ số vòng, deadline nộp và lịch thuyết trình từng vòng" data-en="Specify number of rounds, submission deadlines and presentation dates">Nêu rõ số vòng, deadline nộp và lịch thuyết trình từng vòng</div>
+          <textarea id="pitchingTimeline" rows="4" data-ph-vi="VD:&#10;2 vòng&#10;Vòng 1: Nộp proposal – 15/06&#10;Vòng 2: Thuyết trình – 22/06&#10;Thông báo kết quả – 25/06" data-ph-en="E.g.:&#10;2 rounds&#10;Round 1: Submit proposal – Jun 15&#10;Round 2: Presentation – Jun 22&#10;Result announcement – Jun 25" placeholder="VD:&#10;2 vòng&#10;Vòng 1: Nộp proposal – 15/06&#10;Vòng 2: Thuyết trình – 22/06&#10;Thông báo kết quả – 25/06"></textarea>
         </div>
         <div class="field" id="f-criteria">
-          <label>Tiêu chí đánh giá khi lựa chọn agency <span class="req">*</span></label>
-          <textarea id="criteria" rows="2" placeholder="Sắp xếp theo mức độ ưu tiên từ cao xuống thấp…"></textarea>
+          <label><span data-vi="Tiêu chí đánh giá khi lựa chọn agency" data-en="Agency Selection Criteria">Tiêu chí đánh giá khi lựa chọn agency</span> <span class="req">*</span></label>
+          <textarea id="criteria" rows="2" data-ph-vi="Sắp xếp theo mức độ ưu tiên từ cao xuống thấp…" data-ph-en="List in order of priority from highest to lowest…" placeholder="Sắp xếp theo mức độ ưu tiên từ cao xuống thấp…"></textarea>
         </div>
       </div>
       <div class="nav-row">
-        <button class="btn btn-ghost" onclick="prevStep(4)">← Quay lại</button>
-        <button class="btn btn-primary" onclick="nextStep(4)">Xem lại →</button>
+        <button class="btn btn-ghost" onclick="prevStep(4)" data-vi="← Quay lại" data-en="← Back">← Quay lại</button>
+        <button class="btn btn-primary" onclick="nextStep(4)" data-vi="Xem lại →" data-en="Review →">Xem lại →</button>
       </div>
     </div>
   </div>
@@ -547,81 +561,67 @@
     <div class="section-header">
       <div class="section-icon">✅</div>
       <div>
-        <div class="section-label">Bước 6 / 6</div>
-        <div class="section-title">Xem lại thông tin</div>
-        <div class="section-desc">Kiểm tra lại trước khi gửi. Click "Chỉnh sửa" ở từng mục để quay lại bổ sung.</div>
+        <div class="section-label" data-vi="Bước 6 / 6" data-en="Step 6 / 6">Bước 6 / 6</div>
+        <div class="section-title" data-vi="Xem lại thông tin" data-en="Review Your Information">Xem lại thông tin</div>
+        <div class="section-desc" data-vi='Kiểm tra lại trước khi gửi. Click "Chỉnh sửa" ở từng mục để quay lại bổ sung.' data-en='Review before submitting. Click "Edit" on any section to go back and update.'>Kiểm tra lại trước khi gửi. Click "Chỉnh sửa" ở từng mục để quay lại bổ sung.</div>
       </div>
     </div>
     <div class="section-body">
       <div id="summaryContent"></div>
       <div class="nav-row">
-        <button class="btn btn-ghost" onclick="prevStep(5)">← Chỉnh sửa</button>
-        <button class="btn btn-submit" onclick="submitForm()">🚀 Gửi Brief cho PMAX</button>
+        <button class="btn btn-ghost" onclick="prevStep(5)" data-vi="← Chỉnh sửa" data-en="← Edit">← Chỉnh sửa</button>
+        <button class="btn btn-submit" onclick="submitForm()" data-vi="🚀 Gửi Brief cho PMAX" data-en="🚀 Submit Brief to PMAX">🚀 Gửi Brief cho PMAX</button>
       </div>
     </div>
   </div>
 
   <!-- SUCCESS -->
   <div class="success-card" id="successCard">
-
-    <!-- Hero banner (same style as page hero) -->
     <div class="success-hero">
       <div class="success-check">🎉</div>
-      <div class="success-title">Cảm ơn bạn đã gửi Brief đến PMAX!</div>
-      <div class="success-sub">Brief đã được tiếp nhận thành công. Đội ngũ BD của PMAX sẽ đọc kỹ và liên hệ lại trong vòng <strong>1–2 ngày làm việc</strong> để xác nhận và trao đổi thêm.</div>
+      <div class="success-title" data-vi="Cảm ơn bạn đã gửi Brief đến PMAX!" data-en="Thank you for submitting your Brief to PMAX!">Cảm ơn bạn đã gửi Brief đến PMAX!</div>
+      <div class="success-sub" data-vi="Brief đã được tiếp nhận thành công. Đội ngũ BD của PMAX sẽ đọc kỹ và liên hệ lại trong vòng <strong>1–2 ngày làm việc</strong> để xác nhận và trao đổi thêm." data-en="Your brief has been successfully received. PMAX's BD team will review it carefully and get back to you within <strong>1–2 business days</strong> to confirm and discuss further.">Brief đã được tiếp nhận thành công. Đội ngũ BD của PMAX sẽ đọc kỹ và liên hệ lại trong vòng <strong>1–2 ngày làm việc</strong> để xác nhận và trao đổi thêm.</div>
     </div>
-
     <div class="success-body">
-
-      <!-- Tóm tắt thông tin đã gửi -->
       <div class="success-detail-wrap">
-        <div class="success-detail-label">📋 Thông tin đã gửi</div>
+        <div class="success-detail-label" data-vi="📋 Thông tin đã gửi" data-en="📋 Brief Summary">📋 Thông tin đã gửi</div>
         <div class="success-detail" id="successDetail"></div>
       </div>
-
-      <!-- Các bước tiếp theo -->
       <div class="success-steps">
         <div class="success-step">
           <div class="success-step-num">1</div>
           <div class="success-step-text">
-            <strong>PMAX tiếp nhận & phân tích Brief</strong>
-            <span>Đội ngũ sẽ đọc kỹ thông tin, đánh giá mức độ phù hợp và xác định hướng tiếp cận tối ưu cho chiến dịch của bạn.</span>
+            <strong data-vi="PMAX tiếp nhận & phân tích Brief" data-en="PMAX Reviews & Analyzes Your Brief">PMAX tiếp nhận & phân tích Brief</strong>
+            <span data-vi="Đội ngũ sẽ đọc kỹ thông tin, đánh giá mức độ phù hợp và xác định hướng tiếp cận tối ưu cho chiến dịch của bạn." data-en="Our team will carefully read your information, assess fit, and identify the optimal approach for your campaign.">Đội ngũ sẽ đọc kỹ thông tin, đánh giá mức độ phù hợp và xác định hướng tiếp cận tối ưu cho chiến dịch của bạn.</span>
           </div>
         </div>
         <div class="success-step">
           <div class="success-step-num">2</div>
           <div class="success-step-text">
-            <strong>Liên hệ xác nhận trong 1–2 ngày làm việc</strong>
-            <span>BD của PMAX sẽ chủ động liên hệ qua email hoặc điện thoại để xác nhận thông tin và hẹn lịch làm việc.</span>
+            <strong data-vi="Liên hệ xác nhận trong 1–2 ngày làm việc" data-en="Follow-up Within 1–2 Business Days">Liên hệ xác nhận trong 1–2 ngày làm việc</strong>
+            <span data-vi="BD của PMAX sẽ chủ động liên hệ qua email hoặc điện thoại để xác nhận thông tin và hẹn lịch làm việc." data-en="PMAX's BD team will proactively reach out via email or phone to confirm details and schedule a meeting.">BD của PMAX sẽ chủ động liên hệ qua email hoặc điện thoại để xác nhận thông tin và hẹn lịch làm việc.</span>
           </div>
         </div>
         <div class="success-step">
           <div class="success-step-num">3</div>
           <div class="success-step-text">
-            <strong>Trao đổi & chuẩn bị đề xuất</strong>
-            <span>Sau buổi trao đổi, PMAX sẽ chuẩn bị proposal/quotation phù hợp với mục tiêu và ngân sách của bạn.</span>
+            <strong data-vi="Trao đổi & chuẩn bị đề xuất" data-en="Discussion & Proposal Preparation">Trao đổi & chuẩn bị đề xuất</strong>
+            <span data-vi="Sau buổi trao đổi, PMAX sẽ chuẩn bị proposal/quotation phù hợp với mục tiêu và ngân sách của bạn." data-en="After the meeting, PMAX will prepare a proposal/quotation tailored to your objectives and budget.">Sau buổi trao đổi, PMAX sẽ chuẩn bị proposal/quotation phù hợp với mục tiêu và ngân sách của bạn.</span>
           </div>
         </div>
       </div>
-
-      <!-- CTA website -->
       <div class="success-cta">
-        <p>Trong lúc chờ, bạn có thể tìm hiểu thêm về năng lực, case studies và các dịch vụ của PMAX.</p>
-        <a class="btn-pmax-site" href="https://pmax.com.vn" target="_blank" rel="noopener">
-          🌐 Khám phá PMAX tại đây
-        </a>
-        <div class="success-contact">
-          Nếu cần hỗ trợ gấp, vui lòng liên hệ trực tiếp qua PIC PMAX đang trao đổi cùng bạn.
-        </div>
+        <p data-vi="Trong lúc chờ, bạn có thể tìm hiểu thêm về năng lực, case studies và các dịch vụ của PMAX." data-en="In the meantime, feel free to explore PMAX's capabilities, case studies and services.">Trong lúc chờ, bạn có thể tìm hiểu thêm về năng lực, case studies và các dịch vụ của PMAX.</p>
+        <a class="btn-pmax-site" href="https://pmax.com.vn" target="_blank" rel="noopener" data-vi="🌐 Khám phá PMAX tại đây" data-en="🌐 Explore PMAX here">🌐 Khám phá PMAX tại đây</a>
+        <div class="success-contact" data-vi="Nếu cần hỗ trợ gấp, vui lòng liên hệ trực tiếp qua PIC PMAX đang trao đổi cùng bạn." data-en="If you need urgent support, please reach out directly to your PMAX contact.">Nếu cần hỗ trợ gấp, vui lòng liên hệ trực tiếp qua PIC PMAX đang trao đổi cùng bạn.</div>
       </div>
-
     </div>
   </div>
 
 </main>
 
 <footer class="site-footer">
-  © 2026 PMAX Agency · <a href="https://pmax.com.vn" target="_blank" rel="noopener">pmax.com.vn</a> · Thông tin được bảo mật và chỉ dùng nội bộ
+  © 2026 PMAX Agency · <a href="https://pmax.com.vn" target="_blank" rel="noopener">pmax.com.vn</a> · <span data-vi="Thông tin được bảo mật và chỉ dùng nội bộ" data-en="Information is confidential and for internal use only">Thông tin được bảo mật và chỉ dùng nội bộ</span>
 </footer>
 
 <script>
@@ -694,40 +694,54 @@
     let ok = true; clearErrors();
 
     if (step === 0) {
-      if (!errById('company','f-company','Vui lòng nhập tên công ty')) ok = false;
-      if (!errById('brand','f-brand','Vui lòng nhập tên thương hiệu')) ok = false;
-      if (!errById('picName','f-pic-name','Vui lòng nhập họ tên người gửi brief')) ok = false;
-      if (!errById('picTitle','f-pic-title','Vui lòng nhập chức vụ')) ok = false;
-      if (!errById('picEmail','f-pic-email','Vui lòng nhập email')) ok = false;
+      if (!errById('company','f-company', errMsg('Vui lòng nhập tên công ty','Please enter your company name'))) ok = false;
+      if (!errById('brand','f-brand', errMsg('Vui lòng nhập tên thương hiệu','Please enter your brand name'))) ok = false;
+      if (!errById('picName','f-pic-name', errMsg('Vui lòng nhập họ tên người gửi brief','Please enter your full name'))) ok = false;
+      if (!errById('picTitle','f-pic-title', errMsg('Vui lòng nhập chức vụ','Please enter your job title'))) ok = false;
+      if (!errById('picEmail','f-pic-email', errMsg('Vui lòng nhập email','Please enter your email'))) ok = false;
       const emailEl = document.getElementById('picEmail');
       if (emailEl.value && !emailEl.value.includes('@')) {
         const w = document.getElementById('f-pic-email');
-        if (!w.classList.contains('error')) { w.classList.add('error'); showErr(w,'Email không hợp lệ'); ok = false; }
+        if (!w.classList.contains('error')) { w.classList.add('error'); showErr(w, errMsg('Email không hợp lệ','Invalid email address')); ok = false; }
       }
-      if (!errById('picPhone','f-pic-phone','Vui lòng nhập số điện thoại')) ok = false;
+      if (!errById('picPhone','f-pic-phone', errMsg('Vui lòng nhập số điện thoại','Please enter your phone number'))) ok = false;
       if (!document.querySelector('input[name="picRole"]:checked')) {
         const w = document.querySelector('input[name="picRole"]').closest('.field');
-        w.classList.add('error'); showErr(w,'Vui lòng chọn vai trò trong dự án'); ok = false;
+        w.classList.add('error'); showErr(w, errMsg('Vui lòng chọn vai trò trong dự án','Please select your role in this project')); ok = false;
       }
     }
 
     if (step === 1) {
-      if (!errById('industry','f-industry','Vui lòng chọn lĩnh vực kinh doanh')) ok = false;
-      [['challenge','Vui lòng mô tả bối cảnh & thách thức'],['goals','Vui lòng mô tả mục tiêu chiến dịch']].forEach(([id,msg]) => {
+      if (!errById('industry','f-industry', errMsg('Vui lòng chọn lĩnh vực kinh doanh','Please select your industry'))) ok = false;
+      [['challenge', errMsg('Vui lòng mô tả bối cảnh & thách thức','Please describe your context & challenges')],
+       ['goals',     errMsg('Vui lòng mô tả mục tiêu chiến dịch','Please describe your campaign objectives')]
+      ].forEach(([id,msg]) => {
         const el = document.getElementById(id);
         if (!el.value.trim()) { markError(el,msg); ok = false; }
       });
+      const agencyEl = document.querySelector('input[name="agencyType"]:checked');
+      if (agencyEl && (agencyEl.value === 'agency' || agencyEl.value === 'hybrid')) {
+        const reasonEl = document.getElementById('agencyReason');
+        if (!reasonEl.value.trim()) {
+          markError(reasonEl, errMsg('Vui lòng điền lý do tìm kiếm agency mới','Please explain why you\'re looking for a new agency'));
+          ok = false;
+        }
+      }
     }
 
     if (step === 2) {
-      [['product','Vui lòng mô tả sản phẩm / dịch vụ'],['audience','Vui lòng mô tả khách hàng mục tiêu']].forEach(([id,msg]) => {
+      [['product', errMsg('Vui lòng mô tả sản phẩm / dịch vụ','Please describe your product / service')],
+       ['audience', errMsg('Vui lòng mô tả khách hàng mục tiêu','Please describe your target audience')]
+      ].forEach(([id,msg]) => {
         const el = document.getElementById(id);
         if (!el.value.trim()) { markError(el,msg); ok = false; }
       });
     }
 
     if (step === 3) {
-      [['kpi','Vui lòng điền KPI muốn đạt được'],['services','Vui lòng mô tả dịch vụ và yêu cầu cụ thể']].forEach(([id,msg]) => {
+      [['kpi',      errMsg('Vui lòng điền KPI muốn đạt được','Please enter your target KPIs')],
+       ['services', errMsg('Vui lòng mô tả dịch vụ và yêu cầu cụ thể','Please describe the services and requirements')]
+      ].forEach(([id,msg]) => {
         const el = document.getElementById(id);
         if (!el.value.trim()) { markError(el,msg); ok = false; }
       });
@@ -736,34 +750,34 @@
     if (step === 4) {
       if (!budgetTier) {
         const w = document.querySelector('.budget-tiers').closest('.field');
-        w.classList.add('error'); showErr(w,'Vui lòng chọn mức ngân sách'); ok = false;
+        w.classList.add('error'); showErr(w, errMsg('Vui lòng chọn mức ngân sách','Please select a budget range')); ok = false;
       }
       if (budgetTier && !document.getElementById('budgetExact').value.trim()) {
         const w = document.getElementById('budgetExactWrap');
         const field = w.closest ? w.closest('.field') : document.getElementById('f-budget');
-        if (field) { field.classList.add('error'); showErr(field,'Vui lòng điền ngân sách cụ thể'); }
+        if (field) { field.classList.add('error'); showErr(field, errMsg('Vui lòng điền ngân sách cụ thể','Please enter your specific budget')); }
         ok = false;
       }
       if (!vatStatus) {
         const w = document.getElementById('f-vat');
-        w.classList.add('error'); showErr(w,'Vui lòng chọn trạng thái VAT & AF'); ok = false;
+        w.classList.add('error'); showErr(w, errMsg('Vui lòng chọn trạng thái VAT & AF','Please select VAT & AF status')); ok = false;
       }
-      if (!errById('deadline','f-deadline','Vui lòng chọn deadline nộp proposal')) ok = false;
-      if (!errById('startDate',null,'Vui lòng chọn ngày bắt đầu')) ok = false;
+      if (!errById('deadline','f-deadline', errMsg('Vui lòng chọn deadline nộp proposal','Please select proposal deadline'))) ok = false;
+      if (!errById('startDate',null, errMsg('Vui lòng chọn ngày bắt đầu','Please select start date'))) ok = false;
       if (!duration) {
         const w = document.getElementById('f-duration');
-        w.classList.add('error'); showErr(w,'Vui lòng chọn thời gian triển khai dự án'); ok = false;
+        w.classList.add('error'); showErr(w, errMsg('Vui lòng chọn thời gian triển khai dự án','Please select project duration')); ok = false;
       }
       const pitchEl = document.querySelector('input[name="pitchingYN"]:checked');
       if (!pitchEl) {
         const w = document.getElementById('f-pitching');
-        w.classList.add('error'); showErr(w,'Vui lòng chọn có pitching hay không'); ok = false;
+        w.classList.add('error'); showErr(w, errMsg('Vui lòng chọn có pitching hay không','Please select whether this is a competitive pitch')); ok = false;
       } else if (pitchEl.value === 'yes') {
-        if (!errById('pitchingAgencyCount','f-pitchingAgencyCount','Vui lòng điền số lượng agency tham gia')) ok = false;
+        if (!errById('pitchingAgencyCount','f-pitchingAgencyCount', errMsg('Vui lòng điền số lượng agency tham gia','Please enter the number of agencies'))) ok = false;
         const tlEl = document.getElementById('pitchingTimeline');
-        if (!tlEl.value.trim()) { markError(tlEl,'Vui lòng điền số vòng & timeline cột mốc'); ok = false; }
+        if (!tlEl.value.trim()) { markError(tlEl, errMsg('Vui lòng điền số vòng & timeline cột mốc','Please enter rounds & milestone timeline')); ok = false; }
         const crEl = document.getElementById('criteria');
-        if (!crEl.value.trim()) { markError(crEl,'Vui lòng điền tiêu chí đánh giá'); ok = false; }
+        if (!crEl.value.trim()) { markError(crEl, errMsg('Vui lòng điền tiêu chí đánh giá','Please enter agency selection criteria')); ok = false; }
       }
     }
 
@@ -802,10 +816,11 @@
   }
 
   function buildSummary() {
+    const isEn = currentLang === 'en';
     const tierMap = { lt100:'< 100 triệu/tháng', lt300:'100 - <300 triệu/tháng', gt300:'> 300 triệu/tháng' };
-    const durMap  = { '1m':'1 tháng','3m':'3 tháng','6m':'6 tháng','1y':'1 năm','custom':v('durationCustom')||'Khác' };
-    const vatMap  = { included:'Đã bao gồm VAT & AF', excluded:'Chưa bao gồm VAT & AF', unsure:'Chưa xác định' };
-    const agencyMap = { inhouse:'Inhouse hoàn toàn', agency:'Có agency hỗ trợ', hybrid:'Kết hợp cả hai', new:'Chưa từng chạy marketing' };
+    const durMap  = { '1m': isEn?'1 month':'1 tháng','3m':isEn?'3 months':'3 tháng','6m':isEn?'6 months':'6 tháng','1y':isEn?'1 year':'1 năm','custom':v('durationCustom')||(isEn?'Other':'Khác') };
+    const vatMap  = { included: isEn?'Inclusive of VAT & AF':'Đã bao gồm VAT & AF', excluded: isEn?'Exclusive of VAT & AF':'Chưa bao gồm VAT & AF', unsure: isEn?'Not yet determined':'Chưa xác định' };
+    const agencyMap = { inhouse: isEn?'Fully In-house':'Inhouse hoàn toàn', agency: isEn?'Working with an Agency':'Có agency hỗ trợ', hybrid: isEn?'Hybrid':'Kết hợp cả hai', new: isEn?'No prior marketing':'Chưa từng chạy marketing' };
     const roleEl   = document.querySelector('input[name="picRole"]:checked');
     const agencyEl = document.querySelector('input[name="agencyType"]:checked');
     const pitchEl  = document.querySelector('input[name="pitchingYN"]:checked');
@@ -816,41 +831,43 @@
     };
     const section = (title, stepIdx, rows) => `
       <div class="summary-section">
-        <h3>${title}<button class="btn-edit-section" onclick="goStep(${stepIdx})">✏️ Chỉnh sửa</button></h3>
+        <h3>${title}<button class="btn-edit-section" onclick="goStep(${stepIdx})">${isEn ? '✏️ Edit' : '✏️ Chỉnh sửa'}</button></h3>
         ${rows}
       </div>`;
 
+    const L = (vi, en) => isEn ? en : vi;
+
     document.getElementById('summaryContent').innerHTML =
-      section('👤 Người gửi brief', 0,
-        row('Công ty', v('company')) + row('Thương hiệu', v('brand')) +
-        row('Họ tên', [v('picName'),v('picTitle')].filter(Boolean).join(' - ')) +
-        row('Vai trò', roleEl ? roleEl.value : '') +
-        row('Email', v('picEmail')) + row('Số điện thoại', v('picPhone'))
+      section(isEn ? '👤 Brief Submitter' : '👤 Người gửi brief', 0,
+        row(L('Công ty','Company'), v('company')) + row(L('Thương hiệu','Brand'), v('brand')) +
+        row(L('Họ tên','Full Name'), [v('picName'),v('picTitle')].filter(Boolean).join(' - ')) +
+        row(L('Vai trò','Role'), roleEl ? roleEl.value : '') +
+        row('Email', v('picEmail')) + row(L('Số điện thoại','Phone'), v('picPhone'))
       ) +
-      section('🏢 Công ty & Thị trường', 1,
-        row('Lĩnh vực', v('industry')) + row('Kênh digital & bán hàng', v('channels')) +
-        row('Bối cảnh & Thách thức', v('challenge')) + row('Đối thủ', v('competitors')) +
-        row('Mục tiêu chiến dịch', v('goals')) + row('Chiến lược & tài nguyên', v('strategy')) +
-        row('Hình thức vận hành', agencyEl ? (agencyMap[agencyEl.value]+(v('agencyDetail')?' - '+v('agencyDetail'):'')) : '')
+      section(isEn ? '🏢 Company & Market' : '🏢 Công ty & Thị trường', 1,
+        row(L('Lĩnh vực','Industry'), v('industry')) + row(L('Kênh digital & bán hàng','Digital & sales channels'), v('channels')) +
+        row(L('Bối cảnh & Thách thức','Context & Challenges'), v('challenge')) + row(L('Đối thủ','Competitors'), v('competitors')) +
+        row(L('Mục tiêu chiến dịch','Campaign Objectives'), v('goals')) + row(L('Chiến lược & tài nguyên','Strategy & Assets'), v('strategy')) +
+        row(L('Hình thức vận hành','Marketing Setup'), agencyEl ? (agencyMap[agencyEl.value]+(v('agencyDetail')?' - '+v('agencyDetail'):'')) : '')
       ) +
-      section('🛍️ Sản phẩm & Khách hàng', 2,
-        row('Sản phẩm / dịch vụ', v('product')) + row('USP', v('usp')) +
-        row('Giá', v('price')) + row('Khách hàng mục tiêu', v('audience'))
+      section(isEn ? '🛍️ Product & Audience' : '🛍️ Sản phẩm & Khách hàng', 2,
+        row(L('Sản phẩm / dịch vụ','Product / Service'), v('product')) + row('USP', v('usp')) +
+        row(L('Giá','Price'), v('price')) + row(L('Khách hàng mục tiêu','Target Audience'), v('audience'))
       ) +
-      section('🎯 KPI & Yêu cầu', 3,
-        row('KPI', v('kpi')) + row('Định nghĩa KPI', v('kpiDef')) +
-        row('Tracking system', v('tracking')) + row('Historical data', v('history')) +
-        row('Dịch vụ cần PMAX', v('services'))
+      section(isEn ? '🎯 KPI & Requirements' : '🎯 KPI & Yêu cầu', 3,
+        row('KPI', v('kpi')) + row(L('Định nghĩa KPI','KPI Definitions'), v('kpiDef')) +
+        row(L('Tracking system','Tracking System'), v('tracking')) + row('Historical data', v('history')) +
+        row(L('Dịch vụ cần PMAX','Services Required'), v('services'))
       ) +
-      section('💰 Ngân sách & Timeline', 4,
-        row('Ngân sách', (tierMap[budgetTier]||'')+(v('budgetExact')?' · '+v('budgetExact'):'')) +
+      section(isEn ? '💰 Budget & Timeline' : '💰 Ngân sách & Timeline', 4,
+        row(L('Ngân sách','Budget'), (tierMap[budgetTier]||'')+(v('budgetExact')?' · '+v('budgetExact'):'')) +
         row('VAT & AF', vatMap[vatStatus]||'') +
-        row('Deadline proposal', v('deadline')) +
-        row('Bắt đầu', v('startDate')) + row('Thời lượng', durMap[duration]||duration) +
-        row('Ghi chú timeline', v('timelineNote')) +
-        row('Pitching', pitchEl ? (pitchEl.value==='yes' ? 'Có pitching' : 'Không pitching') : '') +
-        row('Số agency', v('pitchingAgencyCount')) + row('Số vòng', v('pitchingRounds')) +
-        row('Timeline pitching', v('pitchingTimeline')) + row('Tiêu chí đánh giá', v('criteria'))
+        row(L('Deadline proposal','Proposal Deadline'), v('deadline')) +
+        row(L('Bắt đầu','Start Date'), v('startDate')) + row(L('Thời lượng','Duration'), durMap[duration]||duration) +
+        row(L('Ghi chú timeline','Timeline Notes'), v('timelineNote')) +
+        row('Pitching', pitchEl ? (pitchEl.value==='yes' ? L('Có pitching','Competitive Pitch') : L('Không pitching','Direct Engagement')) : '') +
+        row(L('Số agency','No. of Agencies'), v('pitchingAgencyCount')) + row(L('Số vòng','Rounds'), v('pitchingRounds')) +
+        row(L('Timeline pitching','Pitch Timeline'), v('pitchingTimeline')) + row(L('Tiêu chí đánh giá','Selection Criteria'), v('criteria'))
       );
   }
 
@@ -858,7 +875,7 @@
 
   async function submitForm() {
     const btn = document.querySelector('.btn-submit');
-    btn.disabled = true; btn.textContent = '⏳ Đang gửi...';
+    btn.disabled = true; btn.textContent = currentLang === 'en' ? '⏳ Submitting...' : '⏳ Đang gửi...';
     const payload = collectPayload();
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzqm9jrNPr4QU6H2hfPI4xIJQL2DbfwHrcZPo0G-PLQnaU-4Wd8n8rbwO8vwlt66JvyjQ/exec';    try {
       if (SCRIPT_URL !== 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
@@ -876,16 +893,23 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzqm9jrNPr4QU6H2hfPI
     document.querySelectorAll('.section-card').forEach(c => { c.style.display='none'; c.classList.remove('active'); });
     document.getElementById('stepper').style.display = 'none';
     document.querySelector('.progress-wrap').style.display = 'none';
-    document.getElementById('successCard').classList.add('show');
+    const sc = document.getElementById('successCard');
+    sc.classList.add('show');
+
+    // apply current lang to success screen
+    setLang(currentLang);
+
+    const isEn = currentLang === 'en';
+    const L = (vi, en) => isEn ? en : vi;
     const row = (label, val) => val ? `<div><strong>${label}:</strong> ${val}</div>` : '';
     document.getElementById('successDetail').innerHTML =
-      row('Công ty', p.company + (p.brand ? ` (${p.brand})` : '')) +
-      row('Người phụ trách', [p.pic.name, p.pic.title].filter(Boolean).join(' · ') + (p.pic.email ? ` · ${p.pic.email}` : '')) +
-      row('Số điện thoại', p.pic.phone) +
-      row('Ngân sách', [p.budget.tier, p.budget.exact].filter(Boolean).join(' · ')) +
-      row('Mục tiêu chiến dịch', p.goals ? p.goals.substring(0,120)+(p.goals.length>120?'…':'') : '') +
-      row('Deadline proposal', p.deadline) +
-      row('Bắt đầu dự kiến', p.startDate);
+      row(L('Công ty','Company'), p.company + (p.brand ? ` (${p.brand})` : '')) +
+      row(L('Người phụ trách','Contact Person'), [p.pic.name, p.pic.title].filter(Boolean).join(' · ') + (p.pic.email ? ` · ${p.pic.email}` : '')) +
+      row(L('Số điện thoại','Phone'), p.pic.phone) +
+      row(L('Ngân sách','Budget'), [p.budget.tier, p.budget.exact].filter(Boolean).join(' · ')) +
+      row(L('Mục tiêu chiến dịch','Campaign Objectives'), p.goals ? p.goals.substring(0,120)+(p.goals.length>120?'…':'') : '') +
+      row(L('Deadline proposal','Proposal Deadline'), p.deadline) +
+      row(L('Bắt đầu dự kiến','Est. Start Date'), p.startDate);
     window.scrollTo({ top:0, behavior:'smooth' });
   }
 
@@ -994,6 +1018,46 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzqm9jrNPr4QU6H2hfPI
     (draft.doneSteps || []).forEach(s => doneSteps.add(s));
     goStep(draft.step || 0);
   }
+
+  // ── LANGUAGE SWITCH ──────────────────────────────────────────────
+  let currentLang = 'vi';
+
+  function setLang(lang) {
+    currentLang = lang;
+    // toggle active button
+    document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    // update all elements with data-vi / data-en
+    document.querySelectorAll('[data-vi]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (!val) return;
+      // for option elements, update text
+      if (el.tagName === 'OPTION') { el.textContent = val; return; }
+      // for elements with only text (no children other than text nodes)
+      if (el.children.length === 0) { el.textContent = val; return; }
+      // for elements with innerHTML (contain <strong> etc)
+      el.innerHTML = val;
+    });
+
+    // update placeholders
+    document.querySelectorAll('[data-ph-vi]').forEach(el => {
+      el.placeholder = el.getAttribute('data-ph-' + lang) || el.placeholder;
+    });
+
+    // keep select option values in sync (selected option text changes with lang)
+    // re-sync select displayed text
+    document.querySelectorAll('select').forEach(sel => {
+      const selected = sel.value;
+      if (selected) {
+        const opt = sel.querySelector(`option[value="${selected}"]`) || [...sel.options].find(o => o.value === selected);
+        // value stays same, text updates via data-vi/en above
+      }
+    });
+  }
+
+  // ── VALIDATION MESSAGES ───────────────────────────────────────────
+  function errMsg(vi, en) { return currentLang === 'en' ? en : vi; }
 
   // auto-save on any input change
   document.addEventListener('input',  saveDraft);
