@@ -476,9 +476,9 @@
         <label><span data-vi="Ngân sách chiến dịch" data-en="Campaign Budget">Ngân sách chiến dịch</span> <span class="req">*</span></label>
         <div class="hint" data-vi="Chọn mức phù hợp, sau đó điền ngân sách cụ thể của dự án lần này hoặc theo tháng" data-en="Select a range, then fill in the specific budget for this project or per month">Chọn mức phù hợp, sau đó điền ngân sách cụ thể của dự án lần này hoặc theo tháng</div>
         <div class="budget-tiers">
-          <div class="tier-btn" onclick="selectTier(this,'lt100')"><div class="tier-value">&lt; 100 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
-          <div class="tier-btn" onclick="selectTier(this,'lt300')"><div class="tier-value">100 – &lt;300 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
-          <div class="tier-btn" onclick="selectTier(this,'gt300')"><div class="tier-value">&gt; 300 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
+          <div class="tier-btn" onclick="selectTier(this,'lt100')"><div class="tier-value" data-vi="&lt; 100 triệu" data-en="&lt; 100M VND">&lt; 100 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
+          <div class="tier-btn" onclick="selectTier(this,'lt300')"><div class="tier-value" data-vi="100 – &lt;300 triệu" data-en="100M – &lt;300M VND">100 – &lt;300 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
+          <div class="tier-btn" onclick="selectTier(this,'gt300')"><div class="tier-value" data-vi="&gt; 300 triệu" data-en="&gt; 300M VND">&gt; 300 triệu</div><div class="tier-label" data-vi="/ tháng" data-en="/ month">/ tháng</div></div>
         </div>
         <div id="budgetExactWrap" style="display:none;margin-top:2px;">
           <input type="text" id="budgetExact" data-ph-vi="VD: 150 triệu VND/tháng hoặc 450 triệu VND cho cả dự án" data-ph-en="E.g. 150 million VND/month or 450 million VND total" placeholder="VD: 150 triệu VND/tháng hoặc 450 triệu VND cho cả dự án">
